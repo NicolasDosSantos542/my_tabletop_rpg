@@ -2,3 +2,11 @@
 
 bah oui, il a réussi le nico! ;)
 <p>Find me in app/views/games/index.html.erb</p>
+
+<ul>
+  <% @answers.each do |answer| %>
+    <li>
+      <%= answer.text %> : <%= answer.value %>
+    </li>
+  <% end %>
+</ul>
