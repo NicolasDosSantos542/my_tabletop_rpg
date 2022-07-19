@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_083701) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_091503) do
   create_table "answers", force: :cascade do |t|
     t.string "content"
     t.integer "next"
@@ -26,5 +26,20 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_083701) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "steps", force: :cascade do |t|
+    t.integer "customId"
+    t.integer "choice_id", null: false
+    t.integer "creature_id", null: false
+    t.integer "template_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["choice_id"], name: "index_steps_on_choice_id"
+    t.index ["creature_id"], name: "index_steps_on_creature_id"
+    t.index ["template_id"], name: "index_steps_on_template_id"
+  end
+
   add_foreign_key "answers", "choices"
+  add_foreign_key "steps", "choices"
+  add_foreign_key "steps", "creatures"
+  add_foreign_key "steps", "templates"
 end

@@ -1,2 +1,0 @@
-class Choice < ApplicationRecord
-end

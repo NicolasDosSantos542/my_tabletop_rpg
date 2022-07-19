@@ -27,6 +27,6 @@ bin/rails generate model Article title:string body:text
 
 annuler un "rail generate": 
 
-rails destroy controller lalala
-rails destroy model yadayada
-rails destroy scaffold hohoho
+bin/rails destroy controller lalala
+bin/rails destroy model yadayada
+bin/rails destroy scaffold hohoho
