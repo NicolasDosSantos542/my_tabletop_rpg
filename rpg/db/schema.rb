@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_19_094940) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_19_142755) do
   create_table "answers", force: :cascade do |t|
     t.string "content"
     t.integer "next"
@@ -41,6 +41,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_19_094940) do
     t.index ["channel_id"], name: "index_games_on_channel_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer "pnj"
+    t.text "message"
+    t.integer "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_messages_on_game_id"
+  end
+
   add_foreign_key "answers", "choices"
   add_foreign_key "games", "channels"
+  add_foreign_key "messages", "games"
 end

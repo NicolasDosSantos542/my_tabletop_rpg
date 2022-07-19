@@ -5,6 +5,17 @@
 <p> <%= @channel.id %> </p>
 <p> <%= @channel.name %> </p>
 
+<h1>Messages</h1>
+
+<div id="messages">
+  <% @messages.each do |message| %>
+    <%= render message %>
+    <p>
+      <%= link_to "Show this message", message.message %>
+    </p>
+  <% end %>
+</div>
+
 <div>
   <%= link_to "Edit this game", edit_game_path(@game) %> |
   <%= link_to "Back to games", games_path %>

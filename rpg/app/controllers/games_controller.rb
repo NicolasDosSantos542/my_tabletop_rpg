@@ -10,6 +10,7 @@ class GamesController < ApplicationController
   def show
         @game = Game.find(params[:id])
        @channel = Channel.find(@game.channel_id)
+       @messages = Message.where(:game_id => @game.id)
   end
 
   # GET /games/new
