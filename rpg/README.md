@@ -22,3 +22,20 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+#on window after install ruby 2.7.6 and rails
+#problem install 
+
+```bash
+gem update --system
+```
+
+```bash
+bundle install
+```
+
+#launch project
+
+```bash
+ruby bin/rails server
+```
