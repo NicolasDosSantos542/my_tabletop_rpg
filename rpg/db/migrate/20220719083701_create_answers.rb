@@ -1,8 +1,9 @@
 class CreateAnswers < ActiveRecord::Migration[7.0]
   def change
     create_table :answers do |t|
-      t.string :text
-      t.boolean :value
+      t.string :content
+      t.integer :next
+      t.references :choice, null: false, foreign_key: true
 
       t.timestamps
     end
