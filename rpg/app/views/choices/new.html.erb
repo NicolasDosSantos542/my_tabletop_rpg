@@ -1,0 +1,17 @@
+<h1>New Choice</h1>
+
+<%= form_with model: @choice do |form| %>
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :step %><br>
+    <%= form.number_field :step %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

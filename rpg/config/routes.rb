@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
+  root "choices#index"
 
-  # get 'answer/new', to "answer#index"
-  
-
+  resources :choices
 
   # resources :choice do
   #   resources :answers
 
 end
+

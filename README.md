@@ -22,7 +22,7 @@ bin/rails generate controller Articles index --skip-routes
 
 créer un nouveau Model: 
 
-bin/rails generate model Article title:string body:text
+bin/rails generate model Choice description:text step:integer
 
 
 annuler un "rail generate": 
