@@ -9,6 +9,13 @@ install rails v7.0.0
 creer un projet:
 rails new le-nom-du-projet
 
+lancer le server:
+bin/rails server
 
 aller voir là https://guides.rubyonrails.org/getting_started.html
 pour la creation de nouveau controllers et autres éléments
+
+
+créer un nouveau controller avec views (retirer l'option --skip-routes si la route n'est pas déjà créée)
+
+bin/rails generate controller Articles index --skip-routes
