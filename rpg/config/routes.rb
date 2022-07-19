@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :games
+  resources :channels
   root "games#index"
 
   get '/games', to: "games#index"
