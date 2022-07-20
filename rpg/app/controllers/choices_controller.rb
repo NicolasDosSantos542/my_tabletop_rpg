@@ -20,6 +20,33 @@ class ChoicesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
+  def edit
+    @choice = Choice.find(params[:id])
+  end
+
+  def update
+    @choice = Choice.find(params[:id])
+
+    if @choice.update(choice_params)
+      redirect_to @choice
+    else
+      render :edit, status: :unprocessable_entity
+    end
+
+  end
+
+  def destroy
+    @choice = Choice.find(params[:id])
+    @choice.destroy
+
+    redirect_to root_path, status: :see_other
+  end
+
+
+
+
+
   private
     def choice_params
       params.require(:choice).permit(:description, :step)
