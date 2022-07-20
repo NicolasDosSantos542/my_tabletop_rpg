@@ -4,11 +4,13 @@ class ChoicesController < ApplicationController
   end
 
   def show
+    logger.info "blah" 
     @choice=Choice.find(params[:id])
   end
 
   def new
     @choice = Choice.new
+    @choice.answers.build
   end
 
   def create

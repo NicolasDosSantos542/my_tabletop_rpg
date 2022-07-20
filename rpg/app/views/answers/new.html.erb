@@ -1,7 +1,8 @@
 
 <h2>Add an Answer:</h2> 
 
- <%= form_with model: @answers do |form| %> 
+
+ <%= form_with model: [ @choice, choice_url.answers.build ] do |form| %> 
    <p> 
      <%= form.label :description %><br> 
      <%= form.text_field :description %> 
@@ -10,11 +11,16 @@
      <%= form.label :next %><br> 
      <%= form.number_field :next %> 
    </p> 
-     <p> 
+    <p> 
      <%= form.label :exp %><br> 
      <%= form.number_field :exp %> 
+   </p>
+   <p> 
+     <%= form.label :choice %><br> 
+     <%= form.number_field :choice %> 
    </p> 
    <p> 
-     <%= form.submit %> 
+     <%= form.submit  %> 
    </p> 
  <% end %>
+
