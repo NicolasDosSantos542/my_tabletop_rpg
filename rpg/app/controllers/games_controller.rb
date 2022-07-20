@@ -8,8 +8,9 @@ class GamesController < ApplicationController
 
   # GET /games/1 or /games/1.json
   def show
-        @game = Game.find(params[:id])
+       @game = Game.find(params[:id])
        @channel = Channel.find(@game.channel_id)
+       @gm = Channel.find(@game.gm_id)
        @messages = Message.where(:game_id => @game.id)
   end
 
@@ -25,7 +26,6 @@ class GamesController < ApplicationController
   # POST /games or /games.json
   def create
     @game = Game.new(game_params)
-
     respond_to do |format|
       if @game.save
         format.html { redirect_to game_url(@game), notice: "Game was successfully created." }
@@ -68,6 +68,6 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.require(:game).permit(:name, :description, :string, :channel_id)
+      params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id)
     end
 end

@@ -1,0 +1,27 @@
+<%= form_with(model: gm) do |form| %>
+  <% if gm.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(gm.errors.count, "error") %> prohibited this gm from being saved:</h2>
+
+      <ul>
+        <% gm.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :login, style: "display: block" %>
+    <%= form.text_field :login %>
+  </div>
+
+  <div>
+    <%= form.label :password, style: "display: block" %>
+    <%= form.text_field :password %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
