@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   resources :gms
   get 'home/index'
+  post 'home/login', to: "home#login"
   resources :messages
   resources :games
   resources :channels
+  resources :homes
   root "home#index"
 
   get '/games', to: "games#index"
