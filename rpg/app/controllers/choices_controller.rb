@@ -15,7 +15,7 @@ class ChoicesController < ApplicationController
     @choice = Choice.new(choice_params)
 
     if @choice.save
-      redirect_to @choice
+      redirect_to new_choice_answer_path(@choice)
     else
       render :new, status: :unprocessable_entity
     end

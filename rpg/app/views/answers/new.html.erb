@@ -1,0 +1,20 @@
+
+<h2>Add an Answer:</h2> 
+
+ <%= form_with model: @answers do |form| %> 
+   <p> 
+     <%= form.label :description %><br> 
+     <%= form.text_field :description %> 
+   </p> 
+   <p> 
+     <%= form.label :next %><br> 
+     <%= form.number_field :next %> 
+   </p> 
+     <p> 
+     <%= form.label :exp %><br> 
+     <%= form.number_field :exp %> 
+   </p> 
+   <p> 
+     <%= form.submit %> 
+   </p> 
+ <% end %>

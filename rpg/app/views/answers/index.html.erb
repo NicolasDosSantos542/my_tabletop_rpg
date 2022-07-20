@@ -1,0 +1,7 @@
+<h1>answers Index</h1>
+<ul style="list-style: none;">
+  <% @answers.each do |answer| %>
+    <li><%= answer.description %></li>
+  <% end %>
+</ul>
+<%# <%= link_to "New answer", new_answer_path %>
