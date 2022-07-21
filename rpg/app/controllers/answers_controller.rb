@@ -20,9 +20,9 @@ class AnswersController < ApplicationController
     logger.info "\n ça passe dans create \n"
  
     @choice = Choice.find(params[:choice_id])
-    @comment = @choice.answers.create(comment_params)
-    redirect_to choice_path(@choice)
-  end
+    @answer = @choice.answers.create(answer_params)
+    redirect_to  request.referrer
+    end
 
 
 

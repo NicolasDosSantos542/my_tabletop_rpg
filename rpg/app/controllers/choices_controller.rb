@@ -13,11 +13,13 @@ class ChoicesController < ApplicationController
     @choice.answers.build
   end
 
+ 
+
   def create
     @choice = Choice.new(choice_params)
 
     if @choice.save
-      redirect_to new_choice_answer_path(@choice)
+      redirect_to edit_choice_path(@choice.id)
     else
       render :new, status: :unprocessable_entity
     end
@@ -44,9 +46,6 @@ class ChoicesController < ApplicationController
 
     redirect_to root_path, status: :see_other
   end
-
-
-
 
 
   private
