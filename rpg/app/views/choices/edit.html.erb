@@ -1,0 +1,13 @@
+<h1>Edit Choice</h1>
+
+<%= render "form", choice: @choice %>
+
+<% @choice.answers.each.with_index() do |answer, index| %>
+    <% if answer.description%>
+        <p>
+          <strong>réponse <%=index%>:</strong>
+          <%= answer.description %> / next: <%=answer.next%> / choice: <%=answer.choice_id%>
+        </p>
+    <% end %>
+
+<% end %>

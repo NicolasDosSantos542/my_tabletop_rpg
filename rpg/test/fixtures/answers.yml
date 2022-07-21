@@ -1,11 +1,13 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyString
-  next: 1
+  description: MyText
   choice: one
+  next: 1
+  exp: 1
 
 two:
-  content: MyString
-  next: 1
+  description: MyText
   choice: two
+  next: 1
+  exp: 1

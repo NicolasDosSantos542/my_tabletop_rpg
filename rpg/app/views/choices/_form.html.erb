@@ -1,0 +1,47 @@
+
+<%= form_with model: choice do |form| %>
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+    <% choice.errors.full_messages_for(:description).each do |message| %>
+    <div style="color:red"><%= message %></div>
+    <% end %>
+    </div>
+
+  <div>
+    <%= form.label :step %><br>
+    <%= form.number_field :step %>
+    <% choice.errors.full_messages_for(:step).each do |message| %>
+    <div style="color:red"><%= message %></div>
+    <% end %>
+
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<%if choice.id %>
+  <h1>réponse</h1>  
+
+   <%= form_with model: [ choice, choice.answers.build ] do |form| %> 
+     <p> 
+       <%= form.label :description %><br> 
+       <%= form.text_field :description %> 
+     </p> 
+     <p> 
+       <%= form.label :next %><br> 
+       <%= form.number_field :next %> 
+     </p> 
+      <p> 
+       <%= form.label :exp %><br> 
+       <%= form.number_field :exp %> 
+     </p> 
+
+     <p> 
+       <%= form.submit  %> 
+     </p> 
+   <% end %>
+
+<% end%>
+
