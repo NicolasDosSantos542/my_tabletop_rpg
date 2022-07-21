@@ -5,17 +5,17 @@ class HomeController < ApplicationController
 
   def login
 
-    @gm = Gm.find_by(params[:gm])
+    @gm = Gm.find_by(login: params[:login], password: params[:password])
     # @userGamer =
     if @gm
-      @game = Game.find_by({ gm_id: @gm.id })
+      @game = Game.where( gm_id: @gm.id )
 
       if @game
-        id = @game.id
         url = '/games/gm/'
-        redirect_to  url + id.to_s
+        redirect_to  url + @gm.id.to_s
       else
-        redirect_to @gm
+        # rediriger a la creation de game
+        redirect_to "/game/new"
       # redirect_to "/gms/", request.params.merge(id: @gm.id)
       end
     end

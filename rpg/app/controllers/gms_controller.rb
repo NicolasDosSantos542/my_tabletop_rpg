@@ -25,8 +25,9 @@ class GmsController < ApplicationController
 
     respond_to do |format|
       if @gm.save
-        format.html { redirect_to gm_url(@gm), notice: "Gm was successfully created." }
-        format.json { render :show, status: :created, location: @gm }
+        format.html do
+          redirect_to root_path
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @gm.errors, status: :unprocessable_entity }
