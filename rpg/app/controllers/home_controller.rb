@@ -11,11 +11,15 @@ class HomeController < ApplicationController
       @game = Game.find_by({ gm_id: @gm.id })
 
       if @game
-        redirect_to @game
+        id = @game.id
+        url = '/games/gm/'
+        redirect_to  url + id.to_s
       else
         redirect_to @gm
       # redirect_to "/gms/", request.params.merge(id: @gm.id)
-        end
+      end
     end
+
+
   end
 end

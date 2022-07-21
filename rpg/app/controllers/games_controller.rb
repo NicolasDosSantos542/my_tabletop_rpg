@@ -50,6 +50,19 @@ class GamesController < ApplicationController
     end
   end
 
+  # GET /games/user or /games.json
+  def getMyGames
+
+    @gameForGm = Game.where(gm_id: params[:id])
+    respond_to do |format|
+    if @gameForGm
+      @games = @gameForGm
+      format.html { render :chooseGame }
+      format.json { render json: @games, status: :ok, location: @game }
+    end
+    end
+  end
+
   # DELETE /games/1 or /games/1.json
   def destroy
     @game.destroy
