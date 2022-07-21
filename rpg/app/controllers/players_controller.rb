@@ -25,8 +25,9 @@ class PlayersController < ApplicationController
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to player_url(@player), notice: "Player was successfully created." }
-        format.json { render :show, status: :created, location: @player }
+        format.html do
+          redirect_to root_path
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @player.errors, status: :unprocessable_entity }
