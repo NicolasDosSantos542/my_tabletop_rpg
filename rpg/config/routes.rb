@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :game_players
+  resources :players
   resources :gms
   get 'home/index'
   post 'home/login', to: "home#login"

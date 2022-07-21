@@ -8,10 +8,19 @@ class GamesController < ApplicationController
 
   # GET /games/1 or /games/1.json
   def show
-       @game = Game.find(params[:id])
-       @channel = Channel.find(@game.channel_id)
-       @gm = Channel.find(@game.gm_id)
-       @messages = Message.where(:game_id => @game.id)
+    @game = Game.find(params[:id])
+    @channel = Channel.find(@game.channel_id)
+    @gm = Channel.find(@game.gm_id)
+    @idPlayers = GamePlayer.where(:game_id => @game.id)
+    @messages = Message.where(:game_id => @game.id)
+
+    if @idPlayers
+      @players = []
+      @idPlayers.each {
+        |player|
+        @players.push(Player.select("id", "login").find(player.id))
+      }
+    end
   end
 
   # GET /games/new
@@ -25,14 +34,21 @@ class GamesController < ApplicationController
 
   # POST /games or /games.json
   def create
-    @game = Game.new(game_params)
-    respond_to do |format|
-      if @game.save
-        format.html { redirect_to game_url(@game), notice: "Game was successfully created." }
-        format.json { render :show, status: :created, location: @game }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
+    @channel = Channel.new(name: game_params["name"])
+    if @channel.save
+      idChannel = Channel.find_by(name: game_params["name"])
+      # newIdChannel = idChannel.merge(:id_channel => idChannel)
+      new_game = game_params.merge(:channel_id => idChannel.id)
+      @game = Game.new(new_game)
+
+      respond_to do |format|
+        if @game.save
+          format.html { redirect_to game_url(@game), notice: "Game was successfully created." }
+          format.json { render :show, status: :created, location: @game }
+        else
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @game.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -55,11 +71,11 @@ class GamesController < ApplicationController
 
     @gameForGm = Game.where(gm_id: params[:id])
     respond_to do |format|
-    if @gameForGm
-      @games = @gameForGm
-      format.html { render :chooseGame }
-      format.json { render json: @games, status: :ok, location: @game }
-    end
+      if @gameForGm
+        @games = @gameForGm
+        format.html { render :chooseGame }
+        format.json { render json: @games, status: :ok, location: @game }
+      end
     end
   end
 
@@ -74,13 +90,14 @@ class GamesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_game
-      @game = Game.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def game_params
-      params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @game = Game.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def game_params
+    params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id)
+  end
 end
