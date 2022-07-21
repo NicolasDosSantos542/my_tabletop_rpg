@@ -11,7 +11,16 @@ class GamesController < ApplicationController
        @game = Game.find(params[:id])
        @channel = Channel.find(@game.channel_id)
        @gm = Channel.find(@game.gm_id)
+       @idPlayers = GamePlayer.where(:game_id => @game.id)
        @messages = Message.where(:game_id => @game.id)
+
+       if @idPlayers
+         @players = []
+         @idPlayers.each {
+           |player|
+           @players.push(Player.select("id","login").find(player.id))
+         }
+       end
   end
 
   # GET /games/new

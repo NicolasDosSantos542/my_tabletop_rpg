@@ -5,6 +5,13 @@
 <p> <%= @channel.id %> </p>
 <p> <%= @channel.name %> </p>
 
+<h1>Player</h1>
+
+<% @players.each do |player| %>
+  <%= player.login %>
+<% end %>
+
+
 <h1>Messages</h1>
 
 <div id="messages">
