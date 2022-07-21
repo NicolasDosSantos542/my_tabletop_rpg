@@ -9,21 +9,19 @@ class AnswersController < ApplicationController
     @answer=Answer.find(params[:id])
   end
 
-  def new
-    @answer = Answer.new
-    logger.info "\n\n\n mes couilles en ski \n\n\n"
-  end
-
-  def create
-    # answer_params["choice"] = params["/choices/66/answers/"]
-    # puts answer_params["choice"]
-    logger.info "\n ça passe dans create \n"
  
+  def create
     @choice = Choice.find(params[:choice_id])
     @answer = @choice.answers.create(answer_params)
     redirect_to  request.referrer
-    end
+  end
 
+  def destroy
+    @answer = Answer.find(params[:id])
+    @answer.destroy
+    redirect_to  request.referrer
+
+  end
 
 
   private
