@@ -1,6 +1,8 @@
 <h1>  <%= @choice.step %> </h1>
 
 <p>  <%= @choice.description %></p>
+<%= render @choice.answers%>
+
 
 <div><%= link_to "Edit Choice", edit_choice_path(@choice) %></div>
 <div><%= link_to "Destroy Choice", choice_path(@choice), data: {

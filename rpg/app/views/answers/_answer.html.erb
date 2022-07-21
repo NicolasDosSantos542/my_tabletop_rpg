@@ -1,0 +1,13 @@
+ <% if answer.description%>
+        <p>
+          <strong>réponse :</strong>
+          <%= answer.description %> / next: <%=answer.next%> /
+           choice: <%=answer.choice_id%> /
+            <%= link_to "supprimer", [answer.choice, answer], data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
+        </p>
+ <% end %>
+
+
