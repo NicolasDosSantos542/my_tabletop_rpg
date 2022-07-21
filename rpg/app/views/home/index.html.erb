@@ -1,0 +1,18 @@
+<h1>Se connecter</h1>
+
+<%#= form_tag({:controller => "home", :action => "login"}) do %>
+<%= form_with(model: @gm, url: "home/login", method: "post") do %>
+  <label for="login">Login</label>
+  <input id="login" name="login" type="text"/>
+  <label for="password">Mot de passe</label>
+  <input id="password" name="password" type="password"/>
+  <%= submit_tag "Login" %>
+<% end %>
+
+<%#= form_tag gm_path do %>
+<!--  <label for="login">Login</label>-->
+<!--  <input id="login" name="login" type="text"/>-->
+<!--  <label for="password">Mot de passe</label>-->
+<!--  <input id="password" name="password" type="password"/>-->
+  <%#= submit_tag "Login" %>
+<%# end %>

@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @gm %>
+
+<div>
+  <%= link_to "Edit this gm", edit_gm_path(@gm) %> |
+  <%= link_to "Back to gms", gms_path %>
+
+  <%= button_to "Destroy this gm", @gm, method: :delete %>
+</div>

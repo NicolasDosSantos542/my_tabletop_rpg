@@ -22,11 +22,11 @@ bin/rails generate controller Articles index --skip-routes
 
 créer un nouveau Model: 
 
-bin/rails generate model Article title:string body:text
+bin/rails generate model Choice description:text step:integer
 
 
 annuler un "rail generate": 
 
-rails destroy controller lalala
-rails destroy model yadayada
-rails destroy scaffold hohoho
+bin/rails destroy controller lalala
+bin/rails destroy model yadayada
+bin/rails destroy scaffold hohoho
