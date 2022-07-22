@@ -4,7 +4,6 @@ class ChoicesController < ApplicationController
   end
 
   def show
-    logger.info "blah" 
     @choice=Choice.find(params[:id])
   end
 

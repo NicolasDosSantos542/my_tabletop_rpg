@@ -10,12 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_104548) do
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_112159) do
-=======
-ActiveRecord::Schema[7.0].define(version: 2022_07_21_144757) do
->>>>>>> step
+ActiveRecord::Schema[7.0].define(version: 2022_07_22_101138) do
   create_table "answers", force: :cascade do |t|
     t.text "description"
     t.integer "choice_id", null: false
@@ -35,6 +30,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_144757) do
   create_table "choices", force: :cascade do |t|
     t.text "description"
     t.integer "step"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "creatures", force: :cascade do |t|
+    t.integer "loot_id"
+    t.integer "strength"
+    t.integer "life"
+    t.text "image"
+    t.integer "given_exp"
+    t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -77,16 +83,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_21_144757) do
     t.index ["game_id"], name: "index_messages_on_game_id"
   end
 
-<<<<<<< HEAD
   create_table "players", force: :cascade do |t|
     t.string "login"
     t.string "password"
-=======
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "steps", force: :cascade do |t|
     t.integer "order"
     t.integer "creature_id"
     t.integer "loot_id"
->>>>>>> step
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

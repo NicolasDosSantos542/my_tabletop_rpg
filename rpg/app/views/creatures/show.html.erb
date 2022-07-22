@@ -1,0 +1,16 @@
+
+<p>  <%= @creature.id %></p>
+  
+     <div>    <img alt="avatar" src="<%= @creature.image %>" /> , </div>
+     <div>    loot_id : <%= @creature.loot_id %> , </div>
+     <div>    strength : <%= @creature.strength %> , </div>
+     <div>    life : <%= @creature.life %> , </div>
+     <div>    description : <%= @creature.description %> </div>
+     <div>    given_exp : <%= @creature.given_exp %> , </div>
+
+<div><%= link_to "Edit creature", edit_creature_path(@creature) %></div>
+<div><%= link_to "Destroy creature", creature_path(@creature), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></div>
+<div><%= link_to "All creatures", creatures_path%></div>
