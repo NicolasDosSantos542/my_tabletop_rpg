@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_22_101138) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_22_140227) do
   create_table "answers", force: :cascade do |t|
     t.text "description"
     t.integer "choice_id", null: false
@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_101138) do
     t.text "image"
     t.integer "given_exp"
     t.text "description"
+    t.text "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -70,6 +71,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_101138) do
   create_table "gms", force: :cascade do |t|
     t.string "login"
     t.string "password"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "images", force: :cascade do |t|
+    t.string "path"
+    t.string "name"
+    t.string "image_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

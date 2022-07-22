@@ -1,3 +1,40 @@
+
+
+<div class="test"></div>
+<div class="select-sim" id="select-color">
+  <div class="options">
+
+    <div class="option">
+      <input type="radio" name="color" value="" id="color-" checked />
+      <label for="color-">
+        <img src="http://placehold.it/22/ffffff/ffffff" alt="" /> Select an option
+      </label>
+    </div>
+    <% @images.each do |image| %>
+  <div class="option">
+      <input type="radio" name="color" value="image.name" id="color-" checked />
+      <label for="color-">
+             <%= image_tag image.path %>
+      </label>
+  </div>
+<% end %>
+
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h1>welcome on creatures manager</h1>
 
 <ul style="list-style: none;">
@@ -5,12 +42,12 @@
     <li>
       <a href="<%= creature_path(creature) %>">
       
-     <img alt="avatar" src="<%= creature.image %>" /> , 
-     loot_id : <%= creature.loot_id %> , 
-     strength : <%= creature.strength %> , 
-     life : <%= creature.life %> , 
-     description : <%= creature.description %> 
-     given_exp : <%= creature.given_exp %> , 
+      <%= image_tag creature.image %>
+      loot_id : <%= creature.loot_id %> , 
+      strength : <%= creature.strength %> , 
+      life : <%= creature.life %> , 
+      description : <%= creature.description %> 
+      given_exp : <%= creature.given_exp %> , 
       </a>
     <p><%= link_to "Destroy creature", creature_path(creature), data: {
                     turbo_method: :delete,

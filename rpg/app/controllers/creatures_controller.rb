@@ -1,6 +1,7 @@
 class CreaturesController < ApplicationController
     def index
       @creatures = Creature.all
+      @images= Image.all
     end
   
     def show
@@ -51,7 +52,7 @@ class CreaturesController < ApplicationController
   
     private
       def creature_params
-        params.require(:creature).permit(:loot_id, :strength, :life, :image, :given_exp, :description)
+        params.require(:creature).permit(:loot_id, :strength, :life, :image, :given_exp, :description, :name)
       end
   end
   

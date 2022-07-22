@@ -7,6 +7,7 @@ class CreateCreatures < ActiveRecord::Migration[7.0]
       t.text  :image
       t.integer :given_exp
       t.text :description
+      t.text :name
 
 
       t.timestamps
