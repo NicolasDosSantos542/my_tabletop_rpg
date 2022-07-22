@@ -1,0 +1,11 @@
+<h1>Se connecter en tant que maitre de jeux</h1>
+
+<%= form_with(model: @gm, url: "/home/logingm", method: "post") do %>
+<label for="login">Login</label>
+<input id="login" name="login" type="text"/>
+<label for="password">Mot de passe</label>
+<input id="password" name="password" type="password"/>
+<%= submit_tag "Login" %>
+<% end %>
+<p><%= link_to "retour", "/" %></p>
+<p><%= link_to "creer un maitre de jeux", "/gms/new" %></p>
