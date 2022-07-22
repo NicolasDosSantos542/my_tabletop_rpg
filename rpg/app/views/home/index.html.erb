@@ -1,22 +1,5 @@
-<h1>Se connecter</h1>
-
-<%#= form_tag({:controller => "home", :action => "login"}) do %>
-
-
-<%= form_with(model: @gm, url: "home/login", method: "post") do %>
-  <label for="login">Login</label>
-  <input id="login" name="login" type="text"/>
-  <label for="password">Mot de passe</label>
-  <input id="password" name="password" type="password"/>
-  <%= submit_tag "Login" %>
-<% end %>
-<p><%= link_to "creer un joueur", new_player_path %></p>
-<p><%= link_to "creer un maitre de jeux", new_gm_path %></p>
-
-<%#= form_tag gm_path do %>
-<!--  <label for="login">Login</label>-->
-<!--  <input id="login" name="login" type="text"/>-->
-<!--  <label for="password">Mot de passe</label>-->
-<!--  <input id="password" name="password" type="password"/>-->
-  <%#= submit_tag "Login" %>
-<%# end %>
+<h1>Votre choix</h1>
+<p><%= link_to "Creer un joueur", new_player_path %></p>
+<p><%= link_to "Creer un maitre de jeux", new_gm_path %></p>
+<p><%= link_to "Se connecter en tant que maitre de jeux", '/home/gm' %></p>
+<p><%= link_to "Se connecter en tant que player", '/home/player' %></p>

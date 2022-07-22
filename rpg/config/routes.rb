@@ -2,19 +2,26 @@ Rails.application.routes.draw do
   resources :game_players
   resources :players
   resources :gms
-  get 'home/index'
-  post 'home/login', to: "home#login"
+  get '/', to: "home#index"
+  get '/home/gm', to: "home#loggm"
+  get '/home/player', to: "home#logplayer"
+
+
+
   resources :messages
   resources :games
   resources :channels
-  resources :homes
+  resources :home
   root "home#index"
+  post '/home/logingm', to: "home#logingm"
+  post '/home/loginplayer', to: "home#loginplayer"
 
   resources :choices do
     resources :answers
   end
   get '/games', to: "games#index"
   get '/games/gm/:id', to: "games#getMyGames"
+  get '/games/player/:id', to: "games#getMyGames"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
 end
