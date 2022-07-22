@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :choices do
     resources :answers
   end
+  resources :steps
   get '/games', to: "games#index"
   get '/games/gm/:id', to: "games#getMyGames"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
