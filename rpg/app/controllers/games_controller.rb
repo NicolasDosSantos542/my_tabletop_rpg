@@ -69,6 +69,19 @@ class GamesController < ApplicationController
   # GET /games/user or /games.json
   def getMyGames
 
+    if params[:entity] == "player"
+      @gameForPlayer = GamePlayer.where(player_id: params[:id])
+      respond_to do |format|
+        if @gameForPlayer
+          @games = @gameForPlayer
+          format.html { render :chooseGame }
+          format.json { render json: @games, status: :ok, location: @game }
+        end
+      end
+    end
+
+    if params[:entity] == "gm"
+    # TODO mettre le player ou le gm en parametre pour savoir si c'est une game player ou gm
     @gameForGm = Game.where(gm_id: params[:id])
     respond_to do |format|
       if @gameForGm
@@ -77,7 +90,8 @@ class GamesController < ApplicationController
         format.json { render json: @games, status: :ok, location: @game }
       end
     end
-  end
+    end
+    end
 
   # DELETE /games/1 or /games/1.json
   def destroy

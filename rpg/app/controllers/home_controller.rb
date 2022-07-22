@@ -59,8 +59,6 @@ class HomeController < ApplicationController
       #renvoyer message d erreur a la place de rediriger
       redirect_to "/gms/new"
     end
-
-
   end
 
   def loginplayer
