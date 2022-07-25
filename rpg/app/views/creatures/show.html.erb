@@ -1,7 +1,7 @@
 
 <p>  <%= @creature.id %></p>
   
-     <div>    <img alt="avatar" src="<%= @creature.image %>" /> , </div>
+     <div>         <%= image_tag @creature.image %> , </div>
      <div>    loot_id : <%= @creature.loot_id %> , </div>
      <div>    strength : <%= @creature.strength %> , </div>
      <div>    life : <%= @creature.life %> , </div>

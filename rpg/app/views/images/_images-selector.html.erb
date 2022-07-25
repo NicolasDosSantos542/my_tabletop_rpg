@@ -1,0 +1,19 @@
+<div class="select-sim" id="select-color">
+  <div class="options">
+    <div class="option">
+      <input type="radio" name="color" value="" id="color-" checked />
+      <label for="color-">
+        <img src="" alt="" /> Select an option
+      </label>
+    </div>
+    <% images.each do |image| %>
+      <div class="option">
+        <input type="radio" name="color" value="<%= image.name  %>" alt="<%= image.name  %>" id="color-" checked />
+        <label for="color-">
+          <p><%= image_tag image.path %> </p>
+          <p><%= image.name  %> </p>
+        </label>
+      </div>
+    <% end %>
+  </div>
+</div>

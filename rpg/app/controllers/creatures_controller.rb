@@ -1,6 +1,7 @@
 class CreaturesController < ApplicationController
     def index
       @creatures = Creature.all
+      @images= Image.all
     end
   
     def show
@@ -9,6 +10,7 @@ class CreaturesController < ApplicationController
   
     def new
       @creature = Creature.new
+      @image_type = "creature"
     end
   
    
@@ -25,6 +27,8 @@ class CreaturesController < ApplicationController
   
     def edit
       @creature = Creature.find(params[:id])
+      @image_type = "creature"
+
     end
   
     def update
@@ -51,7 +55,7 @@ class CreaturesController < ApplicationController
   
     private
       def creature_params
-        params.require(:creature).permit(:loot_id, :strength, :life, :image, :given_exp, :description)
+        params.require(:creature).permit(:loot_id, :strength, :life, :image, :given_exp, :description, :name)
       end
   end
   

@@ -1,3 +1,5 @@
+
+
 <h1>welcome on creatures manager</h1>
 
 <ul style="list-style: none;">
@@ -5,12 +7,12 @@
     <li>
       <a href="<%= creature_path(creature) %>">
       
-     <img alt="avatar" src="<%= creature.image %>" /> , 
-     loot_id : <%= creature.loot_id %> , 
-     strength : <%= creature.strength %> , 
-     life : <%= creature.life %> , 
-     description : <%= creature.description %> 
-     given_exp : <%= creature.given_exp %> , 
+      <%= image_tag creature.image %>
+      loot_id : <%= creature.loot_id %> , 
+      strength : <%= creature.strength %> , 
+      life : <%= creature.life %> , 
+      description : <%= creature.description %> 
+      given_exp : <%= creature.given_exp %> , 
       </a>
     <p><%= link_to "Destroy creature", creature_path(creature), data: {
                     turbo_method: :delete,

@@ -3,7 +3,16 @@
 <%= form_with model: creature do |form| %>
 
 
+  <div>
 
+     <strong><%= form.label :name %><br></strong>
+   <%= form.text_field :name %>
+    <% creature.errors.full_messages_for(:name).each do |message| %>
+    <div style="color:red"><%= message %></div>
+    <% end %>
+
+  </div>
+  
 
   <div>
     <%= form.label :loot_id %><br>
@@ -39,16 +48,21 @@
     <% end %>
 
   </div>
-  <div>
-
-    <%= form.label :image %><br>
-    <%= form.text_field :image %>
-    <% creature.errors.full_messages_for(:image).each do |message| %>
-    <div style="color:red"><%= message %></div>
-    <% end %>
-
+  <div class="select-sim" id="select-color">
+    <div class="options">
+      <%= form.collection_radio_buttons( :image , Image.where(["image_type = ?", @image_type]), :path, :name) do |b| %>
+        <li> <%=b.label { b.radio_button + image_tag(b.object.path) }%></li>
+        
+        <%end%>
+    </div>
   </div>
 
+   
+
+
+
+ 
+  
   <div>
 
     <%= form.label :description %><br>
@@ -67,4 +81,5 @@
  
 
 <% end%>
+
 
