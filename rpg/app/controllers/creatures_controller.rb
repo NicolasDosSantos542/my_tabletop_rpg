@@ -10,6 +10,8 @@ class CreaturesController < ApplicationController
   
     def new
       @creature = Creature.new
+      image_type = "creature"
+      @images = Image.where(["image_type = ?", image_type])
     end
   
    

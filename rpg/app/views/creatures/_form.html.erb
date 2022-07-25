@@ -48,15 +48,14 @@
     <% end %>
 
   </div>
-  <div>
+     <%= form.collection_radio_buttons( :image , @images, :path, :name) do |b|
+        b.label { b.radio_button + image_tag(b.object.path) }
+        
+        end%>
 
-    <%= form.label :image %><br>
-    <%= form.text_field :image %>
-    <% creature.errors.full_messages_for(:image).each do |message| %>
-    <div style="color:red"><%= message %></div>
-    <% end %>
 
-  </div>
+
+ 
   
   <div>
 
@@ -76,4 +75,5 @@
  
 
 <% end%>
+
 

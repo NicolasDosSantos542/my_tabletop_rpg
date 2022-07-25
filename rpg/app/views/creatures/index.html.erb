@@ -1,40 +1,5 @@
 
 
-<div class="test"></div>
-<div class="select-sim" id="select-color">
-  <div class="options">
-
-    <div class="option">
-      <input type="radio" name="color" value="" id="color-" checked />
-      <label for="color-">
-        <img src="http://placehold.it/22/ffffff/ffffff" alt="" /> Select an option
-      </label>
-    </div>
-    <% @images.each do |image| %>
-  <div class="option">
-      <input type="radio" name="color" value="image.name" id="color-" checked />
-      <label for="color-">
-             <%= image_tag image.path %>
-      </label>
-  </div>
-<% end %>
-
-    
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 <h1>welcome on creatures manager</h1>
 
 <ul style="list-style: none;">
