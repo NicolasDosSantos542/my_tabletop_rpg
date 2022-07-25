@@ -1,6 +1,5 @@
 class LootsController < ApplicationController
   before_action :set_loot, only: %i[ show edit update destroy ]
-
   # GET /loots or /loots.json
   def index
     @loots = Loot.all
@@ -13,6 +12,7 @@ class LootsController < ApplicationController
   # GET /loots/new
   def new
     @loot = Loot.new
+    @image_type = "loot"
   end
 
   # GET /loots/1/edit
@@ -61,6 +61,8 @@ class LootsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_loot
       @loot = Loot.find(params[:id])
+      @image_type= "loot"
+
     end
 
     # Only allow a list of trusted parameters through.

@@ -81,6 +81,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_095016) do
     t.string "image_type"
     t.string "loot_material"
     t.string "loot_type"
+    t.integer "loot_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
