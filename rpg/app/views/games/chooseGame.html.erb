@@ -1,9 +1,21 @@
-<h2>Mes games</h2> <%= link_to "ajouter une game", new_game_path %>
+<h2>Mes games</h2>
+<% if @entity != "player" %>
+   <%= link_to "ajouter une game", new_game_path %>
+<% end %>
+
 
 <div id="games">
     <% @games.each do |game| %>
     <p><%= link_to game.name, game_path(game) %></p>
     <% end %>
 </div>
+
+<% if @entity == "player"  %>
+  <h4>Debuter une nouvelle partie?</h4>
+
+  <% @allGames.each do |game| %>
+    <p><%= link_to game.name, game_path(game) %></p>
+  <% end %>
+<% end %>
 
 

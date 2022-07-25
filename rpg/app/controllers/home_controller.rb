@@ -47,6 +47,8 @@ class HomeController < ApplicationController
       @game = Game.where( gm_id: @gm.id )
 
       if @game
+        session[:user_id] = @gm.id
+        session[:role] = "gm"
         url = '/games/gm/'
         redirect_to  url + @gm.id.to_s
       else
@@ -64,6 +66,8 @@ class HomeController < ApplicationController
   def loginplayer
     @player = Player.find_by(login: params[:login], password: params[:password])
     if @player
+      session[:user_id] = @player.id
+      session[:role] = "player"
       @games = GamePlayer.where( player_id: @player.id )
 
       if @games

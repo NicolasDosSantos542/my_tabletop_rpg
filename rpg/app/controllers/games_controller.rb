@@ -69,13 +69,20 @@ class GamesController < ApplicationController
   # GET /games/user or /games.json
   def getMyGames
 
+    @allGames = Game.all
+    logger.info "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    logger.debug "Person attributes id: #{session[:user_id]}"
+    logger.debug "Person attributes role: #{session[:role]}"
+    logger.info "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+
     if params[:entity] == "player"
       @gameForPlayer = GamePlayer.where(player_id: params[:id])
       respond_to do |format|
         if @gameForPlayer
           @games = @gameForPlayer
+          @entity = "player"
           format.html { render :chooseGame }
-          format.json { render json: @games, status: :ok, location: @game }
+          format.json { render json: @game, status: :ok, location: @game }
         end
       end
     end
