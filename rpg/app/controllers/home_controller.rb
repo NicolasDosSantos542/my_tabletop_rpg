@@ -49,7 +49,7 @@ class HomeController < ApplicationController
       if @game
         session[:user_id] = @gm.id
         session[:role] = "gm"
-        url = '/games/gm/'
+        url = '/games/viewAll/gm/'
         redirect_to  url + @gm.id.to_s
       else
         puts @gm
@@ -73,7 +73,7 @@ class HomeController < ApplicationController
       @games = GamePlayer.where( player_id: @player.id )
 
       if @games
-        url = '/games/player/'
+        url = '/games/viewAll/player/'
         redirect_to  url + @player.id.to_s
       else
         # rediriger a la creation de game
