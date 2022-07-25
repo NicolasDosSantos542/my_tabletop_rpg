@@ -3,8 +3,12 @@
 <%= render @player %>
 
 <div>
-  <%= link_to "Edit this player", edit_player_path(@player) %> |
+  <% if @allowed %>
+    <%= link_to "Edit this player", edit_player_path(@player) %> |
+  <% end %>
   <%= link_to "Back to players", players_path %>
 
-  <%= button_to "Destroy this player", @player, method: :delete %>
+  <% if @allowed %>
+    <%= button_to "Destroy this player", @player, method: :delete %>
+  <% end %>
 </div>
