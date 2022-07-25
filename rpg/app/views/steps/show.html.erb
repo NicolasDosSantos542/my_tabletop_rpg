@@ -6,7 +6,7 @@
 
 <div style="border: 1px solid black;">
 <h3>creature:</h3>
-  <%= render template: "creatures/show", creature: @creature %>
+  <%= render  "creatures/creature", creature: @creature %>
 </div>
 
 <div><%= link_to "Edit step", edit_step_path(@step) %></div>

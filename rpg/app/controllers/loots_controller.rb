@@ -67,6 +67,6 @@ class LootsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def loot_params
-      params.require(:loot).permit(:life, :strength, :exp, :image)
+      params.require(:loot).permit(:life, :strength, :exp, :image, :name)
     end
 end

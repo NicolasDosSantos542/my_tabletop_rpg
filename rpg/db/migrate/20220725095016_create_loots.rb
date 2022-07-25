@@ -5,6 +5,7 @@ class CreateLoots < ActiveRecord::Migration[7.0]
       t.integer :strength
       t.integer :exp
       t.string :image
+      t.string :name
 
       t.timestamps
     end

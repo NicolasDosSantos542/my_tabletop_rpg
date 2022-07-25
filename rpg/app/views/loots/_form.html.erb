@@ -11,6 +11,11 @@
     </div>
   <% end %>
 
+      <p> 
+       <%= form.label :name %><br> 
+       <%= form.text_field :name %> 
+     </p> 
+
   <div class="select-sim" id="select-color">
     <div class="options">
       <%= form.collection_radio_buttons( :image , Image.where(["image_type = ?", @image_type]).order("loot_value ASC").order("loot_material").order("loot_type"), :path, :name) do |b| %>
@@ -33,11 +38,6 @@
   <div>
     <%= form.label :exp, style: "display: block" %>
     <%= form.number_field :exp %>
-  </div>
-
-  <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.text_field :image %>
   </div>
 
   <div>
