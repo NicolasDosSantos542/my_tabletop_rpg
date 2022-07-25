@@ -10,8 +10,7 @@ class CreaturesController < ApplicationController
   
     def new
       @creature = Creature.new
-      image_type = "creature"
-      @images = Image.where(["image_type = ?", image_type])
+      @image_type = "creature"
     end
   
    
@@ -28,6 +27,8 @@ class CreaturesController < ApplicationController
   
     def edit
       @creature = Creature.find(params[:id])
+      @image_type = "creature"
+
     end
   
     def update

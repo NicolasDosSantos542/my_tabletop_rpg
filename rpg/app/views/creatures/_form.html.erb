@@ -48,10 +48,16 @@
     <% end %>
 
   </div>
-     <%= form.collection_radio_buttons( :image , @images, :path, :name) do |b|
-        b.label { b.radio_button + image_tag(b.object.path) }
+  <div class="select-sim" id="select-color">
+    <div class="options">
+      <%= form.collection_radio_buttons( :image , Image.where(["image_type = ?", @image_type]), :path, :name) do |b| %>
+        <li> <%=b.label { b.radio_button + image_tag(b.object.path) }%></li>
         
-        end%>
+        <%end%>
+    </div>
+  </div>
+
+   
 
 
 
