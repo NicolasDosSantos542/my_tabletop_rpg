@@ -16,6 +16,7 @@ class GamesController < ApplicationController
     @messages = Message.where(:game_id => @game.id)
 
     @canModify = false
+    @role = session[:role]
 
     if session[:role] == "gm"
       if session[:user_id] == @game.gm_id
@@ -47,7 +48,7 @@ class GamesController < ApplicationController
     if @channel.save
       idChannel = Channel.find_by(name: game_params["name"])
       # newIdChannel = idChannel.merge(:id_channel => idChannel)
-      new_game = game_params.merge(:channel_id => idChannel.id)
+      new_game = game_params.merge(:channel_id => idChannel.id, :gm_id => session[:user_id])
       @game = Game.new(new_game)
 
       respond_to do |format|
@@ -64,8 +65,21 @@ class GamesController < ApplicationController
 
   # PATCH/PUT /games/1 or /games/1.json
   def update
+    # FAIRE EN SORTE QUE L On PUISSE EDITER LA GAME AVEC L ID DU GM ACTUEL
+    #
+    @game = Game.find(params[:id])
+    logger.debug "Person attributes id: #{@game.channel_id}"
+    @channel = Channel.find_by(id: @game.channel_id)
+    if @channel
+      @channel.update(name: game_params["name"])
+    end
+
+    updatedGame = game_params.merge(:channel_id => @channel.id, :gm_id => session[:user_id])
+    @game = @game.update(updatedGame)
     respond_to do |format|
-      if @game.update(game_params)
+
+      if @game
+        @game = Game.find(params[:id])
         format.html { redirect_to game_url(@game), notice: "Game was successfully updated." }
         format.json { render :show, status: :ok, location: @game }
       else
