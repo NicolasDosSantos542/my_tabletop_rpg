@@ -6,8 +6,6 @@ Rails.application.routes.draw do
   get '/home/gm', to: "home#loggm"
   get '/home/player', to: "home#logplayer"
 
-
-
   resources :messages
   resources :games
   resources :channels
@@ -22,7 +20,9 @@ Rails.application.routes.draw do
   resources :steps
   resources :creatures
   get '/games', to: "games#index"
-  get '/games/:entity/:id', to: "games#getMyGames"
+  get '/games/firstjoin/:id', to: "games#playerJoinGame"
+  get '/games/viewAll/:entity/:id', to: "games#getMyGames"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
 end

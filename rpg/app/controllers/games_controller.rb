@@ -28,7 +28,7 @@ class GamesController < ApplicationController
       @players = []
       @idPlayers.each {
         |player|
-        @players.push(Player.select("id", "login").find(player.id))
+        @players.push(Player.select("id", "login").find(player.player_id))
       }
     end
   end
@@ -106,7 +106,7 @@ class GamesController < ApplicationController
         if @gameForPlayer
           @gameForPlayer.each {
             |game|
-            @games.push(Game.find(game.id))
+            @games.push(Game.find(game.game_id))
           }
           @notInGames = @allGames-@games
           @entity = "player"
@@ -127,6 +127,23 @@ class GamesController < ApplicationController
         end
       end
     end
+  end
+
+  def playerJoinGame
+    @game = Game.find(params[:id])
+    if @game
+      @join = GamePlayer.new(:game_id => @game.id, :player_id => session[:user_id])
+      if @join.save
+        respond_to do |format|
+          format.html { redirect_to games_url, notice: "Vous avez rejoint cette partie." }
+          format.json { head :no_content }
+        end
+      end
+    end
+  end
+
+  def playerLeaveGame
+
   end
 
   # DELETE /games/1 or /games/1.json
