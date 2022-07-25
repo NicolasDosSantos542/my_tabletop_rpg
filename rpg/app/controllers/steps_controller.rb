@@ -5,6 +5,8 @@ class StepsController < ApplicationController
 
   def show
     @step=Step.find(params[:id])
+    @creature = Creature.find( @step.creature_id)
+
   end
 
   def new
