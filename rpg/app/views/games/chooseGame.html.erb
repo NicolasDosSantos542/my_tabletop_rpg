@@ -13,7 +13,8 @@
 <% if @entity == "player"  %>
   <h4>Debuter une nouvelle partie?</h4>
 
-  <% @allGames.each do |game| %>
+  <% @notInGames.each do |game| %>
+
     <p><%= link_to game.name, game_path(game) %></p>
   <% end %>
 <% end %>

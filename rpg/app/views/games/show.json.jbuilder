@@ -1,1 +1,1 @@
-json.partial! "games/game", game: @game, channel: @channel, messages: @messages, gm: @gms, players: @players
+json.partial! "games/game", game: @game, channel: @channel, messages: @messages, gm: @gm, players: @players

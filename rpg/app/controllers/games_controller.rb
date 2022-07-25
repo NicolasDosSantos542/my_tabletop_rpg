@@ -8,11 +8,20 @@ class GamesController < ApplicationController
 
   # GET /games/1 or /games/1.json
   def show
+
     @game = Game.find(params[:id])
     @channel = Channel.find(@game.channel_id)
-    @gm = Channel.find(@game.gm_id)
+    @gm = Gm.find(@game.gm_id)
     @idPlayers = GamePlayer.where(:game_id => @game.id)
     @messages = Message.where(:game_id => @game.id)
+
+    @canModify = false
+
+    if session[:role] == "gm"
+      if session[:user_id] == @game.gm_id
+        @canModify = true
+      end
+    end
 
     if @idPlayers
       @players = []
@@ -70,16 +79,22 @@ class GamesController < ApplicationController
   def getMyGames
 
     @allGames = Game.all
+    @games = []
+    @notInGames = []
     logger.info "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     logger.debug "Person attributes id: #{session[:user_id]}"
     logger.debug "Person attributes role: #{session[:role]}"
     logger.info "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
 
     if params[:entity] == "player"
-      @gameForPlayer = GamePlayer.where(player_id: params[:id])
+      @gameForPlayer = GamePlayer.where(player_id: session[:user_id])
       respond_to do |format|
         if @gameForPlayer
-          @games = @gameForPlayer
+          @gameForPlayer.each {
+            |game|
+            @games.push(Game.find(game.id))
+          }
+          @notInGames = @allGames-@games
           @entity = "player"
           format.html { render :chooseGame }
           format.json { render json: @game, status: :ok, location: @game }
@@ -89,16 +104,16 @@ class GamesController < ApplicationController
 
     if params[:entity] == "gm"
     # TODO mettre le player ou le gm en parametre pour savoir si c'est une game player ou gm
-    @gameForGm = Game.where(gm_id: params[:id])
-    respond_to do |format|
-      if @gameForGm
-        @games = @gameForGm
-        format.html { render :chooseGame }
-        format.json { render json: @games, status: :ok, location: @game }
+      @gameForGm = Game.where(gm_id: session[:user_id])
+      respond_to do |format|
+        if @gameForGm
+          @games = @gameForGm
+          format.html { render :chooseGame }
+          format.json { render json: @games, status: :ok, location: @game }
+        end
       end
     end
-    end
-    end
+  end
 
   # DELETE /games/1 or /games/1.json
   def destroy
