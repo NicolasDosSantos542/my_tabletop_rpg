@@ -58,8 +58,10 @@ class HomeController < ApplicationController
       # redirect_to "/gms/", request.params.merge(id: @gm.id)
       end
     else
-      #renvoyer message d erreur a la place de rediriger
-      redirect_to "/gms/new"
+      respond_to do |format|
+        format.html { redirect_to '/home/gm', notice: "Login ou mot de passe incorrect" }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -79,8 +81,10 @@ class HomeController < ApplicationController
         # redirect_to "/gms/", request.params.merge(id: @gm.id)
       end
     else
-      #renvoyer message d erreur a la place de rediriger
-      redirect_to "/players/new"
+      respond_to do |format|
+        format.html { redirect_to '/home/player', notice: "Login ou mot de passe incorrect" }
+        format.json { head :no_content }
+      end
     end
   end
 end
