@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: %i[ index show edit update destroy ]
+  before_action :set_player, only: %i[ show edit update destroy ]
 
   # GET /players or /players.json
   def index
@@ -8,6 +8,7 @@ class PlayersController < ApplicationController
 
   # GET /players/1 or /players/1.json
   def show
+    @player = Player.select("login").find(params[:id])
   end
 
   # GET /players/new

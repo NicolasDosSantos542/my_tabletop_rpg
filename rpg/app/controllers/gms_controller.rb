@@ -1,5 +1,5 @@
 class GmsController < ApplicationController
-  before_action :set_gm, only: %i[index show edit update destroy ]
+  before_action :set_gm, only: %i[show edit update destroy ]
 
   # GET /gms or /gms.json
   def index
@@ -8,9 +8,7 @@ class GmsController < ApplicationController
 
   # GET /gms/1 or /gms/1.json
   def show
-    puts @allowed
-    puts @gm
-    puts session[:user_id]
+    @gm = Gm.select("login").find(params[:id])
   end
 
   # GET /gms/new
