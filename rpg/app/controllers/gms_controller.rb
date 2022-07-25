@@ -1,5 +1,5 @@
 class GmsController < ApplicationController
-  before_action :set_gm, only: %i[ show edit update destroy ]
+  before_action :set_gm, only: %i[index show edit update destroy ]
 
   # GET /gms or /gms.json
   def index
@@ -8,6 +8,9 @@ class GmsController < ApplicationController
 
   # GET /gms/1 or /gms/1.json
   def show
+    puts @allowed
+    puts @gm
+    puts session[:user_id]
   end
 
   # GET /gms/new
@@ -50,18 +53,25 @@ class GmsController < ApplicationController
 
   # DELETE /gms/1 or /gms/1.json
   def destroy
-    @gm.destroy
+    if session[:user_id] == @gm.id
+      @gm.destroy
 
-    respond_to do |format|
-      format.html { redirect_to gms_url, notice: "Gm was successfully destroyed." }
-      format.json { head :no_content }
+      respond_to do |format|
+        format.html { redirect_to gms_url, notice: "Gm was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
+
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_gm
       @gm = Gm.find(params[:id])
+      @allowed = false
+      if @gm && @gm.id == session[:user_id] && session[:role] == "gm"
+        @allowed = true
+      end
     end
 
     # Only allow a list of trusted parameters through.

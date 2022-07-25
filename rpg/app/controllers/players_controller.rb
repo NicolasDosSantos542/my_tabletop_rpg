@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-  before_action :set_player, only: %i[ show edit update destroy ]
+  before_action :set_player, only: %i[ index show edit update destroy ]
 
   # GET /players or /players.json
   def index
@@ -50,11 +50,12 @@ class PlayersController < ApplicationController
 
   # DELETE /players/1 or /players/1.json
   def destroy
-    @player.destroy
-
-    respond_to do |format|
-      format.html { redirect_to players_url, notice: "Player was successfully destroyed." }
-      format.json { head :no_content }
+    if session[:user_id] == @player.id
+      @player.destroy
+      respond_to do |format|
+        format.html { redirect_to players_url, notice: "Player was successfully destroyed." }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -62,6 +63,10 @@ class PlayersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])
+      @allowed = false
+      if @player && @player.id == session[:user_id] && session[:role] == "player"
+        @allowed = true
+      end
     end
 
     # Only allow a list of trusted parameters through.
