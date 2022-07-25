@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  life: 1
+  strength: 1
+  exp: 1
+  image: MyString
+
+two:
+  life: 1
+  strength: 1
+  exp: 1
+  image: MyString

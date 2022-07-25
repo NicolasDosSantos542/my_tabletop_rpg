@@ -1,0 +1,37 @@
+<%= form_with(model: loot) do |form| %>
+  <% if loot.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(loot.errors.count, "error") %> prohibited this loot from being saved:</h2>
+
+      <ul>
+        <% loot.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :life, style: "display: block" %>
+    <%= form.number_field :life %>
+  </div>
+
+  <div>
+    <%= form.label :strength, style: "display: block" %>
+    <%= form.number_field :strength %>
+  </div>
+
+  <div>
+    <%= form.label :exp, style: "display: block" %>
+    <%= form.number_field :exp %>
+  </div>
+
+  <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -103,7 +103,7 @@ namespace :filldbwithimages do
         }
       ]
 
-      avatars = 
+    avatars = 
       [
         {
           path: "players/monk.jpg",
@@ -208,7 +208,36 @@ namespace :filldbwithimages do
 
     end
 
- 
+    desc "put loot images in the db"
+    task :loot => :environment do
+        # avatars.each do |avatar|
+        #     image = Image.new(avatar)
+        #     puts image.save
+        # end
+        @loot_array= Array.new
+        Dir.entries("app/assets/images/loot").each do |entrie|
+          if entrie.chars[0] != "."
+            name =  entrie.split(".")[0]
+            loot_type = name.split("_")[1]
+            loot_material = name.split("_")[0]
+            final_name = loot_material +" "+loot_type
+            element= {
+              "path": "loot/"+ entrie  ,
+              "name": final_name,
+              "image_type": "loot",
+              "loot_material":  loot_material  ,
+              "loot_type": loot_type 
+              }
+              @loot_array.push(element)
+          end
+        end
+        puts @loot_array
+        # @loot_array.each do |loot|
+        #   image = Image.new(loot)
+        #   puts image.save
+        # end
     end
+ 
+end
 
 

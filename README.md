@@ -30,3 +30,12 @@ annuler un "rail generate":
 bin/rails destroy controller lalala
 bin/rails destroy model yadayada
 bin/rails destroy scaffold hohoho
+
+
+
+initialiser la db: 
+bin/rails db:migrate
+
+rake filldbwithimages:players
+rake filldbwithimages:creatures
+rake filldbwithimages:loot
