@@ -1,9 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @game %>
-<p> Le Channel </p>
-<p> <%= @channel.id %> </p>
-<p> <%= @channel.name %> </p>
+<p> Game: <%= @channel.name %></p>
+<p> Description: <%= @game.description %> </p>
+<p> Game master: <%= @gm.login  %> </p>
 
 <h1>Player</h1>
 
@@ -24,9 +23,10 @@
 </div>
 
 <div>
-  <%= link_to "Edit this game", edit_game_path(@game) %> |
+  <% if @canModify %>
+      <%= link_to "Edit this game", edit_game_path(@game) %> |
+      <%= button_to "Destroy this game", @game, method: :delete %>
+  <% end %>
   <%= link_to "Back to games", games_path %>
-
-  <%= button_to "Destroy this game", @game, method: :delete %>
 </div>
 
