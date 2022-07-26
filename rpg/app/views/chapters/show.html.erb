@@ -1,13 +1,15 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @chapter %>
-<% @steps.each do |step| %>
-  <%= render  "steps/step", step: step %>
-<% end %>
-
 <div>
   <%= link_to "Edit this chapter", edit_chapter_path(@chapter) %> |
   <%= link_to "Back to chapters", chapters_path %>
 
   <%= button_to "Destroy this chapter", @chapter, method: :delete %>
 </div>
+
+<%= link_to "New step", new_step_path( :chapter_id => @chapter.id )%>
+
+<%= render @chapter %>
+<% @steps.each do |step| %>
+  <%= render  "steps/step", step: step %>
+<% end %>

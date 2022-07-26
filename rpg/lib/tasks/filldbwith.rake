@@ -1,4 +1,4 @@
-namespace :filldb do
+namespace :filldbwith do
 
   places = [
     "Vous êtes dans une forêt.",
@@ -24,25 +24,6 @@ namespace :filldb do
   desc 'All'
   task all: [:creatures, :loot, :choices, :steps]
 
-  desc "genère des creatures"
-  task creatures: :environment do
-    @creature_images = Image.where("image_type = ?",["creature"])
-    @creature_images.each do |image|
-      @creature= {
-        loot_id: rand(Loot.count +1),                                                   
-        strength: rand(11),
-        life: rand(11),
-        image: image.path,
-        given_exp: rand(11),
-        description: "un " + image.name + " vous fait face",
-        name: image.name,
-
-      }
-      creature = Creature.new(@creature)
-      creature.save
-    end
-  end
-
   desc "genere des objets de loot"
   task loot: :environment do
     @loot_images= Image.where("image_type = ?",["loot"])
@@ -60,6 +41,27 @@ namespace :filldb do
     
     end
   end
+
+
+  desc "genère des creatures"
+  task creatures: :environment do
+    @creature_images = Image.where("image_type = ?",["creature"])
+    @creature_images.each do |image|
+      @creature= {
+        loot_id: rand(Loot.count),                                                   
+        strength: rand(10)+1,
+        life: rand(11),
+        image: image.path,
+        given_exp: rand(11),
+        description: "un " + image.name + " vous fait face",
+        name: image.name,
+
+      }
+      creature = Creature.new(@creature)
+      creature.save
+    end
+  end
+
 
   desc "genere des choix avec leurs réponses"
   task choices: :environment do
@@ -109,20 +111,15 @@ namespace :filldb do
 
   end
 
+  desc "modifie les creatures"
+  task modify: :environment do
+    @creatures = Creature.all
+    @creatures.each do |creature|
+      creature.loot_id = rand(Loot.count)+1
+      puts creature.save
+    end
+  end
+
 end
 
 
-  # description: "je vais à droite",                                
-  # choice_id: 2,                                                   
-  # next: 2,                                                        
-  # exp: 2,                                                         
-
-  # description: "je vais à gauche",
-  # choice_id: 2,
-  # next: 3,
-  # exp: 2,
-
-  # description: "je vais tout droit",
-  # choice_id: 2,
-  # next: 4,
-  # exp: 2,
