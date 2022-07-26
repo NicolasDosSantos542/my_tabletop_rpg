@@ -146,10 +146,6 @@ namespace :filldbwithimages do
           name: "necromancer",
           image_type: "player"
           },{
-          path: "players/characters.jpg",
-          name: "characters",
-          image_type: "player"
-          },{
           path: "players/cleric.jpg",
           name: "cleric",
           image_type: "player"
@@ -164,10 +160,6 @@ namespace :filldbwithimages do
           },{
           path: "players/druid.jpg",
           name: "druid",
-          image_type: "player"
-          },{
-          path: "players/ligne4.jpg",
-          name: "ligne4",
           image_type: "player"
           },{
           path: "players/enchanter.jpg",
