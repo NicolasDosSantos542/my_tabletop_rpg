@@ -36,6 +36,4 @@ bin/rails destroy scaffold hohoho
 initialiser la db: 
 bin/rails db:migrate
 
-rake filldbwithimages:players
-rake filldbwithimages:creatures
-rake filldbwithimages:loot
+rake filldbwithimages:all
