@@ -2,7 +2,7 @@ class LootsController < ApplicationController
   before_action :set_loot, only: %i[ show edit update destroy ]
   # GET /loots or /loots.json
   def index
-    @loots = Loot.all
+    @loots = Loot.all.order("life ASC")
   end
 
   # GET /loots/1 or /loots/1.json

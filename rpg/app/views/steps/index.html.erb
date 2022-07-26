@@ -1,5 +1,7 @@
 <h1>welcome on steps manager</h1>
 
+<%= link_to "New step", new_step_path %>
+
 <ul style="list-style: none;">
   <% @steps.each do |step| %>
     <li>
@@ -15,4 +17,3 @@
   <% end %>
 </ul>
 
-<%= link_to "New step", new_step_path %>

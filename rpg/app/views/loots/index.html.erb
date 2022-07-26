@@ -2,6 +2,8 @@
 
 <h1>Loots</h1>
 
+<%= link_to "New loot", new_loot_path %>
+
 <div id="loots">
   <% @loots.each do |loot| %>
     <%= render loot %>
@@ -11,4 +13,3 @@
   <% end %>
 </div>
 
-<%= link_to "New loot", new_loot_path %>

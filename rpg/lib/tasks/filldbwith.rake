@@ -50,9 +50,9 @@ namespace :filldbwith do
       @creature= {
         loot_id: rand(Loot.count),                                                   
         strength: rand(10)+1,
-        life: rand(11),
+        life: rand(11)+5,
         image: image.path,
-        given_exp: rand(11),
+        given_exp: rand(11)+1,
         description: "un " + image.name + " vous fait face",
         name: image.name,
 

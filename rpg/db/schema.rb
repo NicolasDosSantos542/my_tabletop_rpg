@@ -75,10 +75,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
   create_table "game_players", force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "game_id", null: false
-    t.integer "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["character_id"], name: "index_game_players_on_character_id"
     t.index ["game_id"], name: "index_game_players_on_game_id"
     t.index ["player_id"], name: "index_game_players_on_player_id"
   end
@@ -107,6 +105,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
     t.string "path"
     t.string "name"
     t.string "image_type"
+    t.string "loot_material"
+    t.string "loot_type"
+    t.integer "loot_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -141,6 +142,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
     t.integer "order"
     t.integer "creature_id"
     t.integer "loot_id"
+    t.integer "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -149,7 +151,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
   add_foreign_key "characters", "chapters"
   add_foreign_key "characters", "games"
   add_foreign_key "characters", "steps"
-  add_foreign_key "game_players", "characters"
   add_foreign_key "game_players", "games"
   add_foreign_key "game_players", "players"
   add_foreign_key "games", "channels"
