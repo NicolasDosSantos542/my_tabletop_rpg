@@ -87,4 +87,9 @@ class HomeController < ApplicationController
       end
     end
   end
+
+  def disconnect
+    reset_session
+    redirect_to ""
+  end
 end

@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
+  before_action :verify_connected
 
   # GET /messages or /messages.json
   def index
@@ -58,6 +59,11 @@ class MessagesController < ApplicationController
   end
 
   private
+    def verify_connected
+      if !session[:role] && !session[:user_id]
+        redirect_to "/"
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_message
       @message = Message.find(params[:id])

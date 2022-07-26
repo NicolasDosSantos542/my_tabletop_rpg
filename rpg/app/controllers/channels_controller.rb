@@ -1,5 +1,6 @@
 class ChannelsController < ApplicationController
   before_action :set_channel, only: %i[ show edit update destroy ]
+  before_action :verify_connected
 
   # GET /channels or /channels.json
   def index
@@ -58,6 +59,11 @@ class ChannelsController < ApplicationController
   end
 
   private
+    def verify_connected
+      if !session[:role] && !session[:user_id]
+        redirect_to "/"
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_channel
       @channel = Channel.find(params[:id])

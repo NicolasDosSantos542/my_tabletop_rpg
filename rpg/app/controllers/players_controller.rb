@@ -1,5 +1,6 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show edit update destroy ]
+  before_action :verify_connected, only: %i[ show edit update destroy ]
 
   # GET /players or /players.json
   def index
@@ -61,6 +62,11 @@ class PlayersController < ApplicationController
   end
 
   private
+    def verify_connected
+      if !session[:role] && !session[:user_id]
+        redirect_to "/"
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])
