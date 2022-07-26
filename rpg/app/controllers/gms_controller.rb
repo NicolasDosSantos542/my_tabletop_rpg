@@ -1,6 +1,7 @@
 class GmsController < ApplicationController
   before_action :set_gm, only: %i[show edit update destroy ]
   before_action :verify_connected , only: %i[show edit update destroy ]
+  before_action :isConnected
 
   # GET /gms or /gms.json
   def index
@@ -65,11 +66,19 @@ class GmsController < ApplicationController
 
   private
 
-  def verify_connected
-    if !session[:role] && !session[:user_id]
-      redirect_to "/"
+    def isConnected
+      if !session[:role] && !session[:user_id]
+        @connected = false
+      else
+        @connected = true
+      end
     end
-  end
+
+    def verify_connected
+      if !session[:role] && !session[:user_id]
+        redirect_to "/"
+      end
+    end
 
     # Use callbacks to share common setup or constraints between actions.
     def set_gm

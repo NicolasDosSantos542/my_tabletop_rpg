@@ -1,4 +1,5 @@
 class ChoicesController < ApplicationController
+  before_action :isConnected
   def index
     @choices = Choice.all
   end
@@ -48,6 +49,14 @@ class ChoicesController < ApplicationController
 
 
   private
+    def isConnected
+      if !session[:role] && !session[:user_id]
+        @connected = false
+      else
+        @connected = true
+      end
+    end
+
     def choice_params
       params.require(:choice).permit(:description, :step)
     end

@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[ show edit update destroy ]
   before_action :verify_connected
+  before_action :isConnected
 
   # GET /messages or /messages.json
   def index
@@ -59,6 +60,14 @@ class MessagesController < ApplicationController
   end
 
   private
+    def isConnected
+      if !session[:role] && !session[:user_id]
+        @connected = false
+      else
+        @connected = true
+      end
+    end
+
     def verify_connected
       if !session[:role] && !session[:user_id]
         redirect_to "/"
