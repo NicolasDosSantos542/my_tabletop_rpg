@@ -34,8 +34,15 @@ namespace :filldb do
         name: image.name,
       }
       puts @loot
+      loot = Loot.new(@loot)
+      loot.save
     
     end
+  end
+
+  desc "genere des choix avec leurs réponses"
+  task choices: :environment do
+
   end
 
 end
