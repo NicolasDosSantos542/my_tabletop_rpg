@@ -1,4 +1,5 @@
 class StepsController < ApplicationController
+  before_action :isConnected
   def index
     @steps = Step.all
   end
@@ -50,6 +51,13 @@ class StepsController < ApplicationController
 
 
   private
+    def isConnected
+      if !session[:role] && !session[:user_id]
+        @connected = false
+      else
+        @connected = true
+      end
+    end
     def step_params
       params.require(:step).permit(:order, :loot_id, :creature_id)
     end

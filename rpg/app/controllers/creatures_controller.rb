@@ -1,4 +1,5 @@
 class CreaturesController < ApplicationController
+    before_action :isConnected
     def index
       @creatures = Creature.all
       @images= Image.all
@@ -54,6 +55,15 @@ class CreaturesController < ApplicationController
   
   
     private
+
+      def isConnected
+        if !session[:role] && !session[:user_id]
+          @connected = false
+        else
+          @connected = true
+        end
+      end
+
       def creature_params
         params.require(:creature).permit(:loot_id, :strength, :life, :image, :given_exp, :description, :name)
       end

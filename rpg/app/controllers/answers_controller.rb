@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-
+  before_action :isConnected
 
   def index
       @answers = Answer.all
@@ -25,6 +25,13 @@ class AnswersController < ApplicationController
 
 
   private
+    def isConnected
+      if !session[:role] && !session[:user_id]
+        @connected = false
+      else
+        @connected = true
+      end
+    end
     def answer_params
       params.require(:answer).permit(:description, :next, :exp, :choice)
     end

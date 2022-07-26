@@ -1,6 +1,7 @@
 class PlayersController < ApplicationController
   before_action :set_player, only: %i[ show edit update destroy ]
   before_action :verify_connected, only: %i[ show edit update destroy ]
+  before_action :isConnected
 
   # GET /players or /players.json
   def index
@@ -62,6 +63,14 @@ class PlayersController < ApplicationController
   end
 
   private
+    def isConnected
+      if !session[:role] && !session[:user_id]
+        @connected = false
+      else
+        @connected = true
+      end
+    end
+
     def verify_connected
       if !session[:role] && !session[:user_id]
         redirect_to "/"
