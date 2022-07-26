@@ -13,9 +13,7 @@ class CreaturesController < ApplicationController
       @creature = Creature.new
       @image_type = "creature"
     end
-  
-   
-  
+
     def create
       @creature = Creature.new(creature_params)
   

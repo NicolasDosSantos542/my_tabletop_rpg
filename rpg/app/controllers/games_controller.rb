@@ -119,7 +119,6 @@ class GamesController < ApplicationController
     end
 
     if params[:entity] == "gm"
-    # TODO mettre le player ou le gm en parametre pour savoir si c'est une game player ou gm
       @gameForGm = Game.where(gm_id: session[:user_id])
       respond_to do |format|
         if @gameForGm
@@ -137,7 +136,7 @@ class GamesController < ApplicationController
       @join = GamePlayer.new(:game_id => @game.id, :player_id => session[:user_id])
       if @join.save
         respond_to do |format|
-          format.html { redirect_to "/games/viewAll/player/"+ session[:user_id].to_s, notice: "Vous avez rejoint la partie: " + @game.name }
+          format.html { redirect_to "/games/character/new/" + @game.id.to_s, notice: "Vous avez rejoint la partie: " + @game.name }
           format.json { head :no_content }
         end
       end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :characters
   resources :chapters
   resources :loots
   resources :game_players
@@ -25,6 +26,9 @@ Rails.application.routes.draw do
   get '/games', to: "games#index"
   post '/games/firstjoin/:game_id', to: "games#playerJoinGame"
   get '/games/viewAll/:entity/:id', to: "games#getMyGames"
+
+  get '/games/character/new/:game_id', to: "characters#new"
+  post '/games/character/new/:game_id', to: "characters#create"
 
   post '/game_players/leave/:game_id', to: "game_players#playerLeaveGame"
 

@@ -4,6 +4,7 @@ class Game < ApplicationRecord
              :foreign_key => 'channel_id'
   has_many :messages
   has_many :players
+  has_many :characters
   belongs_to :gm,
              dependent: :destroy,
              :class_name => "Gm",
