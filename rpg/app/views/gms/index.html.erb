@@ -1,0 +1,15 @@
+<%= render :partial => 'shared/disconnect' %>
+<p style="color: green"><%= notice %></p>
+
+<h1>Gms</h1>
+
+<div id="gms">
+  <% @gms.each do |gm| %>
+    <p>Login: <%= gm.login %></p>
+    <p>
+      <%= link_to "Show this gm", gm %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New gm", new_gm_path %>

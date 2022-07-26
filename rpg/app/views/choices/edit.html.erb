@@ -1,0 +1,11 @@
+<h1>Edit Choice</h1>
+
+<%= render "form", choice: @choice %>
+<%= render @choice.answers%>
+
+<%= render "/answers/form" %>
+
+<div><%= link_to "Destroy Choice", choice_path(@choice), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></div>

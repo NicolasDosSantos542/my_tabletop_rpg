@@ -1,0 +1,28 @@
+
+<%= form_with model: choice do |form| %>
+  <div>
+    <%= form.label :description %><br>
+    <%= form.text_area :description %>
+    <% choice.errors.full_messages_for(:description).each do |message| %>
+    <div style="color:red"><%= message %></div>
+    <% end %>
+    </div>
+
+  <div>
+    <%= form.label :step %><br>
+    <%= form.number_field :step %>
+    <% choice.errors.full_messages_for(:step).each do |message| %>
+    <div style="color:red"><%= message %></div>
+    <% end %>
+
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+<%if choice.id %>
+ 
+
+<% end%>
+

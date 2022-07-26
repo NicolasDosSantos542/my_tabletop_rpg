@@ -1,0 +1,9 @@
+<h1>Edit creature</h1>
+
+<%= render "form", creature: @creature %>
+
+
+<div><%= link_to "Destroy creature", creature_path(@creature), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></div>

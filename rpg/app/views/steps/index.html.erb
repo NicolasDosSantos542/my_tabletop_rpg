@@ -1,0 +1,18 @@
+<h1>welcome on steps manager</h1>
+
+<ul style="list-style: none;">
+  <% @steps.each do |step| %>
+    <li>
+      <a href="<%= step_path(step) %>">
+      <p>ordre: <%= step.id %></p>
+      <p>id de creature: <%= step.creature_id %></p>
+      <p>id de loot: <%= step.loot_id %></p>
+ => <%= link_to "Destroy step", step_path(step), data: {
+                    turbo_method: :delete,
+                  } %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New step", new_step_path %>

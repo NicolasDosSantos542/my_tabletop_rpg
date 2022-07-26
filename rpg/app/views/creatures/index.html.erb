@@ -1,0 +1,24 @@
+
+
+<h1>welcome on creatures manager</h1>
+
+<ul style="list-style: none;">
+  <% @creatures.each do |creature| %>
+    <li>
+      <a href="<%= creature_path(creature) %>">
+      
+      <%= image_tag creature.image %>
+      loot_id : <%= creature.loot_id %> , 
+      strength : <%= creature.strength %> , 
+      life : <%= creature.life %> , 
+      description : <%= creature.description %> 
+      given_exp : <%= creature.given_exp %> , 
+      </a>
+    <p><%= link_to "Destroy creature", creature_path(creature), data: {
+                    turbo_method: :delete,
+                  } %> </p>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New creature", new_creature_path %>

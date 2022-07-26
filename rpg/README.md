@@ -22,3 +22,42 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+#on window after install ruby 2.7.6 and rails
+#problem install 
+
+```bash
+gem update --system
+```
+
+```bash
+bundle install
+```
+
+#launch project
+
+```bash
+ruby bin/rails server
+```
+
+```bash
+ruby bin/rails db:migrate
+```
+
+#Genereate scaffold (MVC)
+```bash
+rails g scaffold game name:string description string channel:references
+```
+
+#Delete scaffold if migration not doing before
+
+```bash
+rails destroy scaffold game 
+```
+
+#Delete scaffold il migration already done
+
+```bash
+rake db:rollback
+rails destroy scaffold game
+```

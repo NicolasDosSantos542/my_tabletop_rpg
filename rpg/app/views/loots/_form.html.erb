@@ -1,0 +1,46 @@
+<%= form_with(model: loot) do |form| %>
+  <% if loot.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(loot.errors.count, "error") %> prohibited this loot from being saved:</h2>
+
+      <ul>
+        <% loot.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+      <p> 
+       <%= form.label :name %><br> 
+       <%= form.text_field :name %> 
+     </p> 
+
+  <div class="select-sim" id="select-color">
+    <div class="options">
+      <%= form.collection_radio_buttons( :image , Image.where(["image_type = ?", @image_type]).order("loot_value ASC").order("loot_material").order("loot_type"), :path, :name) do |b| %>
+        <li> <%=b.label { b.radio_button + image_tag(b.object.path) }%></li>
+        
+        <%end%>
+    </div>
+  </div>
+
+  <div>
+    <%= form.label :life, style: "display: block" %>
+    <%= form.number_field :life %>
+  </div>
+
+  <div>
+    <%= form.label :strength, style: "display: block" %>
+    <%= form.number_field :strength %>
+  </div>
+
+  <div>
+    <%= form.label :exp, style: "display: block" %>
+    <%= form.number_field :exp %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

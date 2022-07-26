@@ -1,0 +1,15 @@
+<%= render :partial => 'shared/disconnect' %>
+<p style="color: green"><%= notice %></p>
+
+<p>Login: <%= @gm.login %></p>
+
+<div>
+  <% if @allowed %>
+    <%= link_to "Edit this gm", edit_gm_path(@gm) %> |
+  <% end %>
+  <%= link_to "Back to gms", gms_path %>
+
+  <% if @allowed %>
+    <%= button_to "Destroy this gm", @gm, method: :delete %>
+  <% end %>
+</div>

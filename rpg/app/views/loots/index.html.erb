@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Loots</h1>
+
+<div id="loots">
+  <% @loots.each do |loot| %>
+    <%= render loot %>
+    <p>
+      <%= link_to "Show this loot", loot %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New loot", new_loot_path %>

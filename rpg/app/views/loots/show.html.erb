@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @loot %>
+
+<div>
+  <%= link_to "Edit this loot", edit_loot_path(@loot) %> |
+  <%= link_to "Back to loots", loots_path %>
+
+  <%= button_to "Destroy this loot", @loot, method: :delete %>
+</div>
