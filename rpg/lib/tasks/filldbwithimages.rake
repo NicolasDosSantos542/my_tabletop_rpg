@@ -104,7 +104,7 @@ namespace :filldbwithimages do
       ]
 
     avatars = 
-      [
+    [
         {
           path: "players/monk.jpg",
           name: "monk",
@@ -178,19 +178,17 @@ namespace :filldbwithimages do
           name: "assassin",
           image_type: "player"
           }
-      ]
+    ]
       
-      
-      
-      
-      
-      
-
-
-
     
-    desc "put creatures path to images in db"
-    task :creatures => :environment do
+      desc 'All'
+      task all: [:creatures, :players, :loot]
+   
+      desc "put creatures path to images in db"
+    
+    
+    
+      task :creatures => :environment do
 
         # toto= Dir.entries("app/assets/images/creatures")
         creatures.each do |creature|
