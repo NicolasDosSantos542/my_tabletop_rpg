@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_26_081154) do
-ActiveRecord::Schema[7.0].define(version: 2022_07_25_095016) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
   create_table "answers", force: :cascade do |t|
     t.text "description"
     t.integer "choice_id", null: false
@@ -33,6 +32,25 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_095016) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "characters", force: :cascade do |t|
+    t.string "name"
+    t.integer "total_life", default: 10
+    t.integer "life", default: 10
+    t.string "total_strength", default: "10"
+    t.integer "strength", default: 10
+    t.integer "experience", default: 0
+    t.integer "gold", default: 0
+    t.string "avatar"
+    t.integer "step_id"
+    t.integer "chapter_id"
+    t.integer "game_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chapter_id"], name: "index_characters_on_chapter_id"
+    t.index ["game_id"], name: "index_characters_on_game_id"
+    t.index ["step_id"], name: "index_characters_on_step_id"
   end
 
   create_table "choices", force: :cascade do |t|
@@ -57,8 +75,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_095016) do
   create_table "game_players", force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "game_id", null: false
+    t.integer "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_game_players_on_character_id"
     t.index ["game_id"], name: "index_game_players_on_game_id"
     t.index ["player_id"], name: "index_game_players_on_player_id"
   end
@@ -121,12 +141,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_095016) do
     t.integer "order"
     t.integer "creature_id"
     t.integer "loot_id"
-    t.integer "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   add_foreign_key "answers", "choices"
+  add_foreign_key "characters", "chapters"
+  add_foreign_key "characters", "games"
+  add_foreign_key "characters", "steps"
+  add_foreign_key "game_players", "characters"
   add_foreign_key "game_players", "games"
   add_foreign_key "game_players", "players"
   add_foreign_key "games", "channels"
