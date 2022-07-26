@@ -5,7 +5,6 @@ namespace :filldb do
 
   desc "genère des creatures"
   task creatures: :environment do
-    @creatures=[]
     @creature_images = Image.where("image_type = ?",["creature"])
     @creature_images.each do |image|
       @creature= {
@@ -20,9 +19,23 @@ namespace :filldb do
       }
       creature = Creature.new(@creature)
       creature.save
-      @creatures.push(@creature)
     end
-    puts @creatures
+  end
+
+  desc "genere des objets de loot"
+  task loot: :environment do
+    @loot_images= Image.where("image_type = ?",["loot"])
+    @loot_images.each do |image|
+      @loot= {
+        life: image.loot_value+1,                                                          
+        strength: (image.loot_value * 3),                                                      
+        exp:( image.loot_value * 2),                                                           
+        image: image.path,                                     
+        name: image.name,
+      }
+      puts @loot
+    
+    end
   end
 
 end
