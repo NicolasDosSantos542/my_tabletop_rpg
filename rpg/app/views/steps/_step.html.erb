@@ -1,19 +1,21 @@
-
-<p>  <%= step.id %></p>
-
-<p>ordre: <%= step.order %></p>
-<p>id de loot: <%= step.loot_id %></p>
-<p>chapitre associé: <%= step.chapter_id %></p>
-
-<div style="border: 1px solid black;display:flex">
-    <div >
-        <h3>choice:</h3>
-        <%= render  "choices/choice", choice: Choice.where("step = ?",[step.id]) %>
+<div style="border: 1px solid black;">
+    <div style="display:flex;justify-content:space-evenly">
+        <p> id :  <%= step.id %> </p> 
+        <p>ordre: <%= step.order %></p>
+        <p>id de loot: <%= step.loot_id %></p>
+        <p>chapitre associé: <%= step.chapter_id %></p>
     </div>
-    
-    <div >
-        <h3>creature:</h3>
-        <%= render  "creatures/creature", creature: Creature.find(step.creature_id) %>
+    <div style="border: 1px solid black;display:flex;justify-content:space-around">
+        <div >
+            <h3>choice:</h3>
+            <%= render  "choices/editChoice", choice: Choice.where("step = ?",[2]).first %>
+        </div>
+
+        <div >
+            <h3>creature:</h3>
+            <%= render  "creatures/creaturetoedit", creature: Creature.find(step.creature_id) %>
+            
+        </div>
+
     </div>
-    
 </div>

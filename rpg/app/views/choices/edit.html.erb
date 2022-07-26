@@ -1,7 +1,9 @@
 <h1>Edit Choice</h1>
 
 <%= render "form", choice: @choice %>
-<%= render @choice.answers%>
+<% @choice.answers.each do |answer|%>
+<%= render "/answers/answertoedit", answer: answer %>
+<% end %>
 
 <%= render "/answers/form" %>
 

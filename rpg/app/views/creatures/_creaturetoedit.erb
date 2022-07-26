@@ -1,0 +1,10 @@
+
+
+<%= render creature %>
+
+<div><%= link_to "Edit creature", edit_creature_path(creature) %></div>
+<div><%= link_to "Destroy creature", creature_path(creature), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></div>
+<div><%= link_to "All creatures", creatures_path%></div>

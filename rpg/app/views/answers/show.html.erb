@@ -1,1 +1,5 @@
-
+<%= render @answer %>
+ <%= link_to "supprimer", [answer.choice, answer], data: {
+                turbo_method: :delete,
+                turbo_confirm: "Are you sure?"
+              } %>
