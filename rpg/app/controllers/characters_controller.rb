@@ -29,10 +29,14 @@ class CharactersController < ApplicationController
 
   # POST /characters or /characters.json
   def create
+
     @character = Character.new(character_params)
 
     respond_to do |format|
       if @character.save
+        @character = Character.where(character_params).first
+        @gamePlayer = GamePlayer.where(:game_id => character_params[:game_id], :player_id => session[:user_id])
+        @gamePlayer.update(:character_id => @character.id)
         format.html { redirect_to character_url(@character), notice: "Character was successfully created." }
         format.json { render :show, status: :created, location: @character }
       else
