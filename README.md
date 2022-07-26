@@ -37,3 +37,4 @@ initialiser la db:
 bin/rails db:migrate
 
 rake filldbwithimages:all
+rake filldbwith:all

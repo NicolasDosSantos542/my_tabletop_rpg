@@ -22,14 +22,14 @@ namespace :filldb do
   ]
 
   desc 'All'
-  task all: [:creatures, :loot, :choices]
+  task all: [:creatures, :loot, :choices, :steps]
 
   desc "genère des creatures"
   task creatures: :environment do
     @creature_images = Image.where("image_type = ?",["creature"])
     @creature_images.each do |image|
       @creature= {
-        loot_id: rand(61),
+        loot_id: rand(Loot.count +1),                                                   
         strength: rand(11),
         life: rand(11),
         image: image.path,
@@ -82,6 +82,27 @@ namespace :filldb do
         answer = Answer.new(@answer)
         puts answer.save
       }
+
+    }
+    
+
+  end
+
+  desc "genere des steps"
+  task steps: :environment do
+    chapter = Chapter.new({name: "premier voyage", description: "C'est le grand départ! Êtes-vous prêt.e?" })
+    10.times {|i| 
+      # puts "hello #{i}" 
+      chapter.save
+      @step = {
+        order: i +1,                                                     
+        creature_id: rand(Creature.count),                                               
+        loot_id: rand(Loot.count)+1,                                                   
+        chapter_id: chapter.id, 
+      }
+      step=Step.new(@step)
+      puts step.save
+      # puts @step
 
     }
     
