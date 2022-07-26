@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   root "home#index"
   post '/home/logingm', to: "home#logingm"
   post '/home/loginplayer', to: "home#loginplayer"
+  post '/home/disconnect', to: "home#disconnect"
 
   resources :choices do
     resources :answers
