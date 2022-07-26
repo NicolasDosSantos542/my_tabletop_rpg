@@ -61,6 +61,6 @@ class StepsController < ApplicationController
       end
     end
     def step_params
-      params.require(:step).permit(:order, :loot_id, :creature_id)
+      params.require(:step).permit(:order, :loot_id, :creature_id, :chapter_id)
     end
 end

@@ -1,6 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @chapter %>
+<% @steps.each do |step| %>
+  <%= render  "steps/step", step: step %>
+<% end %>
 
 <div>
   <%= link_to "Edit this chapter", edit_chapter_path(@chapter) %> |

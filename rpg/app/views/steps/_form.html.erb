@@ -18,14 +18,23 @@
     <% end %>
 
   </div>
-    <div>
+  
+  <div>
     <%= form.label :creature_id %><br>
     <%= form.number_field :creature_id %>
     <% step.errors.full_messages_for(:creature_id).each do |message| %>
     <div style="color:red"><%= message %></div>
     <% end %>
-
   </div>
+
+  <div>
+    <%= form.label :chapter_id %><br>
+    <%= form.number_field :chapter_id %>
+    <% step.errors.full_messages_for(:chapter_id).each do |message| %>
+    <div style="color:red"><%= message %></div>
+    <% end %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

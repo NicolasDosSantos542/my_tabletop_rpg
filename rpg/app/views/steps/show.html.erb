@@ -1,13 +1,4 @@
-
-<p>  <%= @step.id %></p>
-
-<p>ordre: <%= @step.order %></p>
-<p>id de loot: <%= @step.loot_id %></p>
-
-<div style="border: 1px solid black;">
-<h3>creature:</h3>
-  <%= render  "creatures/creature", creature: @creature %>
-</div>
+<%= render @step %>
 
 <div><%= link_to "Edit step", edit_step_path(@step) %></div>
 <div><%= link_to "Destroy step", step_path(@step), data: {
