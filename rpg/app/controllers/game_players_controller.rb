@@ -21,6 +21,19 @@ class GamePlayersController < ApplicationController
   def edit
   end
 
+  def playerLeaveGame
+    @deletePlayerGame = GamePlayer.where(:game_id => params[:game_id], :player_id => session[:user_id]).first
+    @game = Game.find(params[:game_id])
+    if @deletePlayerGame
+      if @deletePlayerGame.destroy
+        respond_to do |format|
+          format.html { redirect_to "/games/viewAll/player/"+ session[:user_id].to_s, notice: "Vous avez quitter la partie: " + @game.name }
+          format.json { head :no_content }
+        end
+      end
+    end
+  end
+
   # POST /game_players or /game_players.json
   def create
     @game_player = GamePlayer.new(game_player_params)

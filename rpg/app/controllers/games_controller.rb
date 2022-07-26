@@ -132,12 +132,12 @@ class GamesController < ApplicationController
   end
 
   def playerJoinGame
-    @game = Game.find(params[:id])
+    @game = Game.find(params[:game_id])
     if @game
       @join = GamePlayer.new(:game_id => @game.id, :player_id => session[:user_id])
       if @join.save
         respond_to do |format|
-          format.html { redirect_to games_url, notice: "Vous avez rejoint cette partie." }
+          format.html { redirect_to "/games/viewAll/player/"+ session[:user_id].to_s, notice: "Vous avez rejoint la partie: " + @game.name }
           format.json { head :no_content }
         end
       end
