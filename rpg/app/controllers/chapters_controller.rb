@@ -61,6 +61,7 @@ class ChaptersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_chapter
       @chapter = Chapter.find(params[:id])
+      @steps = Step.where("chapter_id = ?",[params[:id]])
     end
 
     # Only allow a list of trusted parameters through.
