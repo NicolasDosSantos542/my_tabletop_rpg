@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :loots
   resources :game_players
   resources :players
   resources :gms

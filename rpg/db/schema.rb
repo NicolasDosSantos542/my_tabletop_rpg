@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema[7.0].define(version: 2022_07_22_140227) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2022_07_25_095016) do
+>>>>>>> loot
   create_table "answers", force: :cascade do |t|
     t.text "description"
     t.integer "choice_id", null: false
@@ -79,6 +83,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_22_140227) do
     t.string "path"
     t.string "name"
     t.string "image_type"
+    t.string "loot_material"
+    t.string "loot_type"
+    t.integer "loot_value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "loots", force: :cascade do |t|
+    t.integer "life"
+    t.integer "strength"
+    t.integer "exp"
+    t.string "image"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

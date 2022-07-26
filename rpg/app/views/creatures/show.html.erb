@@ -1,12 +1,6 @@
 
-<p>  <%= @creature.id %></p>
-  
-     <div>         <%= image_tag @creature.image %> , </div>
-     <div>    loot_id : <%= @creature.loot_id %> , </div>
-     <div>    strength : <%= @creature.strength %> , </div>
-     <div>    life : <%= @creature.life %> , </div>
-     <div>    description : <%= @creature.description %> </div>
-     <div>    given_exp : <%= @creature.given_exp %> , </div>
+
+<%= render "creature", creature: @creature %>
 
 <div><%= link_to "Edit creature", edit_creature_path(@creature) %></div>
 <div><%= link_to "Destroy creature", creature_path(@creature), data: {
