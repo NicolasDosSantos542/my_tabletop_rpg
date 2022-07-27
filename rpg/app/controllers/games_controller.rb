@@ -159,11 +159,13 @@ class GamesController < ApplicationController
   end
 
   def playGame
-    @toto= "test"
-    respond_to do |format|
-      format.html { render :playGame }
-      format.json { head :no_content }
-    end
+    @game = Game.find(params[:game_id]) 
+    @chapter = Chapter.find(@game.chapter_id) 
+    @step = Step.find(params[:current_step])
+  end
+
+  def goToNextStep
+    puts "hello world"
   end
 
   private
