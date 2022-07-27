@@ -1,6 +1,7 @@
  <% if answer.description%>
         <p>
           <strong>réponse :</strong>
+          <%= link_to "prochain", step_path(:step => Step.where(step_id: 1, chapter_id:1)) %>
           <%= answer.description %> / next: <%=answer.next%> /
            choice: <%=answer.choice_id%> /
            exp: <%=answer.exp%> 

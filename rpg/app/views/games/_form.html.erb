@@ -1,3 +1,4 @@
+<h1> <%= @toto%></h1>
 <%= form_with(model: game) do |form| %>
   <% if game.errors.any? %>
     <div style="color: red">
@@ -21,7 +22,14 @@
     <%= form.text_field :description %>
   </div>
 
+  <div style>    
+    <%= form.label :chapter_id, style: "display: block" %>
+    <%= form.select(:chapter_id, options_for_select(Chapter.all.map { |chapter| [chapter.name, chapter.id]})) %>
+  </div>
+
+
   <div>
     <%= form.submit %>
   </div>
 <% end %>
+

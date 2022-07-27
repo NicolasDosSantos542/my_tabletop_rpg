@@ -75,8 +75,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
   create_table "game_players", force: :cascade do |t|
     t.integer "player_id", null: false
     t.integer "game_id", null: false
+    t.integer "character_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_game_players_on_character_id"
     t.index ["game_id"], name: "index_game_players_on_game_id"
     t.index ["player_id"], name: "index_game_players_on_player_id"
   end
@@ -87,9 +89,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
     t.integer "gm_id", null: false
     t.integer "channel_id", null: false
     t.integer "player_id"
+    t.integer "chapter_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["channel_id"], name: "index_games_on_channel_id"
+    t.index ["chapter_id"], name: "index_games_on_chapter_id"
     t.index ["gm_id"], name: "index_games_on_gm_id"
     t.index ["player_id"], name: "index_games_on_player_id"
   end
@@ -151,9 +155,11 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
   add_foreign_key "characters", "chapters"
   add_foreign_key "characters", "games"
   add_foreign_key "characters", "steps"
+  add_foreign_key "game_players", "characters"
   add_foreign_key "game_players", "games"
   add_foreign_key "game_players", "players"
   add_foreign_key "games", "channels"
+  add_foreign_key "games", "chapters"
   add_foreign_key "games", "gms"
   add_foreign_key "games", "players"
   add_foreign_key "messages", "games"
