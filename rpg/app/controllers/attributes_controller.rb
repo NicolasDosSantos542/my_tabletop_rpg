@@ -28,8 +28,9 @@ class AttributesController < ApplicationController
            @currentCharacter = Character.find(params[:character_id])
            @gamePlayer = GamePlayer.where(:character_id => params[:character_id]).first
 
-           if @gamePlayer && (@gamePlayer.player_id == session[:user_id]) || session[:role] == "gm"
-             @currentCharacter.update({total_life: params[:character][:life],
+           if @gamePlayer && (@gamePlayer.player_id == session[:user_id]) &&
+             (@currentCharacter.strength + @currentCharacter.life == 20)
+           @currentCharacter.update({total_life: params[:character][:life],
                                        life: params[:character][:life],
                                        total_strength: params[:character][:strength],
                                        strength: params[:character][:strength]
