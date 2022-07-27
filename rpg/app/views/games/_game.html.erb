@@ -19,4 +19,9 @@
     <%= game.gm_id %>
   </p>
 
+  <p>
+    <strong>histoire:</strong>
+    <%= Chapter.find(game.chapter_id).name %>
+  </p>
+
 </div>
