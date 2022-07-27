@@ -32,6 +32,11 @@ Rails.application.routes.draw do
 
   post '/game_players/leave/:game_id', to: "game_players#playerLeaveGame"
 
+  get '/games/character/:character_id/setAttribute', to: "attributes#setAttributes"
+  patch '/games/character/:character_id/saveAttributes', to: "attributes#saveAttributes"
+
+  get '/games/:game_id/character/:character_id', to: "games#playGame"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
 end
