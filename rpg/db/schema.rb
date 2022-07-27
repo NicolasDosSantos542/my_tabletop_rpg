@@ -143,7 +143,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
   end
 
   create_table "steps", force: :cascade do |t|
-    t.integer "order"
+    t.integer "step_order"
     t.integer "creature_id"
     t.integer "loot_id"
     t.integer "chapter_id"

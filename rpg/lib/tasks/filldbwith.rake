@@ -97,7 +97,7 @@ namespace :filldbwith do
       # puts "hello #{i}" 
       chapter.save
       @step = {
-        order: i +1,                                                     
+        step_order: i +1,                                                     
         creature_id: rand(Creature.count),                                               
         loot_id: rand(Loot.count)+1,                                                   
         chapter_id: chapter.id, 

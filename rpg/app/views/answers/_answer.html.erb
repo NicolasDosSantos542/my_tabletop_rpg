@@ -1,10 +1,8 @@
  <% if answer.description%>
         <p>
-          <strong>réponse :</strong>
-          <%= link_to "prochain", step_path(:step => Step.where(step_id: 1, chapter_id:1)) %>
-          <%= answer.description %> / next: <%=answer.next%> /
-           choice: <%=answer.choice_id%> /
-           exp: <%=answer.exp%> 
+          <%= link_to(answer.description, { action: "playGame", current_step: answer.next },
+                                   method: "get",
+                                 data: { current_step: answer.next })%>
            
         </p>
  <% end %>
