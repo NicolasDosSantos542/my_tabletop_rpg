@@ -37,7 +37,8 @@ class CharactersController < ApplicationController
         @character = Character.where(character_params).first
         @gamePlayer = GamePlayer.where(:game_id => character_params[:game_id], :player_id => session[:user_id])
         @gamePlayer.update(:character_id => @character.id)
-        format.html { redirect_to character_url(@character), notice: "Character was successfully created." }
+        url = '/games/character/' + @character.id.to_s + '/setAttribute'
+        format.html { redirect_to url, notice: "Character was successfully created." }
         format.json { render :show, status: :created, location: @character }
       else
         format.html { render :new, status: :unprocessable_entity }
