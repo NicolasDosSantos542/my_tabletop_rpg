@@ -35,7 +35,7 @@ class AttributesController < ApplicationController
                                        total_strength: params[:character][:strength],
                                        strength: params[:character][:strength]
                                       })
-           url = "/games/" +@gamePlayer.game_id.to_s+ "/character/" + @currentCharacter.id.to_s
+           url = "/games/" +@gamePlayer.game_id.to_s+ "/character/" + @currentCharacter.id.to_s + "/1"
            redirect_to url
            else
              logger.debug "Vous n'avez pas les droits pour ce personnage"
