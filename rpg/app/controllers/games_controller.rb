@@ -182,4 +182,11 @@ class GamesController < ApplicationController
   def game_params
     params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id)
   end
+
+  def playGame
+    respond_to do |format|
+      format.html { render :playGame }
+      format.json { head :no_content }
+    end
+  end
 end
