@@ -2,6 +2,7 @@
 
 <h1>welcome on creatures manager</h1>
 
+<%= link_to "New creature", new_creature_path %>
 <ul style="list-style: none;">
   <% @creatures.each do |creature| %>
     <li>
@@ -21,4 +22,3 @@
   <% end %>
 </ul>
 
-<%= link_to "New creature", new_creature_path %>

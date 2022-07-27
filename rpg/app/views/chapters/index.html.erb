@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Chapters</h1>
+<%= link_to "New chapter", new_chapter_path %>
+
+<div id="chapters">
+  <% @chapters.each do |chapter| %>
+    <%= render chapter %>
+    <p>
+      <%= link_to "Show this chapter", chapter %> / <%= link_to "Destroy this chapter", chapter_path(chapter), data: {
+                    turbo_method: :delete,
+                  } %> 
+    </p>
+
+  <% end %>
+</div>
+

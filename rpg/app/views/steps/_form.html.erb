@@ -10,22 +10,34 @@
     <% end %>
 
   </div>
+
+  <div class="select-sim" id="select-color">
+    <div class="options">
+      <%= form.collection_radio_buttons( :loot_id , Loot.all.order("life ASC"), :id, :image) do |b| %>
+        <li> <%=b.label { b.radio_button + image_tag(b.object.image) }%></li>
+      <%end%>
+    </div>
+  </div>
+
+
+  <div class="select-sim" id="select-color">
+    <div class="options">
+      <%= form.collection_radio_buttons( :creature_id , Creature.all.order("strength ASC"), :id, :image) do |b| %>
+        <li> <%=b.label { b.radio_button + image_tag(b.object.image) }%></li>
+      <%end%>
+    </div>
+  </div>
+
+ 
+    chapter_id = <%= @chapter_id%>
   <div>
-    <%= form.label :loot_id %><br>
-    <%= form.number_field :loot_id %>
-    <% step.errors.full_messages_for(:loot_id).each do |message| %>
+    <%= form.label :chapter_id %><br>
+    <%= form.number_field :chapter_id %>
+    <% step.errors.full_messages_for(:chapter_id).each do |message| %>
     <div style="color:red"><%= message %></div>
     <% end %>
-
   </div>
-    <div>
-    <%= form.label :creature_id %><br>
-    <%= form.number_field :creature_id %>
-    <% step.errors.full_messages_for(:creature_id).each do |message| %>
-    <div style="color:red"><%= message %></div>
-    <% end %>
 
-  </div>
   <div>
     <%= form.submit %>
   </div>

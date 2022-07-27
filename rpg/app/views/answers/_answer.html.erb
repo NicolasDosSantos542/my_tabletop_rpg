@@ -1,12 +1,9 @@
  <% if answer.description%>
         <p>
-          <strong>réponse :</strong>
-          <%= answer.description %> / next: <%=answer.next%> /
-           choice: <%=answer.choice_id%> /
-            <%= link_to "supprimer", [answer.choice, answer], data: {
-                turbo_method: :delete,
-                turbo_confirm: "Are you sure?"
-              } %>
+          <%= link_to(answer.description, { action: "playGame", current_step: answer.next },
+                                   method: "get",
+                                 data: { current_step: answer.next })%>
+           
         </p>
  <% end %>
 

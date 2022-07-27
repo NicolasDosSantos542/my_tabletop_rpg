@@ -1,0 +1,14 @@
+
+    <div style="border: 1px solid black;display:flex;justify-content:space-around">
+        <div >
+            <h3>choice:</h3>
+            <%= render  "choices/editChoice", choice: Choice.where("step = ?",[step.id]).first %>
+        </div>
+
+        <div >
+            <h3>combattre le monstre:</h3>
+            <%= render  "creatures/creaturetoedit", creature: Creature.find(step.creature_id) %>
+            
+        </div>
+
+    </div>

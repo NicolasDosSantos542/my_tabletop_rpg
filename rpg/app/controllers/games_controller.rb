@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :get_attributes, only: %i[ playGame ]
   before_action :verify_connected
   before_action :isConnected
 
@@ -119,7 +120,6 @@ class GamesController < ApplicationController
     end
 
     if params[:entity] == "gm"
-    # TODO mettre le player ou le gm en parametre pour savoir si c'est une game player ou gm
       @gameForGm = Game.where(gm_id: session[:user_id])
       respond_to do |format|
         if @gameForGm
@@ -132,12 +132,12 @@ class GamesController < ApplicationController
   end
 
   def playerJoinGame
-    @game = Game.find(params[:id])
+    @game = Game.find(params[:game_id])
     if @game
       @join = GamePlayer.new(:game_id => @game.id, :player_id => session[:user_id])
       if @join.save
         respond_to do |format|
-          format.html { redirect_to games_url, notice: "Vous avez rejoint cette partie." }
+          format.html { redirect_to "/games/character/new/" + @game.id.to_s, notice: "Vous avez rejoint la partie: " + @game.name }
           format.json { head :no_content }
         end
       end
@@ -156,6 +156,16 @@ class GamesController < ApplicationController
       format.html { redirect_to games_url, notice: "Game was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def playGame
+    @game = Game.find(params[:game_id]) 
+    @chapter = Chapter.find(@game.chapter_id) 
+    @step = Step.where("step_order =?",[params[:current_step]]).where("chapter_id =?",[@game.chapter_id])
+  end
+
+  def goToNextStep
+    puts "hello world"
   end
 
   private
@@ -181,6 +191,10 @@ class GamesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def game_params
-    params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id)
+    params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id, :chapter_id)
+  end
+
+  def get_attributes
+    @character = Character.find(params[:character_id])
   end
 end

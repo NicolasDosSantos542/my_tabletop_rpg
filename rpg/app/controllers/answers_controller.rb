@@ -24,6 +24,7 @@ class AnswersController < ApplicationController
   end
 
 
+
   private
     def isConnected
       if !session[:role] && !session[:user_id]

@@ -12,6 +12,7 @@ class StepsController < ApplicationController
 
   def new
     @step = Step.new
+    @chapter_id=params[:chapter_id]
   end
 
  
@@ -22,7 +23,7 @@ class StepsController < ApplicationController
     if @step.save
       redirect_to step_path(@step.id)
     else
-      render :new, status: :unprocessable_entity
+      render :back, status: :unprocessable_entity
     end
   end
 
@@ -61,6 +62,6 @@ class StepsController < ApplicationController
       end
     end
     def step_params
-      params.require(:step).permit(:order, :loot_id, :creature_id)
+      params.require(:step).permit(:order, :loot_id, :creature_id, :chapter_id)
     end
 end

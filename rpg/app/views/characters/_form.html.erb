@@ -1,0 +1,80 @@
+<%= form_with(model: character) do |form| %>
+  <% if character.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(character.errors.count, "error") %> prohibited this character from being saved:</h2>
+
+      <ul>
+        <% character.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="select-sim" id="select-color">
+    <div class="options">
+      <%= form.collection_radio_buttons( :avatar , Image.where(["image_type = ?", @image_type]), :path, :name) do |b| %>
+        <li> <%=b.label { b.radio_button + image_tag(b.object.path) }%></li>
+
+      <%end%>
+    </div>
+  </div>
+
+  <% if @role == "gm" %>
+    <div>
+      <%= form.label :total_life, style: "display: block" %>
+      <%= form.number_field :total_life %>
+    </div>
+
+    <div>
+      <%= form.label :life, style: "display: block" %>
+      <%= form.number_field :life %>
+    </div>
+
+    <div>
+      <%= form.label :total_strength, style: "display: block" %>
+      <%= form.text_field :total_strength %>
+    </div>
+
+    <div>
+      <%= form.label :strength, style: "display: block" %>
+      <%= form.number_field :strength %>
+    </div>
+
+    <div>
+      <%= form.label :experience, style: "display: block" %>
+      <%= form.number_field :experience %>
+    </div>
+
+    <div>
+      <%= form.label :gold, style: "display: block" %>
+      <%= form.number_field :gold %>
+    </div>
+
+
+
+    <div>
+      <%= form.label :step_id, style: "display: block" %>
+      <%= form.text_field :step_id %>
+    </div>
+
+    <div>
+      <%= form.label :chapter_id, style: "display: block" %>
+      <%= form.text_field :chapter_id %>
+    </div>
+
+  <% end %>
+  <div>
+    <%= form.label :game_id, style: "display: none" %>
+    <%= form.text_field :game_id, value: @gameId, style: "display: none" %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
+

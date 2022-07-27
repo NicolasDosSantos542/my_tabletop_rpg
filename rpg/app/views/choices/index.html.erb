@@ -1,15 +1,14 @@
-<h1>Hello Rails</h1>
+<h1>Choix</h1>
+
+<%= link_to "New Choice", new_choice_path %>
 
 <ul style="list-style: none;">
   <% @choices.each do |choice| %>
     <li>
-      <%= choice.step %> ) <a href="<%= choice_path(choice) %>">
-        <%= choice.description %> => <%= link_to "Destroy Choice", choice_path(choice), data: {
+      <%= choice.step %> ) <a href="<%= choice_path(choice) %>">  <%= choice.description %>  </a>
+      => <%= link_to "Destroy Choice", choice_path(choice), data: {
                     turbo_method: :delete,
                   } %>
-      </a>
     </li>
   <% end %>
 </ul>
-
-<%= link_to "New Choice", new_choice_path %>
