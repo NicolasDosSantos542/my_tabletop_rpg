@@ -1,5 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
+  before_action :get_attributes, only: %i[ playGame ]
   before_action :verify_connected
   before_action :isConnected
 
@@ -157,6 +158,14 @@ class GamesController < ApplicationController
     end
   end
 
+  def playGame
+    @toto= "test"
+    respond_to do |format|
+      format.html { render :playGame }
+      format.json { head :no_content }
+    end
+  end
+
   private
 
   def isConnected
@@ -183,10 +192,7 @@ class GamesController < ApplicationController
     params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id)
   end
 
-  def playGame
-    respond_to do |format|
-      format.html { render :playGame }
-      format.json { head :no_content }
-    end
+  def get_attributes
+    @character = Character.find(params[:character_id])
   end
 end
