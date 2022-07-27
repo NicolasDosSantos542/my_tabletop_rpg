@@ -78,7 +78,7 @@ namespace :filldbwith do
         @answer = {
           description: answers[n],                                
           choice_id: choice.id,                                                   
-          next:rand(11),                                                        
+          next:rand(10)+1,                                                        
           exp: 2, 
         }
         answer = Answer.new(@answer)
@@ -97,7 +97,7 @@ namespace :filldbwith do
       # puts "hello #{i}" 
       chapter.save
       @step = {
-        step_order: i +1,                                                     
+        step_order: i + 1,                                                     
         creature_id: rand(Creature.count),                                               
         loot_id: rand(Loot.count)+1,                                                   
         chapter_id: chapter.id, 

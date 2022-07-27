@@ -161,7 +161,7 @@ class GamesController < ApplicationController
   def playGame
     @game = Game.find(params[:game_id]) 
     @chapter = Chapter.find(@game.chapter_id) 
-    @step = Step.find(params[:current_step])
+    @step = Step.where("step_order =?",[params[:current_step]]).where("chapter_id =?",[@game.chapter_id])
   end
 
   def goToNextStep
