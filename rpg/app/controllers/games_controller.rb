@@ -40,10 +40,19 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    @chapter = Chapter.new
   end
 
   # GET /games/1/edit
   def edit
+    puts params
+    @game = Game.find(params[:id])
+    if session[:role] != "gm"
+      redirect_to root_path
+    end
+    if @game.chapter_id
+      @chapter=Chapter.find(@game.chapter_id)
+    end
   end
 
   # POST /games or /games.json
@@ -60,6 +69,7 @@ class GamesController < ApplicationController
           format.html { redirect_to game_url(@game), notice: "Game was successfully created." }
           format.json { render :show, status: :created, location: @game }
         else
+          puts "ca n'a pas marché"
           format.html { render :new, status: :unprocessable_entity }
           format.json { render json: @game.errors, status: :unprocessable_entity }
         end
@@ -84,7 +94,7 @@ class GamesController < ApplicationController
 
       if @game
         @game = Game.find(params[:id])
-        format.html { redirect_to game_url(@game), notice: "Game was successfully updated." }
+        format.html { redirect_to request.referer, notice: "Game was successfully updated." }
         format.json { render :show, status: :ok, location: @game }
       else
         format.html { render :edit, status: :unprocessable_entity }
