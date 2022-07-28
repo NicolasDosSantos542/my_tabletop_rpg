@@ -38,7 +38,7 @@ class LootsController < ApplicationController
   def update
     respond_to do |format|
       if @loot.update(loot_params)
-        format.html { redirect_to loot_url(@loot), notice: "Loot was successfully updated." }
+        format.html { redirect_to request.referrer, notice: "Loot was successfully updated." }
         format.json { render :show, status: :ok, location: @loot }
       else
         format.html { render :edit, status: :unprocessable_entity }

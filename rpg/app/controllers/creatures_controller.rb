@@ -34,7 +34,7 @@ class CreaturesController < ApplicationController
       @creature = Creature.find(params[:id])
   
       if @creature.update(creature_params)
-        redirect_to @creature
+        redirect_to request.referrer
       else
         render :edit, status: :unprocessable_entity
       end
@@ -44,7 +44,6 @@ class CreaturesController < ApplicationController
     def destroy
       @creature = Creature.find(params[:id])
       @creature.destroy
-      puts "coucou"
       puts creatures_url
       puts "tchao"
   
