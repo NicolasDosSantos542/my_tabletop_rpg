@@ -109,6 +109,7 @@ namespace :filldbwith do
         creature_id: rand(Creature.count-1)+1,                                               
         loot_id: rand(Loot.count)+1,                                                   
         chapter_id: chapter.id, 
+        fight_next_step: rand(5)+1
       }
       step=Step.new(@step)
       puts step.save

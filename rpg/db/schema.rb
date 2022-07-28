@@ -162,6 +162,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_191805) do
     t.integer "creature_id"
     t.integer "loot_id"
     t.integer "chapter_id"
+    t.integer "fight_next_step"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
