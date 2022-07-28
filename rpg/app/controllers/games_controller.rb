@@ -167,7 +167,25 @@ class GamesController < ApplicationController
     @playerInventory = []
     if @equipments
       @equipments.each do |equipment|
+
         @equiped.push(Loot.find(equipment.loot_id))
+      end
+
+      @equiped.each do |equipment|
+        if equipment.life
+          @character.total_life += equipment.life
+          @character.life += equipment.life
+        end
+
+        if equipment.strength
+          @character.total_strength += equipment.strength
+          @character.strength += equipment.strength
+        end
+
+        if equipment.exp
+          @character.experience += equipment.exp
+          @character.experience += equipment.exp
+        end
       end
     end
 
