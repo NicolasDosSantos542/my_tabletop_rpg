@@ -5,10 +5,11 @@
             <%= render  "choices/choice", choice: Choice.where("step = ?",[step.id]).first %>
         </div>
 
-        <div >
-            <h3>combattre le monstre:</h3>
-            <%= render  "creatures/creature", creature: Creature.find(step.creature_id) %>
-            
-        </div>
+        <div>
+          <div style="display: flex; margin-top: 1em">
+            <%= link_to "Combattre le monstre", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + step.id.to_s + "/fight", style:"color:red; font-weight: bold; text-decoration: none; border: 1px solid black; padding: 0.2em 1em; border-radius: 0.5em;"%>
+          </div>
 
+            <%= render  "creatures/creature", creature: Creature.find(step.creature_id) %>
+        </div>
     </div>

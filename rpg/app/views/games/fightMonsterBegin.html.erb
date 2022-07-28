@@ -1,0 +1,17 @@
+<h2 style="text-align: center" id="message">A votre tour</h2>
+<div style="position: absolute; bottom:15em !important; height: 40em !important">
+  <%= render :partial => 'shared/game/avatarPlayer'%>
+</div>
+<div style="position: relative; bottom:15.5em !important; height: 40em !important">
+<%= render :partial => 'shared/game/attributesInfo' %>
+</div>
+
+<%= button_to("attaquer", controller: "games", action: "playGame") %>
+
+
+<div style="position: relative; bottom:17em; left: 81% !important;">
+  <%= render :partial => 'shared/game/avatarCreature'%>
+</div>
+<div style="position: relative; bottom:15.5em !important;">
+  <%= render :partial => 'shared/game/attributesMonster' %>
+</div>

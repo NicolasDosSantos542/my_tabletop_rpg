@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
   before_action :set_game, only: %i[ show edit update destroy ]
-  before_action :get_attributes, only: %i[ playGame ]
+  before_action :get_attributes, only: %i[ playGame, fightMonster ]
   before_action :verify_connected
   before_action :isConnected
 
@@ -181,11 +181,6 @@ class GamesController < ApplicationController
           @character.total_strength += equipment.strength
           @character.strength += equipment.strength
         end
-
-        if equipment.exp
-          @character.experience += equipment.exp
-          @character.experience += equipment.exp
-        end
       end
     end
 
@@ -199,11 +194,62 @@ class GamesController < ApplicationController
     @step = Step.where("step_order =?",[params[:current_step]]).where("chapter_id =?",[@game.chapter_id])
   end
 
+  def fightMonster
+    @game = Game.find(params[:game_id])
+    @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
+    @inventory = Inventory.where(:wear => false, :character_id => params[:character_id])
+    @equiped = []
+    @playerInventory = []
+    @step = Step.find(params[:current_step])
+    @creature = Creature.find(@step.creature_id)
+    @creatureOldLife = @creature.life;
+
+    if @equipments
+      @equipments.each do |equipment|
+
+        @equiped.push(Loot.find(equipment.loot_id))
+      end
+
+      @equiped.each do |equipment|
+        if equipment.life
+          @character.total_life += equipment.life
+          @character.life += equipment.life
+        end
+
+        if equipment.strength
+          @character.total_strength += equipment.strength
+          @character.strength += equipment.strength
+        end
+      end
+    end
+
+    if @inventory
+      @inventory.each do |equipment|
+        @playerInventory.push(Loot.find(equipment.loot_id))
+      end
+    end
+
+    @chapter = Chapter.find(@game.chapter_id)
+    @step = Step.where("step_order =?",[params[:current_step]]).where("chapter_id =?",[@game.chapter_id])
+
+
+    respond_to do |format|
+      format.html { render :fightMonsterBegin }
+      format.json { head :no_content }
+    end
+    logger.info "je combat le monstre !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    logger.debug "Person attributes id: #{session[:user_id]}"
+  end
+
   def goToNextStep
     puts "hello world"
   end
 
   private
+
+  def get_attributes
+    @character = Character.find(params[:character_id])
+  end
 
   def isConnected
     if !session[:role] && !session[:user_id]
@@ -227,9 +273,5 @@ class GamesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def game_params
     params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id, :chapter_id)
-  end
-
-  def get_attributes
-    @character = Character.find(params[:character_id])
   end
 end
