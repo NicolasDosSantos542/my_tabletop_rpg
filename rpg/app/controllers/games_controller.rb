@@ -16,6 +16,7 @@ class GamesController < ApplicationController
     @channel = Channel.find(@game.channel_id)
     @gm = Gm.find(@game.gm_id)
     @idPlayers = GamePlayer.where(:game_id => @game.id)
+    @currentPlayer = GamePlayer.where(game_id:@game.id, player_id: session[:user_id]).first
     @messages = Message.where(:game_id => @game.id)
 
     @canModify = false
