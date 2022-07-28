@@ -1,0 +1,18 @@
+<p style="color: green"><%= notice %></p>
+
+
+<% if session[:role] == "gm" %>
+  <div>
+    <%= render "chapters/form", chapter:chapter %> 
+
+    <%= button_to "Destroy this chapter", chapter, method: :delete %>
+
+    <%= link_to "liste des chapitres", chapters_path %>
+  </div>
+<% end %>
+<%= link_to "nouvelle étape", new_step_path( :chapter_id => chapter.id )%>
+
+<%= render chapter %>
+<% steps.each do |step| %>
+  <%= render  "steps/editStep", step: step %>
+<% end %> 

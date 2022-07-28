@@ -52,6 +52,7 @@ class GamesController < ApplicationController
     end
     if @game.chapter_id
       @chapter=Chapter.find(@game.chapter_id)
+      @steps = Step.where("chapter_id = ?",[@game.chapter_id]).order("step_order ASC")
     end
   end
 
