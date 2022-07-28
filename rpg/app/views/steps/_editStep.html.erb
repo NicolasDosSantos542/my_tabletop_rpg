@@ -17,7 +17,7 @@
             <%= render  "choices/editChoice", choice: choice %>
             <% else %>
             <% choice= Choice.new %>
-            <% choice.step = step.step_order%>
+            <% choice.step_id = step.id%>
             <%= render "choices/form", choice: choice %>
             <% end %>
         </div>
