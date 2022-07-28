@@ -1,0 +1,112 @@
+<div style="position: absolute; right: 1%; bottom: 2em">
+    <div style="width: 15em; height: 18em; box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px; background: #e2d5cc; padding: 0.5em 2em; ">
+        <h2 style="text-align: center; position: relative; bottom: 0.5em">Inventaire</h2>
+
+        <div style="display: flex; justify-content: center; position: relative; bottom: 0.5em">
+            <!--      bouclier arme armure chaussure deux main-->
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white;">
+              <% if @playerInventory[0] %>
+                <%= image_tag @playerInventory[0].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+              <% if @playerInventory[1] %>
+                <%= image_tag @playerInventory[1].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+                <!-- affichage conditionnel a ajouter -->
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+              <% if @playerInventory[2] %>
+                <%= image_tag @playerInventory[2].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+              <% if @playerInventory[3] %>
+                <%= image_tag @playerInventory[3].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; position: relative; bottom: 0.5em">
+            <!--      bouclier arme armure chaussure deux main-->
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white;">
+              <% if @playerInventory[4] %>
+                <%= image_tag @playerInventory[4].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+              <% if @playerInventory[5] %>
+                <%= image_tag @playerInventory[5].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+              <% if @playerInventory[6] %>
+                <%= image_tag @playerInventory[6].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+              <% if @playerInventory[7] %>
+                <%= image_tag @playerInventory[7].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; position: relative; bottom: 0.5em">
+            <!--      bouclier arme armure chaussure deux main-->
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white;">
+              <% if @playerInventory[8] %>
+                <%= image_tag @playerInventory[8].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+              <% if @playerInventory[9] %>
+                <%= image_tag @playerInventory[9].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+              <% if @playerInventory[10] %>
+                <%= image_tag @playerInventory[10].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+              <% if @playerInventory[11] %>
+                <%= image_tag @playerInventory[11].image, style: 'height:100%;width:auto;'%>
+              <% else %>
+                    <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>

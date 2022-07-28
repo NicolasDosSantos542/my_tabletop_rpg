@@ -162,10 +162,18 @@ class GamesController < ApplicationController
   def playGame
     @game = Game.find(params[:game_id])
     @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
+    @inventory = Inventory.where(:wear => false, :character_id => params[:character_id])
     @equiped = []
+    @playerInventory = []
     if @equipments
       @equipments.each do |equipment|
         @equiped.push(Loot.find(equipment.loot_id))
+      end
+    end
+
+    if @inventory
+      @inventory.each do |equipment|
+        @playerInventory.push(Loot.find(equipment.loot_id))
       end
     end
 
