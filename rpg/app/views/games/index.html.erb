@@ -1,15 +1,19 @@
 <%= render :partial => 'shared/disconnect' %>
 <p style="color: green"><%= notice %></p>
 
+
 <h1>Games</h1>
+<p>
+<%= link_to "New game", new_game_path %>
+</p>
+
+
 
 <div id="games">
   <% @games.each do |game| %>
-    <%= render game %>
-    <p>
+    <div style="border:1px solid;width:30%;padding:10px;">
+      <%= render game %>
       <%= link_to "Show this game", game %>
-    </p>
+      </div>
   <% end %>
 </div>
-
-<%= link_to "New game", new_game_path %>

@@ -3,26 +3,10 @@
     <strong>Name:</strong>
     <%= game.name %>
   </p>
-
   <p>
     <strong>Description:</strong>
     <%= game.description %>
   </p>
 
-  <p>
-    <strong>Channel:</strong>
-    <%= game.channel_id %>
-  </p>
 
-  <p>
-    <strong>Game master:</strong>
-    <%= game.gm_id %>
-  </p>
-
-  <% if game.chapter_id %>
-    <p>
-      <strong>histoire:</strong>
-      <%= Chapter.find(game.chapter_id).name %>
-    </p>
-  <% end %>
 </div>

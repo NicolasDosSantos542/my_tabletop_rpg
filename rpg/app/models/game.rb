@@ -10,4 +10,8 @@ class Game < ApplicationRecord
              dependent: :destroy,
              :class_name => "Gm",
              :foreign_key => 'gm_id'
+
+ validates :name, presence: true
+ validates :description, presence: true, length: { minimum: 10 }
+ validates :chapter_id, presence: true
 end
