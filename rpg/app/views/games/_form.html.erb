@@ -1,4 +1,3 @@
-<h1> <%= @toto%></h1>
 <%= form_with(model: game) do |form| %>
   <% if game.errors.any? %>
     <div style="color: red">
@@ -29,7 +28,7 @@
 
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "valider" %>
   </div>
 <% end %>
 

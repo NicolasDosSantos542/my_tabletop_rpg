@@ -19,9 +19,10 @@
     <%= game.gm_id %>
   </p>
 
-  <p>
-    <strong>histoire:</strong>
-    <%= Chapter.find(game.chapter_id).name %>
-  </p>
-
+  <% if game.chapter_id %>
+    <p>
+      <strong>histoire:</strong>
+      <%= Chapter.find(game.chapter_id).name %>
+    </p>
+  <% end %>
 </div>

@@ -13,7 +13,18 @@
  *= require_tree .
  *= require_self
  */
-
+ .container{
+  display:flex;
+ }
+.left-container,
+.right-container{
+  display:flex;
+  width:50%
+}
+.box{
+  border:1px solid black;
+  padding:10px;
+}
 
 /* --------------- code pour créer un select avec images ----------------------- */
 

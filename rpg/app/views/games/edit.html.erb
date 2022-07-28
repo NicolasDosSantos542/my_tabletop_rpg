@@ -1,7 +1,30 @@
+<% if @connected %>
 <%= render :partial => 'shared/disconnect' %>
-<h1>Editing game</h1>
+<% end %>
+<div class="container">
+  <div class="left-container">
+    <div class="box">
+      <h3>Editing game</h3>
 
-<%= render "form", game: @game %>
+      <%= render "form", game: @game %>
+    </div>
+     <div class="box">
+      <h3>chapitre</h3>
+      <% debug @chapter%>
+      <% if @chapter%>
+        <%= render "chapters/chaptertoedit", chapter: @chapter%>
+      <% else %>
+      
+        <%= render "chapters/form", chapter: Chapter.new %>
+      <% end %>
+    </div>
+  </div>
+  <div class="right-container">
+  
+  </div>
+  
+</div>
+
 
 <br>
 

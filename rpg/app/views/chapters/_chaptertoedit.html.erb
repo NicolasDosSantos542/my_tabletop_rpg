@@ -1,0 +1,14 @@
+
+<div id="<%= dom_id chapter %>">
+  <p>
+    <strong>Name:</strong>
+    <%= chapter.name %>
+  </p>
+
+  <p>
+    <strong>Description:</strong>
+    <%= chapter.description %>
+  </p>
+<%= render "chapters/form", chapter: @chapter %>
+
+</div>
