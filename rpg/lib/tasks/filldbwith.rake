@@ -28,12 +28,20 @@ namespace :filldbwith do
   task loot: :environment do
     @loot_images= Image.where("image_type = ?",["loot"])
     @loot_images.each do |image|
+      type = ""
+      if image.loot_type == "shield" || image.loot_type == "armor" || image.loot_type == "boots"
+        type = image.loot_type
+      else
+        type = "weapon"
+      end
+
       @loot= {
         life: image.loot_value+1,                                                          
         strength: (image.loot_value * 3),                                                      
         exp:( image.loot_value * 2),                                                           
         image: image.path,                                     
         name: image.name,
+        loot_category: type
       }
       puts @loot
       loot = Loot.new(@loot)
@@ -48,7 +56,7 @@ namespace :filldbwith do
     @creature_images = Image.where("image_type = ?",["creature"])
     @creature_images.each do |image|
       @creature= {
-        loot_id: rand(Loot.count),                                                   
+        loot_id: rand(Loot.count)+1,
         strength: rand(10)+1,
         life: rand(11)+5,
         image: image.path,
@@ -98,7 +106,7 @@ namespace :filldbwith do
       chapter.save
       @step = {
         step_order: i + 1,                                                     
-        creature_id: rand(Creature.count),                                               
+        creature_id: rand(Creature.count)+1,
         loot_id: rand(Loot.count)+1,                                                   
         chapter_id: chapter.id, 
       }
@@ -112,11 +120,20 @@ namespace :filldbwith do
   end
 
   desc "modifie les creatures"
-  task modify: :environment do
+  task modifycreature: :environment do
     @creatures = Creature.all
     @creatures.each do |creature|
       creature.loot_id = rand(Loot.count)+1
       puts creature.save
+    end
+  end
+
+  desc "modifie les steps"
+  task modifysteps: :environment do
+    @steps = Step.all
+    @steps.each do |step|
+      step.creature_id = rand(Loot.count)+1
+      puts step.save
     end
   end
 

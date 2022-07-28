@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_191805) do
   create_table "answers", force: :cascade do |t|
     t.text "description"
     t.integer "choice_id", null: false
@@ -116,12 +116,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inventories", force: :cascade do |t|
+    t.integer "loot_id", null: false
+    t.integer "player_id", null: false
+    t.integer "character_id", null: false
+    t.integer "game_id", null: false
+    t.boolean "wear"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_inventories_on_character_id"
+    t.index ["game_id"], name: "index_inventories_on_game_id"
+    t.index ["loot_id"], name: "index_inventories_on_loot_id"
+    t.index ["player_id"], name: "index_inventories_on_player_id"
+  end
+
   create_table "loots", force: :cascade do |t|
     t.integer "life"
     t.integer "strength"
     t.integer "exp"
     t.string "image"
     t.string "name"
+    t.string "loot_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -162,5 +177,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
   add_foreign_key "games", "chapters"
   add_foreign_key "games", "gms"
   add_foreign_key "games", "players"
+  add_foreign_key "inventories", "characters"
+  add_foreign_key "inventories", "games"
+  add_foreign_key "inventories", "loots"
+  add_foreign_key "inventories", "players"
   add_foreign_key "messages", "games"
 end
