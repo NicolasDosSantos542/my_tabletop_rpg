@@ -6,6 +6,10 @@
 <br>
 
 <div>
+  <%= link_to "edit chapter", chapter_path, chapter_id: @game.chapter_id%>
+</div>
+
+<div>
   <%= link_to "create chapter",  new_chapter_path %> |
 
   <%= link_to "Show this game", @game %> |

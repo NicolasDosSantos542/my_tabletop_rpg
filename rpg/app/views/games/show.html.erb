@@ -21,14 +21,9 @@
 </div>
 
 <% if @role == "player" %>
-  <%= link_to "Jouer cette partie", "/games/2/character/#{@currentPlayer.character_id}/1" %>
+  <%= link_to "Jouer cette partie", "/games/#{@game.id}/character/#{@currentPlayer.character_id}/1" %>
 <% end %>
 
-<%= debug @current_player %>
-
-<% if @role != "player" %>
-  <%= link_to "modifier cette partie", edit_game_path(@game) %>
-<% end %>
 
 <div>
   <% if @canModify %>

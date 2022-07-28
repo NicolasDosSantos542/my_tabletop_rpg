@@ -1,13 +1,16 @@
 <p style="color: green"><%= notice %></p>
 
-<div>
-  <%= link_to "Edit this chapter", edit_chapter_path(@chapter) %> |
-  <%= link_to "Back to chapters", chapters_path %>
 
-  <%= button_to "Destroy this chapter", @chapter, method: :delete %>
-</div>
+<% if session[:role] == "gm" %>
+  <div>
+    <%= render "chapters/form", chapter:@chapter %> 
 
-<%= link_to "New step", new_step_path( :chapter_id => @chapter.id )%>
+    <%= button_to "Destroy this chapter", @chapter, method: :delete %>
+
+    <%= link_to "liste des chapitres", chapters_path %>
+  </div>
+<% end %>
+<%= link_to "nouvelle étape", new_step_path( :chapter_id => @chapter.id )%>
 
 <%= render @chapter %>
 <% @steps.each do |step| %>

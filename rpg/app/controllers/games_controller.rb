@@ -40,6 +40,7 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    @chapter = Chapter.new
   end
 
   # GET /games/1/edit
