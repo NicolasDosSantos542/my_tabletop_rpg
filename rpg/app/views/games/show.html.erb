@@ -21,11 +21,13 @@
 </div>
 
 <% if @role == "player" %>
-  <%= link_to "Jouer cette partie", edit_game_path(@game) %>
+  <%= link_to "Jouer cette partie", "/games/2/character/#{@currentPlayer.character_id}/1" %>
 <% end %>
 
-<% if @role == "player" %>
-  <%= link_to "Jouer cette partie (changer le lien pour ammener au demarage ou a la reprise de la partie)", edit_game_path(@game) %>
+<%= debug @current_player %>
+
+<% if @role != "player" %>
+  <%= link_to "modifier cette partie", edit_game_path(@game) %>
 <% end %>
 
 <div>
