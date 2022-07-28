@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  loot: one
+  character: one
+  game: one
+  wear: false
+
+two:
+  loot: two
+  character: two
+  game: two
+  wear: false

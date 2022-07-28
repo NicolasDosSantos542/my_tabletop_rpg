@@ -1,34 +1,51 @@
-<div style="position: absolute; right: 40%; bottom: 2em">
-  <div style="width: 15em; height: 9em; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; background: #e2d5cc; padding: 0.5em 2em; ">
+<div style="position: absolute; right: 43%; bottom: 2em">
+  <div style="width: 15em; height: 17em; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; background: #e2d5cc; padding: 0.5em 2em; ">
     <h2 style="text-align: center; position: relative; bottom: 0.5em">équipement</h2>
     <div style="display: flex; justify-content: space-around; position: relative; bottom: 2em">
-      <p>armure</p><p>bouclier</p><p>chaussure</p><p>arme</p>
+<!--      <p>armure</p><p>bouclier</p><p>chaussure</p><p>arme</p>-->
     </div>
 
-    <div style="display: flex; justify-content: center; position: relative; bottom: 2.5em">
-<!--      bouclier arme armure chaussure deux main-->
 
-      <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white;">
-        <!-- affichage conditionnel a ajouter -->
+  <!--      bouclier arme armure chaussure deux main-->
 
-        <i class="fa-solid fa-hexagon-xmark">X</i>
-      </div>
+        <div style="position: relative; left: 5.5em;display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+          <% @equiped.each do |equipment|  %>
+            <% if equipment.loot_category == "armor" %>
+              <%= image_tag equipment.image, style: 'height:101%;width:auto;'%>
+            <% end %>
+          <% end %>
+          <!-- affichage conditionnel a ajouter -->
+<!--          <i class="fa-solid fa-hexagon-xmark">X</i>-->
+        </div>
 
-      <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
-        <!-- affichage conditionnel a ajouter -->
-        <i class="fa-solid fa-hexagon-xmark">X</i>
-      </div>
-
-      <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
-        <!-- affichage conditionnel a ajouter -->
-        <i class="fa-solid fa-hexagon-xmark">X</i>
-      </div>
-
-      <div style="display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
-        <!-- affichage conditionnel a ajouter -->
-        <i class="fa-solid fa-hexagon-xmark">X</i>
-      </div>
+    <div style="position: relative; left: 1em;display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+      <% @equiped.each do |equipment|  %>
+        <% if equipment.loot_category == "weapon" %>
+          <%= image_tag equipment.image, style: 'height:101%;width:auto;'%>
+        <% end %>
+      <% end %>
+      <!-- affichage conditionnel a ajouter -->
+      <!--          <i class="fa-solid fa-hexagon-xmark">X</i>-->
     </div>
+
+    <div style="position: relative; right: -10em; top:-4.1em;display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+      <% @equiped.each do |equipment|  %>
+        <% if equipment.loot_category == "shield" %>
+          <%= image_tag equipment.image, style: 'height:101%;width:auto;'%>
+        <% end %>
+      <% end %>
+      <!-- affichage conditionnel a ajouter -->
+      <!--          <i class="fa-solid fa-hexagon-xmark">X</i>-->
+    </div>
+
+        <div style="position:relative; bottom: 4em; left: 5.5em; display: flex; justify-content: center; align-items: center; width: 25%; height: 4em; border: 1px solid black; background: white">
+          <!-- affichage conditionnel a ajouter -->
+          <% @equiped.each do |equipment|  %>
+            <% if equipment.loot_category == "boots" %>
+              <%= image_tag equipment.image, style: 'height:101%;width:auto;'%>
+            <% end %>
+          <% end %>
+        </div>
   </div>
 </div>
 

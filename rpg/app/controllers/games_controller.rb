@@ -160,7 +160,15 @@ class GamesController < ApplicationController
   end
 
   def playGame
-    @game = Game.find(params[:game_id]) 
+    @game = Game.find(params[:game_id])
+    @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
+    @equiped = []
+    if @equipments
+      @equipments.each do |equipment|
+        @equiped.push(Loot.find(equipment.loot_id))
+      end
+    end
+
     @chapter = Chapter.find(@game.chapter_id) 
     @step = Step.where("step_order =?",[params[:current_step]]).where("chapter_id =?",[@game.chapter_id])
   end
