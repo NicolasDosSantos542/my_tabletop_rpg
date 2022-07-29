@@ -32,6 +32,15 @@ class LootAdmin
       add.save
 
     end
+
+    def switch_loot_to_inventory()
+      return "des trucs venus de lootAdmin"
+    end
+    def switch_loot_to_equipped(id)
+      puts "\n\n\n\n\n"
+      puts "poutrelle =#{id} "
+      puts "\n\n\n\n\n"
+    end
 end
   
 # LootAdmin.new("beau gosse").say_hello
