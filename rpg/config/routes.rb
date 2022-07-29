@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
   get '/games/:game_id/character/:character_id/:current_step', to: "games#playGame"
 
+  get '/games/:game_id/character/:character_id/:current_step/loot/:loot_id', to: "games#earnLoot"
+
   get '/games/:game_id/character/:character_id/:current_step/fight/turn/:turn', to: "games#fight"
 
   patch '/games/:game_id/character/:character_id/:current_step', to: "attributes#saveAttributesXp"
