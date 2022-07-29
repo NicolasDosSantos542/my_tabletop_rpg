@@ -1,0 +1,53 @@
+<h2 style="text-align: center; color: blueviolet"> Ajouter vos points </h2>
+
+<%= form_for @character, :url => {:controller =>"attributes", :action => "saveAttributesXp"} do |form| %>
+  <div style="text-align: center; font-weight: 700;">Points total à distribuer<p style="color: green;"> <%= @pointToSet %><p></div>
+  <div style="text-align: center; font-weight: 700;">Points restant à distribuer<p style="color: green;" id="calcul"> <p></div>
+  <div style="display: flex; justify-content: center; gap: 58px">
+    <span style="margin-right: 1em"><%= form.label :life, style: "display: block" %></span>
+    <span><%= form.text_field :life, type:"number", min:@character.total_life.to_i, max:@character.total_life.to_i+3, :onChange=>"getResult()", value: @character.total_life, id: "life", style: "display: block" ,onkeydown:"return false"%></span>
+  </div>
+  <div style="display: flex; justify-content: center; gap: 30px">
+    <span style="margin-right: 1em"><%= form.label :strength, style: "display: block" %></span>
+    <span><%= form.text_field :strength, type:"number", min:@character.total_strength.to_i, max:@character.total_strength.to_i+3, :onChange=>"getResult()", value: @character.strength, id: "strength", style: "display: block", onkeydown:"return false" %></span>
+  </div>
+  <div style="margin-top: 2em; display: flex; justify-content: center;">
+    <%= form.submit "Enregistrer les attributs", id: "save" %>
+  </div>
+
+<% end %>
+
+<script>
+    let calcul = document.getElementById("calcul");
+    let pointToSet = <%= @pointToSet %>;
+    let actualLife = <%= @character.total_life %>;
+    let actualStrength = <%= @character.total_strength %>;
+
+    calcul.innerHTML = pointToSet;
+
+    function getResult() {
+        let pointToSet = <%= @pointToSet %>;
+        let P = document.createElement("p")
+        let setInLife = document.getElementById("life").value - actualLife;
+        let setInStrength = document.getElementById("strength").value - actualStrength;
+        let calcul = document.getElementById("calcul")
+        let save = document.getElementById("save")
+        let result = pointToSet - (setInLife + setInStrength)
+        if (setInStrength + setInLife > 3) {
+
+            calcul.innerHTML = result;
+            calcul.appendChild(P).innerHTML = "Vous ne pouvez pas dépasser 3 points cummulés"
+            calcul.style.color = 'red'
+            save.setAttribute("disabled", true)
+        } else if(setInStrength + setInLife === 3) {
+            save.removeAttribute("disabled")
+            calcul.innerHTML = result;
+            calcul.appendChild(P).innerHTML = "Tous vos points sont attribués"
+            calcul.style.color = 'blue'
+        } else {
+            save.setAttribute("disabled", true)
+            calcul.innerHTML = result;
+            calcul.style.color = 'green'
+        }
+    }
+</script>

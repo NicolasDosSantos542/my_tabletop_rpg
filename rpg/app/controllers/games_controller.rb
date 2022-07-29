@@ -173,15 +173,21 @@ class GamesController < ApplicationController
 
   def playGame
     @character = Character.find(params[:character_id])
+
     @game = Game.find(params[:game_id])
     @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
     @inventory = Inventory.where(:wear => false, :character_id => params[:character_id])
     @equiped = []
     @playerInventory = []
-    
+    @addPoint = false
+    @pointToSet = 3
+
     if @character.experience > @game.exp_point * @character.level
       @character.level += 1
       @character.save
+      @addPoint = true
+    else
+      @addPoint = false
     end
 
 

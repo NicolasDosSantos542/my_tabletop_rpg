@@ -39,6 +39,8 @@ Rails.application.routes.draw do
 
   get '/games/:game_id/character/:character_id/:current_step/fight/turn/:turn', to: "games#fight"
 
+  patch '/games/:game_id/character/:character_id/:current_step', to: "attributes#saveAttributesXp"
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
 end
