@@ -9,9 +9,9 @@
     </div>
 
   <div>
-    <%= form.label :step %><br>
-    <%= form.number_field :step %>
-    <% choice.errors.full_messages_for(:step).each do |message| %>
+    <%= form.label :step_id %><br>
+    <%= form.number_field :step_id %>
+    <% choice.errors.full_messages_for(:step_id).each do |message| %>
     <div style="color:red"><%= message %></div>
     <% end %>
 

@@ -2,7 +2,7 @@
     <div style="border: 1px solid black;display:flex;justify-content:space-around">
         <div >
             <h3>choice:</h3>
-            <%= render  "choices/choice", choice: Choice.where("step = ?",[step.id]).first %>
+            <%= render  "choices/choice", choice: Choice.where("step_id = ?",[step.id]).first %>
         </div>
 
         <div >
