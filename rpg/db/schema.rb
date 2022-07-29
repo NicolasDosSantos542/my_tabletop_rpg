@@ -36,6 +36,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_191805) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
+    t.integer "equipment_life", default: 0
     t.integer "total_life", default: 10
     t.integer "life", default: 10
     t.integer "total_strength", default: 10

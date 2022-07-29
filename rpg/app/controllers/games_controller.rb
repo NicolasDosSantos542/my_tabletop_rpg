@@ -260,6 +260,9 @@ class GamesController < ApplicationController
       step: @step
     }
 
+    lifeAddedByLoot = 0
+    strengthAddedByLoot = 0
+
     if @equipments
       @equipments.each do |equipment|
 
@@ -268,11 +271,13 @@ class GamesController < ApplicationController
 
       @equiped.each do |equipment|
         if equipment.life
+          lifeAddedByLoot += equipment.life
           @character.total_life += equipment.life
           @character.life += equipment.life
         end
 
         if equipment.strength
+          strengthAddedByLoot += equipment.strength
           @character.total_strength += equipment.strength
           @character.strength += equipment.strength
         end
@@ -311,6 +316,7 @@ class GamesController < ApplicationController
         @creature.life -= @character.strength * nbrAttack
         @character.life -= @creature.strength * (nbrAttack-1)
         if @creature.life <= 0 && @character.life > 0
+          @character.experience = @creature.given_xp
           @result = "WIN"
           @character.save
         end
