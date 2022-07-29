@@ -5,7 +5,7 @@
 
 <div style="display:flex;justify-content : space-between;">
     <%  LootAdmin.new.select_loot(1).each do |loot|%>
-        <a  href="<%=url+loot.id.to_s%>">
+        <a  href="<%=url+loot.id.to_s+"?from_fight"%>">
             <div>
                 <%= loot.name %>
             </div>
