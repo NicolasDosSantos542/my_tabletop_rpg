@@ -316,7 +316,7 @@ class GamesController < ApplicationController
         @creature.life -= @character.strength * nbrAttack
         @character.life -= @creature.strength * (nbrAttack-1)
         if @creature.life <= 0 && @character.life > 0
-          @character.experience = @creature.given_xp
+          @character.experience = @creature.given_exp
           @result = "WIN"
           @character.save
         end
