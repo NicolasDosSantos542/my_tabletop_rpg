@@ -55,8 +55,8 @@ namespace :filldbwith do
     @creature_images = Image.where("image_type = ?",["creature"])
     @creature_images.each do |image|
       @creature= {
-        loot_id: rand(Loot.count)+1,
-        strength: rand(10)+1,
+        loot_id: rand(Loot.count())+1,
+        strength: ran()d(10)+1,
         life: rand(11)+5,
         image: image.path,
         given_exp: rand(11)+1,
@@ -126,7 +126,7 @@ namespace :filldbwith do
       @step = {
         step_order: i + 1,                                                     
         creature_id: rand(Creature.count-1)+1,                                               
-        loot_id: rand(Loot.count)+1,                                                   
+        loot_id: rand(Loot.count())+1,                                                   
         chapter_id: chapter.id, 
         fight_next_step: rand(5)+1
       }
