@@ -27,6 +27,16 @@
     <%= form.text_area :description %>
   </div>
 
+  <div>
+    <%= form.label :exp_point, style: "display: block" %>
+    <%= form.text_field :exp_point %>
+  </div>
+
+  <div>
+    <%= form.label :exp_coef, style: "display: block" %>
+    <%= form.text_field :exp_coef %>
+  </div>
+
   <div style>    
     <%= form.label :chapter_id, style: "display: block" %>
     <%= form.select(:chapter_id, options_for_select(selectOptions)) %>

@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_191805) do
     t.integer "total_strength", default: 10
     t.integer "strength", default: 10
     t.integer "experience", default: 0
+    t.integer "level", default: 1
     t.integer "gold", default: 0
     t.string "avatar"
     t.integer "step_id"
@@ -86,6 +87,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_191805) do
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.integer "begin_level", default: 1
+    t.integer "exp_point", default: 50
+    t.float "exp_coef", default: 1.0
     t.integer "gm_id", null: false
     t.integer "channel_id", null: false
     t.integer "player_id"
