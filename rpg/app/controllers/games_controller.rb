@@ -15,9 +15,13 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @channel = Channel.find(@game.channel_id)
     @gm = Gm.find(@game.gm_id)
+
     @idPlayers = GamePlayer.where(:game_id => @game.id)
     @currentPlayer = GamePlayer.where(game_id:@game.id, player_id: session[:user_id]).first
-    @character_current_step = Character.find(@currentPlayer.character_id).step_id
+    if @currentPlayer
+      @character_current_step = Character.find(@currentPlayer.character_id).step_id
+    end
+
     @messages = Message.where(:game_id => @game.id)
 
     @canModify = false
