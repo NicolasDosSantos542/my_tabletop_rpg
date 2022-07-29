@@ -192,7 +192,7 @@ class GamesController < ApplicationController
     @addPoint = false
     @pointToSet = 3
 
-    if @character.experience > @game.exp_point * @character.level
+    if @character.experience >= @game.exp_point * @character.level
       @character.level += 1
       @character.save
       @addPoint = true
@@ -316,7 +316,7 @@ class GamesController < ApplicationController
         @creature.life -= @character.strength * nbrAttack
         @character.life -= @creature.strength * (nbrAttack-1)
         if @creature.life <= 0 && @character.life > 0
-          @character.experience = @creature.given_exp
+          @character.experience += @creature.given_exp
           @result = "WIN"
           @character.save
         end
@@ -328,7 +328,18 @@ class GamesController < ApplicationController
       format.html { render :fightMonsterBegin }
       format.json { head :no_content }
     end
+  end
 
+  def earnLoot
+    current = Inventory.where(:character_id => params[:character_id]).order("created_at ASC")
+
+    if current.count()>15
+      current.first.delete
+    end
+    @inventory = Inventory.new(:loot_id => params[:loot_id], :player_id => session[:user_id], :character_id => params[:character_id], :game_id => params[:game_id], :wear => false)
+    if @inventory.save
+      redirect_to "/games/" + params[:game_id].to_s + "/character/" + params[:character_id].to_s + "/" + params[:current_step]
+    end
   end
 
   def goToNextStep
