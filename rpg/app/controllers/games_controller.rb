@@ -17,6 +17,7 @@ class GamesController < ApplicationController
     @gm = Gm.find(@game.gm_id)
     @idPlayers = GamePlayer.where(:game_id => @game.id)
     @currentPlayer = GamePlayer.where(game_id:@game.id, player_id: session[:user_id]).first
+    @character_current_step = Character.find(@currentPlayer.character_id).step_id
     @messages = Message.where(:game_id => @game.id)
 
     @canModify = false
@@ -63,6 +64,7 @@ class GamesController < ApplicationController
       idChannel = Channel.find_by(name: game_params["name"])
       # newIdChannel = idChannel.merge(:id_channel => idChannel)
       new_game = game_params.merge(:channel_id => idChannel.id, :gm_id => session[:user_id])
+
       @game = Game.new(new_game)
 
       respond_to do |format|
@@ -173,11 +175,23 @@ class GamesController < ApplicationController
   def playGame
 
     @character = Character.find(params[:character_id])
+    #sauvegarder la progression du joueur
+    @character.step_id = params[:current_step]
+    
+    @character.save
+    
     @game = Game.find(params[:game_id])
     @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
     @inventory = Inventory.where(:wear => false, :character_id => params[:character_id])
     @equiped = []
     @playerInventory = []
+    
+    if @character.experience > @game.exp_point * @character.level
+      @character.level += 1
+      @character.save
+    end
+
+
     if params[:loot_id]
       LootAdmin.new.add_loot_in_inventory({
         loot_id: params[:loot_id],
@@ -275,6 +289,9 @@ class GamesController < ApplicationController
 
       if @character.life <= 0 && @creature.life > 0
         @result = "LOOSE"
+        @character.step_id = 1
+        @character.life = @character.total_life
+        @character.save
       end
 
     else
@@ -286,6 +303,7 @@ class GamesController < ApplicationController
         @character.life -= @creature.strength * (nbrAttack-1)
         if @creature.life <= 0 && @character.life > 0
           @result = "WIN"
+          @character.save
         end
       end
     end
@@ -329,6 +347,6 @@ class GamesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def game_params
-    params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id, :chapter_id)
+    params.require(:game).permit(:name, :description, :string, :gm_id, :begin_level, :exp_point, :exp_coef, :channel_id, :chapter_id)
   end
 end
