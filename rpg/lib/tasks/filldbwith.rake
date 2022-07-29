@@ -22,7 +22,7 @@ namespace :filldbwith do
   ]
 
   desc 'All'
-  task all: [:creatures, :loot, :choices, :steps]
+  task all: [:creatures, :loot, :choices, :users, :steps]
 
   desc "genere des objets de loot"
   task loot: :environment do
@@ -43,7 +43,6 @@ namespace :filldbwith do
         name: image.name,
         loot_category: type
       }
-      puts @loot
       loot = Loot.new(@loot)
       loot.save
     
@@ -79,9 +78,9 @@ namespace :filldbwith do
         description: (places[i] + "\n Que faites vous?"),                                
         step_id: i+1,  
       }
-      puts @choice
     
       choice=Choice.new(@choice)
+      choice.save
       3.times{|n|
         @answer = {
           description: answers[n],                                
@@ -97,13 +96,33 @@ namespace :filldbwith do
     
 
   end
+  desc "genere des utilisateurs"
+  task users: :environment do
+    gm = Gm.new({login: "meujeu", password: "p"})
+    puts "gm save = "+ gm.save.to_s
+    pj = Player.new({login: "joueur1", password: "p"})
+    puts "pj save = " + pj.save.to_s
+  end
 
   desc "genere des steps"
   task steps: :environment do
     chapter = Chapter.new({name: "premier voyage", description: "C'est le grand départ! Êtes-vous prêt.e?" })
+    chapter.save
+    channel = Channel.new({name: "premier canal"})
+    channel.save
+    @game = {
+      name: "premiere partie",                                                     
+      description: "la premiere partie du jeu",                                              
+      gm_id: Gm.all.first.id,                                                    
+      channel_id: channel.id,                                               
+      player_id: Player.all.first.id,
+      chapter_id: chapter.id    
+    }
+    puts @game
+    game = Game.new(@game )
+    puts "game save = " + game.save.to_s
     10.times {|i| 
       # puts "hello #{i}" 
-      chapter.save
       @step = {
         step_order: i + 1,                                                     
         creature_id: rand(Creature.count-1)+1,                                               
