@@ -342,6 +342,37 @@ class GamesController < ApplicationController
     end
   end
 
+  def addEquipment
+    @equiped = []
+    @item = Inventory.where(:loot_id => params[:loot_id], :character_id => params[:character_id]).first
+    @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
+
+    if @equipments
+      @equipments.each do |equipment|
+
+        @equiped.push(Loot.find(equipment.loot_id))
+      end
+
+      if @equiped
+        @equiped.each do |equipment|
+          if equipment.loot_category == Loot.find(@item.id).loot_category
+            @itemReturn = Inventory.where(:loot_id => equipment.id, :character_id => params[:character_id]).first
+            if @itemReturn
+              @itemReturn.wear = false
+              @itemReturn.save
+            end
+          end
+        end
+      end
+    end
+
+    if @item
+      @item.wear = true
+      @item = @item.save
+      redirect_to "/games/" + params[:game_id].to_s + "/character/" + params[:character_id].to_s + "/" + params[:current_step]
+    end
+  end
+
   def goToNextStep
     puts "hello world"
   end
