@@ -18,7 +18,7 @@ class LootAdmin
     def add_loot_in_inventory(data)
       current = Inventory.where("character_id = ?",[data[:character_id]]).order("created_at ASC")
 
-      if current.count()>16
+      if current.count()>12
         current.first.delete
         
       end
@@ -31,6 +31,15 @@ class LootAdmin
       
       add.save
 
+    end
+
+    def switch_loot_to_inventory()
+      return "des trucs venus de lootAdmin"
+    end
+    def switch_loot_to_equipped()
+      puts "\n\n\n\n\n"
+      puts "poutrelle  "
+      puts "\n\n\n\n\n"
     end
 end
   

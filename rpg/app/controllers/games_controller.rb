@@ -201,7 +201,7 @@ class GamesController < ApplicationController
     end
 
 
-    if params[:loot_id]
+    if params[:loot_id] && request.referer
       LootAdmin.new.add_loot_in_inventory({
         loot_id: params[:loot_id],
         player_id: @game.player_id,
