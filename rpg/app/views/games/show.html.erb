@@ -21,7 +21,7 @@
 </div>
 
 <% if @role == "player" %>
-  <%= link_to "Jouer cette partie", "/games/#{@game.id}/character/#{@currentPlayer.character_id}/1" %>
+  <%= link_to "Jouer cette partie", "/games/#{@game.id}/character/#{@currentPlayer.character_id}/#{@character_current_step.to_i}" %>
 <% end %>
 
 
@@ -33,3 +33,4 @@
   <%= link_to "Back to games", games_path %>
 </div>
 
+<%= debug @game%>

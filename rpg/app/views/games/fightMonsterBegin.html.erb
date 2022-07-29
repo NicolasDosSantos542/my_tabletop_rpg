@@ -13,8 +13,10 @@
 <% if @result =="" %>
   <%= link_to "Attaquer", "/games/" + @game.id.to_s + "/character/" + @character.id[0].to_s + "/" + @step.id.to_s + "/fight/turn/" + @turn.to_s, method: 'post', :onclick => 'getTurn()', id: "btnAttack", :class => "fight-btn"%>
   <%= link_to "Attaquer", "/games/" + @game.id.to_s + "/character/" + @character.id[0].to_s + "/" + @step.id.to_s + "/fight/turn/" + (@turn.to_i+1).to_s, method: 'post', :onclick => 'getTurn()', id: "btnAttackMonster", style:"display:none"%>
-<% else %>
+<% elsif  @result =="WIN"  %>
   <%= render "loots/choose", data: @data %>
+<% else %>
+<%= link_to "vous êtes mort", games_path()%>
 <% end %>
 </div>
 

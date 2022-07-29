@@ -17,6 +17,7 @@ class GamesController < ApplicationController
     @gm = Gm.find(@game.gm_id)
     @idPlayers = GamePlayer.where(:game_id => @game.id)
     @currentPlayer = GamePlayer.where(game_id:@game.id, player_id: session[:user_id]).first
+    @character_current_step = Character.find(@currentPlayer.character_id).step_id
     @messages = Message.where(:game_id => @game.id)
 
     @canModify = false
@@ -174,6 +175,11 @@ class GamesController < ApplicationController
   def playGame
 
     @character = Character.find(params[:character_id])
+    #sauvegarder la progression du joueur
+    @character.step_id = params[:current_step]
+    
+    @character.save
+    
     @game = Game.find(params[:game_id])
     @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
     @inventory = Inventory.where(:wear => false, :character_id => params[:character_id])
@@ -283,6 +289,9 @@ class GamesController < ApplicationController
 
       if @character.life <= 0 && @creature.life > 0
         @result = "LOOSE"
+        @character.step_id = 1
+        @character.life = @character.total_life
+        @character.save
       end
 
     else
@@ -294,6 +303,7 @@ class GamesController < ApplicationController
         @character.life -= @creature.strength * (nbrAttack-1)
         if @creature.life <= 0 && @character.life > 0
           @result = "WIN"
+          @character.save
         end
       end
     end
