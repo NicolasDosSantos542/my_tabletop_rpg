@@ -4,7 +4,7 @@ class CreateCharacters < ActiveRecord::Migration[7.0]
       t.string :name
       t.integer :total_life, default: 10
       t.integer :life, default: 10
-      t.string :total_strength, default:10
+      t.integer :total_strength, default:10
       t.integer :strength, default:10
       t.integer :experience, default: 0
       t.integer :gold, default: 0

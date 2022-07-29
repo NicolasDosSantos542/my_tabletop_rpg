@@ -1,0 +1,58 @@
+
+<h2 style="text-align: center" id="message">A votre tour</h2>
+<p style="text-align: center; color: red"><%= @result %></p>
+<div style="position: absolute; bottom:15em !important; height: 40em !important">
+  <%= render :partial => 'shared/game/avatarPlayer'%>
+</div>
+<div style="position: relative; bottom:15.5em !important; height: 40em !important">
+<%= render :partial => 'shared/game/attributesInfo' %>
+</div>
+
+<div style="position: absolute; bottom: 15em; left: 47%">
+<!--  <span><%#= button_to "attaquer", :controller => "games", :action => "fight", :id=> "button" %></span>-->
+
+  <%= link_to "Attaquer", "/games/" + @game.id.to_s + "/character/" + @character.id[0].to_s + "/" + @step.id.to_s + "/fight/turn/" + @turn.to_s, method: 'post', :onclick => 'getTurn()', id: "btnAttack", style:"color:red; font-weight: bold; text-decoration: none; border: 1px solid black; padding: 0.2em 1em; border-radius: 0.5em;"%>
+  <%= link_to "Attaquer", "/games/" + @game.id.to_s + "/character/" + @character.id[0].to_s + "/" + @step.id.to_s + "/fight/turn/" + (@turn.to_i+1).to_s, method: 'post', :onclick => 'getTurn()', id: "btnAttackMonster", style:"display:none"%>
+</div>
+
+
+
+<div style="position: relative; bottom:17em; left: 81% !important;">
+  <%= render :partial => 'shared/game/avatarCreature'%>
+</div>
+<div style="position: relative; bottom:15.5em !important;">
+  <%= render :partial => 'shared/game/attributesMonster' %>
+</div>
+
+<script>
+    let turn
+    turn = <%= @turn %>;
+    creaturelife = <%= @creature.life %>;
+    function getTurn() {
+        let message = document.getElementById("message");
+        let btnAttackMonster = document.getElementById("btnAttackMonster");
+
+        if((turn % 2) === 0 ) {
+            message.innerHTML = "Tour pnj"
+            turn +=1
+
+        } else {
+            turn +=1
+            console.log("tour player")
+            if (creaturelife.to_i > 0) {
+                setTimeout(() => {
+                        btnAttackMonster.click()
+                        console.log("ensuite tour pnj")
+                },3000)
+                setTimeout(() => {
+                    message.innerHTML = "A votre tour"
+
+                },5000)
+            } else {
+                console.log("le monstre est mort")
+            }
+        }
+        console.log(turn)
+    }
+
+</script>
