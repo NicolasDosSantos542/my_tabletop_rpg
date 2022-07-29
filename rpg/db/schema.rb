@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_191805) do
     t.string "name"
     t.integer "total_life", default: 10
     t.integer "life", default: 10
-    t.string "total_strength", default: "10"
+    t.integer "total_strength", default: 10
     t.integer "strength", default: 10
     t.integer "experience", default: 0
     t.integer "gold", default: 0
