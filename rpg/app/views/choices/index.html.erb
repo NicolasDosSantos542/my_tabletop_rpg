@@ -5,7 +5,7 @@
 <ul style="list-style: none;">
   <% @choices.each do |choice| %>
     <li>
-      <%= choice.step %> ) <a href="<%= choice_path(choice) %>">  <%= choice.description %>  </a>
+      <%= choice.step_id %> ) <a href="<%= choice_path(choice) %>">  <%= choice.description %>  </a>
       => <%= link_to "Destroy Choice", choice_path(choice), data: {
                     turbo_method: :delete,
                   } %>

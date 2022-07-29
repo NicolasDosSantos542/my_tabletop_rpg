@@ -1,7 +1,7 @@
 
 
 <%= form_with model: creature do |form| %>
-
+<% image_type="creature"%>
 
   <div>
 
@@ -50,7 +50,7 @@
   </div>
   <div class="select-sim" id="select-color">
     <div class="options">
-      <%= form.collection_radio_buttons( :image , Image.where(["image_type = ?", @image_type]), :path, :name) do |b| %>
+      <%= form.collection_radio_buttons( :image , Image.where(["image_type = ?", image_type]), :path, :name) do |b| %>
         <li> <%=b.label { b.radio_button + image_tag(b.object.path) }%></li>
         
         <%end%>

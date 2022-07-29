@@ -77,11 +77,11 @@ namespace :filldbwith do
       # puts "hello #{i}" 
       @choice = {
         description: (places[i] + "\n Que faites vous?"),                                
-        step: i+1,  
+        step_id: i+1,  
       }
+      puts @choice
     
       choice=Choice.new(@choice)
-      choice.save
       3.times{|n|
         @answer = {
           description: answers[n],                                

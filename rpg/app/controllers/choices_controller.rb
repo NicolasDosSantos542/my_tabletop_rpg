@@ -19,7 +19,7 @@ class ChoicesController < ApplicationController
     @choice = Choice.new(choice_params)
 
     if @choice.save
-      redirect_to edit_choice_path(@choice.id)
+      redirect_to request.referrer
     else
       render :new, status: :unprocessable_entity
     end
@@ -33,7 +33,7 @@ class ChoicesController < ApplicationController
     @choice = Choice.find(params[:id])
 
     if @choice.update(choice_params)
-      redirect_to @choice
+      redirect_to request.referrer
     else
       render :edit, status: :unprocessable_entity
     end

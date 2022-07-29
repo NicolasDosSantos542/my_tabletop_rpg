@@ -55,7 +55,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_191805) do
 
   create_table "choices", force: :cascade do |t|
     t.text "description"
-    t.integer "step"
+    t.integer "step_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

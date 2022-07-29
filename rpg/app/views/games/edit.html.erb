@@ -1,40 +1,46 @@
 <% if @connected %>
 <%= render :partial => 'shared/disconnect' %>
 <% end %>
-<div class="container">
-  <div class="left-container">
-    <div class="box">
-      <h3>Editing game</h3>
-
-      <%= render "form", game: @game %>
-    </div>
-     <div class="box">
-      <h3>chapitre</h3>
-      <% debug @chapter%>
-      <% if @chapter%>
-        <%= render "chapters/chaptertoedit", chapter: @chapter%>
-      <% else %>
-      
-        <%= render "chapters/form", chapter: Chapter.new %>
-      <% end %>
-    </div>
-  </div>
-  <div class="right-container">
-  
-  </div>
-  
-</div>
-
-
-<br>
-
 <div>
-  <%= link_to "edit chapter", chapter_path, chapter_id: @game.chapter_id%>
-</div>
-
-<div>
-  <%= link_to "create chapter",  new_chapter_path %> |
-
   <%= link_to "Show this game", @game %> |
   <%= link_to "Back to games", games_path %>
 </div>
+
+<div class="container">
+  <div class="box">
+    <h3>Editing game</h3>
+    <%= render "form", game: @game %>
+  </div>
+  <div class="box">
+    <h3>chapitre</h3>
+    <% debug @chapter%>
+    <% if @chapter%>
+      <%= render "chapters/chaptertoedit", chapter: @chapter%> 
+    <% end %>
+    <h3>Nouveau chapitre</h3>
+      <%= render "chapters/form", chapter: Chapter.new %>
+  </div>
+  <div class="box">
+  <h3>nouvelle étape</h3>
+    <%= render "steps/form", step: Step.new %>
+  </div>
+  <div class="box">
+  <h3>nouvelle créature</h3>
+    <%= render "creatures/form", creature: Creature.new %>
+  </div>
+  <div class="box">
+  <h3>Nouvel objet</h3>
+    <%= render "loots/form", loot: Loot.new %>
+  </div>
+
+
+  
+</div>
+
+
+<% @steps.each do |step| %>
+  <%= render  "steps/editStep", step: step %>
+<br>
+<% end %>
+
+
