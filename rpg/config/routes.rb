@@ -37,7 +37,7 @@ Rails.application.routes.draw do
 
   get '/games/:game_id/character/:character_id/:current_step', to: "games#playGame"
 
-  get '/games/:game_id/character/:character_id/:current_step/fight', to: "games#fightMonster"
+  get '/games/:game_id/character/:character_id/:current_step/fight/turn/:turn', to: "games#fight"
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

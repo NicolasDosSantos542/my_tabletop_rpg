@@ -160,6 +160,7 @@ class GamesController < ApplicationController
   end
 
   def playGame
+    @character = Character.find(params[:character_id])
     @game = Game.find(params[:game_id])
     @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
     @inventory = Inventory.where(:wear => false, :character_id => params[:character_id])
@@ -172,12 +173,12 @@ class GamesController < ApplicationController
       end
 
       @equiped.each do |equipment|
-        if equipment.life
+        if equipment.life && @character
           @character.total_life += equipment.life
           @character.life += equipment.life
         end
 
-        if equipment.strength
+        if equipment.strength && @character
           @character.total_strength += equipment.strength
           @character.strength += equipment.strength
         end
@@ -194,13 +195,19 @@ class GamesController < ApplicationController
     @step = Step.where("step_order =?",[params[:current_step]]).where("chapter_id =?",[@game.chapter_id])
   end
 
-  def fightMonster
+  def fight
+
+    @turn = params[:turn]
+    logger.debug "Person attributes id: #{@turn}"
+    @result = ""
+
+    @character = Character.find(params[:character_id])
     @game = Game.find(params[:game_id])
     @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
     @inventory = Inventory.where(:wear => false, :character_id => params[:character_id])
     @equiped = []
     @playerInventory = []
-    @step = Step.find(params[:current_step])
+    @step = Step.where("step_order =?",[params[:current_step]]).where("chapter_id =?",[@game.chapter_id]).first
     @creature = Creature.find(@step.creature_id)
     @creatureOldLife = @creature.life;
 
@@ -229,16 +236,40 @@ class GamesController < ApplicationController
       end
     end
 
-    @chapter = Chapter.find(@game.chapter_id)
-    @step = Step.where("step_order =?",[params[:current_step]]).where("chapter_id =?",[@game.chapter_id])
 
+    #COMBAT PAR TOUR
+    if @turn.to_i % 2 == 0 && @turn.to_i != 0
+      #MONSTRE
+      nbrAttack = @turn.to_i / 2
+      logger.info "oups le monstre m'attaque nbr fois:" + nbrAttack.to_s
+
+      @character.life -= @creature.strength * nbrAttack
+
+      @creature.life -= @character.strength * nbrAttack+1
+
+      if @character.life <= 0 && @creature.life > 0
+        @result = "LOOSE"
+      end
+
+    else
+      if @turn.to_i != 0
+        nbrAttack = (@turn.to_i+1)/2
+      #PLAYER
+        logger.info "je combat le monstre " + nbrAttack.to_s
+        @creature.life -= @character.strength * nbrAttack
+        @character.life -= @creature.strength * (nbrAttack-1)
+        if @creature.life <= 0 && @character.life > 0
+          @result = "WIN"
+        end
+      end
+    end
+    @turn = @turn.next()
 
     respond_to do |format|
       format.html { render :fightMonsterBegin }
       format.json { head :no_content }
     end
-    logger.info "je combat le monstre !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    logger.debug "Person attributes id: #{session[:user_id]}"
+
   end
 
   def goToNextStep
