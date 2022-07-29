@@ -63,6 +63,7 @@ class GamesController < ApplicationController
       idChannel = Channel.find_by(name: game_params["name"])
       # newIdChannel = idChannel.merge(:id_channel => idChannel)
       new_game = game_params.merge(:channel_id => idChannel.id, :gm_id => session[:user_id])
+
       @game = Game.new(new_game)
 
       respond_to do |format|
@@ -314,6 +315,6 @@ class GamesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def game_params
-    params.require(:game).permit(:name, :description, :string, :gm_id, :channel_id, :chapter_id)
+    params.require(:game).permit(:name, :description, :string, :gm_id, :begin_level, :exp_point, :exp_coef, :channel_id, :chapter_id)
   end
 end
