@@ -172,6 +172,7 @@ class GamesController < ApplicationController
   end
 
   def playGame
+
     @character = Character.find(params[:character_id])
     @game = Game.find(params[:game_id])
     @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
@@ -185,6 +186,13 @@ class GamesController < ApplicationController
     end
 
 
+    if params[:loot_id]
+      LootAdmin.new.add_loot_in_inventory({
+        loot_id: params[:loot_id],
+        player_id: @game.player_id,
+        character_id: params[:character_id],
+        game_id: params[:game_id] })
+    end
     if @equipments
       @equipments.each do |equipment|
 
@@ -229,6 +237,13 @@ class GamesController < ApplicationController
     @step = Step.where("step_order =?",[params[:current_step]]).where("chapter_id =?",[@game.chapter_id]).first
     @creature = Creature.find(@step.creature_id)
     @creatureOldLife = @creature.life;
+    @data={
+      creature: @creature,
+      equipments: @equipments,
+      character: @character,
+      game: @game,
+      step: @step
+    }
 
     if @equipments
       @equipments.each do |equipment|

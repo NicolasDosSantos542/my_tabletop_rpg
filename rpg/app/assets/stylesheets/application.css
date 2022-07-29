@@ -27,6 +27,15 @@
   padding:10px;
 }
 
+.fight-btn{
+  color:red;
+  font-weight: bold;
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 0.2em 1em;
+  border-radius: 0.5em;
+  }
+
 /* --------------- code pour créer un select avec images ----------------------- */
 
 .select-sim {

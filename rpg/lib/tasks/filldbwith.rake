@@ -55,15 +55,16 @@ namespace :filldbwith do
     @creature_images = Image.where("image_type = ?",["creature"])
     @creature_images.each do |image|
       @creature= {
-        loot_id: rand(Loot.count)+1,
-        strength: rand(10)+1,
-        life: rand(11)+5,
+        loot_id: rand(Loot.count())+1,
+        strength: rand(40)+1,
+        life: rand(40)+20,
         image: image.path,
-        given_exp: rand(11)+1,
+        given_exp: rand(30)+30,
         description: "un " + image.name + " vous fait face",
         name: image.name,
 
       }
+      # puts @creature
       creature = Creature.new(@creature)
       creature.save
     end
