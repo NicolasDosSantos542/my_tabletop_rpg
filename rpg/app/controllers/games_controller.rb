@@ -178,6 +178,13 @@ class GamesController < ApplicationController
     @inventory = Inventory.where(:wear => false, :character_id => params[:character_id])
     @equiped = []
     @playerInventory = []
+    
+    if @character.experience > @game.exp_point * @character.level
+      @character.level += 1
+      @character.save
+    end
+
+
     if @equipments
       @equipments.each do |equipment|
 

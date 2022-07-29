@@ -41,6 +41,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_27_191805) do
     t.integer "total_strength", default: 10
     t.integer "strength", default: 10
     t.integer "experience", default: 0
+    t.integer "level", default: 1
     t.integer "gold", default: 0
     t.string "avatar"
     t.integer "step_id"

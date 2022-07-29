@@ -7,6 +7,7 @@ class CreateCharacters < ActiveRecord::Migration[7.0]
       t.integer :total_strength, default:10
       t.integer :strength, default:10
       t.integer :experience, default: 0
+      t.integer :level, default: 1
       t.integer :gold, default: 0
       t.string :avatar
       t.references :step, null: true, foreign_key: true
