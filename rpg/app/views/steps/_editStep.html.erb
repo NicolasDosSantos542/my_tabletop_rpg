@@ -13,7 +13,7 @@
 
         <div >
             <h3>choice:</h3>
-            <% if choice = Choice.where("step = ?",[step.step_order]).first %>
+            <% if choice = Choice.where("step_id = ?",[step.step_order]).first %>
             <%= render  "choices/editChoice", choice: choice %>
             <% else %>
             <% choice= Choice.new %>
