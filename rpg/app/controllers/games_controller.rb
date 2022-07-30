@@ -331,9 +331,10 @@ class GamesController < ApplicationController
   end
 
   def earnLoot
-    current = Inventory.where(:character_id => params[:character_id]).order("created_at ASC")
+    current = Inventory.where(:character_id => params[:character_id], :wear => false).order("created_at ASC")
+    equiped = Inventory.where(:character_id => params[:character_id], :wear => true)
 
-    if current.count()>15
+    if current.count() + equiped.count >15
       current.first.delete
     end
     @inventory = Inventory.new(:loot_id => params[:loot_id], :player_id => session[:user_id], :character_id => params[:character_id], :game_id => params[:game_id], :wear => false)
@@ -346,6 +347,7 @@ class GamesController < ApplicationController
     @equiped = []
     @item = Inventory.where(:loot_id => params[:loot_id], :character_id => params[:character_id]).first
     @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
+    @itemCategory = Loot.where(:id => @item.loot_id).first
 
     if @equipments
       @equipments.each do |equipment|
@@ -355,7 +357,7 @@ class GamesController < ApplicationController
 
       if @equiped
         @equiped.each do |equipment|
-          if equipment.loot_category == Loot.find(@item.id).loot_category
+          if @itemCategory.loot_category == equipment.loot_category
             @itemReturn = Inventory.where(:loot_id => equipment.id, :character_id => params[:character_id]).first
             if @itemReturn
               @itemReturn.wear = false
