@@ -7,7 +7,8 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[0] %>
-                <%= image_tag @playerInventory[0].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[0].id%>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[0].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[0].image, style: 'height:100%;width:auto;', :id => @playerInventory[0].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
               <% end %>
@@ -15,7 +16,8 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[1] %>
-                <%= image_tag @playerInventory[1].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[1].id%>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[1].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[1].image, style: 'height:100%;width:auto;', :id => @playerInventory[1].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
               <% end %>
@@ -24,7 +26,8 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[2] %>
-                <%= image_tag @playerInventory[2].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[2].id%>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[2].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[2].image, style: 'height:100%;width:auto;', :id => @playerInventory[2].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
               <% end %>
@@ -32,6 +35,7 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[3] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[3].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
                 <%= image_tag @playerInventory[3].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[3].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
@@ -43,6 +47,7 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[4] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[4].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
                 <%= image_tag @playerInventory[4].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[4].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
@@ -51,6 +56,7 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[5] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[5].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
                 <%= image_tag @playerInventory[5].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[5].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
@@ -59,6 +65,7 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[6] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[6].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
                 <%= image_tag @playerInventory[6].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[6].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
@@ -67,6 +74,7 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[7] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[7].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
                 <%= image_tag @playerInventory[7].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[7].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
@@ -78,6 +86,7 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[8] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[8].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
                 <%= image_tag @playerInventory[8].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[8].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
@@ -86,6 +95,7 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[9] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[9].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
                 <%= image_tag @playerInventory[9].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[9].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
@@ -94,6 +104,7 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[10] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[10].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
                 <%= image_tag @playerInventory[10].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[10].id%>
               <% else %>
                 <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
@@ -102,6 +113,7 @@
 
             <div class="inventory-box" style="">
               <% if @playerInventory[11] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[11].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
                 <%= image_tag @playerInventory[11].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[11].id%>
               <% else %>
                     <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
@@ -110,6 +122,4 @@
         </div>
     </div>
 </div>
-
-<script>
 
