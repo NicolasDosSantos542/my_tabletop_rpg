@@ -299,9 +299,22 @@ class GamesController < ApplicationController
 
       @character.life -= @creature.strength * nbrAttack
 
-      @creature.life -= @character.strength * nbrAttack+1
+      @creature.life -= @character.strength * (nbrAttack+1)
 
       if @character.life <= 0 && @creature.life > 0
+
+        @equiped.each do |equipment|
+          if equipment.life
+            @character.total_life -= equipment.life
+            @character.life -= equipment.life
+          end
+
+          if equipment.strength
+            @character.total_strength -= equipment.strength
+            @character.strength -= equipment.strength
+          end
+        end
+
         @result = "LOOSE"
         @character.step_id = 1
         @character.life = @character.total_life
@@ -316,6 +329,19 @@ class GamesController < ApplicationController
         @creature.life -= @character.strength * nbrAttack
         @character.life -= @creature.strength * (nbrAttack-1)
         if @creature.life <= 0 && @character.life > 0
+
+          @equiped.each do |equipment|
+            if equipment.life
+              @character.total_life -= equipment.life
+              @character.life -= equipment.life
+            end
+
+            if equipment.strength
+              @character.total_strength -= equipment.strength
+              @character.strength -= equipment.strength
+            end
+          end
+
           @character.experience += @creature.given_exp
           @result = "WIN"
           @character.save

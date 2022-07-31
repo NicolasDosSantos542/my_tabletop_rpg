@@ -9,7 +9,7 @@
   </div>
   <div style="display: flex; justify-content: center; gap: 30px">
     <span style="margin-right: 1em"><%= form.label :strength, style: "display: block" %></span>
-    <span><%= form.text_field :strength, type:"number", min:@character.total_strength.to_i, max:@character.total_strength.to_i+3, :onChange=>"getResult()", value: @character.strength, id: "strength", style: "display: block", onkeydown:"return false" %></span>
+    <span><%= form.text_field :strength, type:"number", min:@character.total_strength.to_i, max:@character.total_strength.to_i+3, :onChange=>"getResult()", value: @character.total_strength, id: "strength", style: "display: block", onkeydown:"return false" %></span>
   </div>
   <div style="margin-top: 2em; display: flex; justify-content: center;">
     <%= form.submit "Enregistrer les attributs", id: "save" %>
@@ -18,18 +18,18 @@
 <% end %>
 
 <script>
-    let calcul = document.getElementById("calcul");
-    let pointToSet = <%= @pointToSet %>;
-    let actualLife = <%= @character.total_life %>;
-    let actualStrength = <%= @character.total_strength %>;
 
-    calcul.innerHTML = pointToSet;
 
     function getResult() {
         let pointToSet = <%= @pointToSet %>;
+        let actualLife = <%= @character.total_life.to_i %>;
+        let actualStrength = <%= @character.total_strength.to_i %>;
+
         let P = document.createElement("p")
-        let setInLife = document.getElementById("life").value - actualLife;
-        let setInStrength = document.getElementById("strength").value - actualStrength;
+        let setInLife = parseInt(document.getElementById("life").value) - actualLife;
+        let setInStrength = parseInt(document.getElementById("strength").value) - actualStrength;
+        console.log(setInStrength)
+        console.log(setInLife)
         let calcul = document.getElementById("calcul")
         let save = document.getElementById("save")
         let result = pointToSet - (setInLife + setInStrength)
