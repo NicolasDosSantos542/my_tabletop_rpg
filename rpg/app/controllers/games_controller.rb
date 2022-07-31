@@ -300,7 +300,7 @@ class GamesController < ApplicationController
 
       @character.life -= @creature.strength * nbrAttack
 
-      @creature.life -= @character.strength * (nbrAttack+1)
+      @creature.life -= @character.strength * nbrAttack
 
       if @character.life <= 0 && @creature.life > 0
 

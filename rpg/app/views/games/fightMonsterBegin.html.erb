@@ -16,7 +16,7 @@
 <% elsif  @result =="WIN"  %>
   <%= render "loots/choose", data: @data %>
 <% else %>
-<%= link_to "vous êtes mort", games_path()%>
+<%= link_to "vous êtes mort", "/games/" + @game.id.to_s + "/character/" + @character.id.to_s + "/1"%>
 <% end %>
 </div>
 
