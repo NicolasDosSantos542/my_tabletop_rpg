@@ -244,6 +244,7 @@ class GamesController < ApplicationController
     @result = ""
 
     @character = Character.find(params[:character_id])
+    @oldCharacter = Character.find(params[:character_id])
     @game = Game.find(params[:game_id])
     @equipments = Inventory.where(:wear => true, :character_id => params[:character_id])
     @inventory = Inventory.where(:wear => false, :character_id => params[:character_id])
@@ -328,6 +329,7 @@ class GamesController < ApplicationController
         logger.info "je combat le monstre " + nbrAttack.to_s
         @creature.life -= @character.strength * nbrAttack
         @character.life -= @creature.strength * (nbrAttack-1)
+        @lootExperience = 0
         if @creature.life <= 0 && @character.life > 0
 
           @equiped.each do |equipment|
@@ -340,9 +342,21 @@ class GamesController < ApplicationController
               @character.total_strength -= equipment.strength
               @character.strength -= equipment.strength
             end
+
+            if equipment.exp
+              @lootExperience += equipment.exp
+            end
           end
 
-          @character.experience += @creature.given_exp
+          if @lootExperience > 0
+            @lootExperience = @lootExperience / 10;
+            @lootExperience = @lootExperience+1
+
+            @character.experience += (@creature.given_exp * @lootExperience)
+          else
+            @character.experience += @creature.given_exp
+          end
+
           @result = "WIN"
           @character.save
         end
