@@ -1,15 +1,18 @@
-<%= render :partial => 'shared/disconnect' %>
-<%=  render @step, step: @step %>
-<%= render :partial => 'shared/game/avatarPlayer' %>
-<%= render :partial => 'shared/game/attributesInfo' %>
-<%= render "loots/lootAdmin", {equiped: @equiped, inventory: @inventory}%>
-<%= render :partial => 'shared/game/lootChooseBox' %>
-<%= render :partial => 'shared/game/inventoryBox' %>
-<% if @addPoint == true %>
-<div style="position: absolute; left: 21%; bottom: 5%; padding: 0 1em 1em 1em; box-shadow: rgba(50, 130, 0, 0.35) 0px 5px 15px;">
-  <%= render :partial => 'shared/game/earnAttributes' %>
+<div style="background-image: url('/tavern.png'); height:  100vh">
+  <%= render :partial => 'shared/disconnect' %>
+  <%=  render @step, step: @step %>
+  <%= render :partial => 'shared/game/avatarPlayer' %>
+  <%= render :partial => 'shared/game/attributesInfo' %>
+  <%= render "loots/lootAdmin", {equiped: @equiped, inventory: @inventory}%>
+  <%= render :partial => 'shared/game/lootChooseBox' %>
+  <%= render :partial => 'shared/game/inventoryBox' %>
+  <% if @addPoint == true %>
+    <div style="position: absolute; left: 21%; bottom: 5%; padding: 0 1em 1em 1em; box-shadow: rgba(50, 130, 0, 0.35) 0px 5px 15px;">
+      <%= render :partial => 'shared/game/earnAttributes' %>
+    </div>
+  <% end %>
 </div>
-<% end %>
+
 
 
 

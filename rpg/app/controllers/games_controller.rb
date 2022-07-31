@@ -180,8 +180,12 @@ class GamesController < ApplicationController
 
     @character = Character.find(params[:character_id])
     #sauvegarder la progression du joueur
-    @character.step_id = params[:current_step]
-    
+    if @character.step_id != params[:current_step].to_i
+      @character.experience += 10
+      @character.step_id = params[:current_step].to_i
+    end
+
+
     @character.save
     
     @game = Game.find(params[:game_id])
@@ -239,6 +243,7 @@ class GamesController < ApplicationController
 
   def fight
 
+    @dead = false
     @turn = params[:turn]
     logger.debug "Person attributes id: #{@turn}"
     @result = ""
@@ -316,6 +321,7 @@ class GamesController < ApplicationController
           end
         end
 
+        @dead = true
         @result = "LOOSE"
         @character.step_id = 1
         @character.life = @character.total_life
