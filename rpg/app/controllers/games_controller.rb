@@ -178,6 +178,8 @@ class GamesController < ApplicationController
 
   def playGame
 
+    @delete = false
+    @stayLife = 0
     @character = Character.find(params[:character_id])
     #sauvegarder la progression du joueur
     if @character.step_id != params[:current_step].to_i
@@ -243,6 +245,8 @@ class GamesController < ApplicationController
 
   def fight
 
+    @playerAllStrength = 0
+    @stayLife = 0
     @dead = false
     @turn = params[:turn]
     logger.debug "Person attributes id: #{@turn}"
@@ -296,6 +300,7 @@ class GamesController < ApplicationController
       end
     end
 
+    @playerAllStrength = @character.strength
 
     #COMBAT PAR TOUR
     if @turn.to_i % 2 == 0 && @turn.to_i != 0
@@ -324,6 +329,7 @@ class GamesController < ApplicationController
         @dead = true
         @result = "LOOSE"
         @character.step_id = 1
+        @stayLife = @character.life
         @character.life = @character.total_life
         @character.save
       end
@@ -355,7 +361,7 @@ class GamesController < ApplicationController
           end
 
           if @lootExperience > 0
-            @lootExperience = @lootExperience / 10;
+            @lootExperience = @lootExperience / 10
             @lootExperience = @lootExperience+1
 
             @character.experience += (@creature.given_exp * @lootExperience)

@@ -1,6 +1,7 @@
 <div style="position: absolute; right: 1%; bottom: 2em">
     <div style="width: 15em; height: 18em; box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px; background: #e2d5cc; padding: 0.5em 2em; ">
-        <h2 style="text-align: center; position: relative; bottom: 0.5em">Inventaire</h2>
+        <h2 style="text-align: center; position: relative; bottom: 0.5em">Inventaire <i style="margin-left: 2em" class="fa-solid fa-hand" id="changeIcon" onclick="changeIcon()"></i></h2>
+<!--      <i class="fa-solid fa-trash-can"></i>-->
 
         <div style="display: flex; justify-content: center; position: relative; bottom: 0.5em">
             <!--      bouclier arme armure chaussure deux main-->
@@ -122,4 +123,40 @@
         </div>
     </div>
 </div>
+
+<script>
+
+
+
+  function changeIcon() {
+      let type = <%= @delete %>
+
+      if(type === false) {
+          console.log("c'est dans equip")
+          type = true;
+      } else if(type === true) {
+          type = false;
+          console.log("c'est dans delete")
+      }
+
+      let takeOrDelete = document.getElementById("changeIcon");
+      if(takeOrDelete.className === "fa-solid fa-hand") {
+          takeOrDelete.classList.remove("fa-hand")
+          takeOrDelete.classList.add("fa-trash-can")
+      } else {
+          takeOrDelete.classList.remove("fa-trash-can")
+          takeOrDelete.classList.add("fa-hand")
+      }
+  }
+
+  function getType() {
+      let takeOrDelete = document.getElementById("changeIcon");
+
+      if(takeOrDelete.className === "fa-solid fa-hand") {
+          return ""
+      } else {
+          return "delete"
+      }
+  }
+</script>
 

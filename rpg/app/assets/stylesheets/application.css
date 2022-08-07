@@ -135,4 +135,19 @@
     background:#fffff0;
   }
 
+  .reponse a {
+    background: aliceblue;
+    padding: 0.3em 1em;
+    border-radius: 2em;
+    font-style: normal;
+    color: #4b2f8f;
+    text-decoration: none !important;
+  }
+
+.reponse a:hover {
+  background: #4b2f8f;
+  color: aliceblue;
+  text-decoration: none !important;
+}
+
   /* -------------------------fin du code select avec images ------------------- */

@@ -1,9 +1,9 @@
-<div style="background: rgba(6,238,246,0.3)">
+<div style="background: rgba(6,238,246,0.5); padding: 0.5em 0.5em; border-radius: 1em;">
   <h2 style="text-align: center; color: #0a0a0a"> Ajouter vos points </h2>
 
   <%= form_for @character, :url => {:controller =>"attributes", :action => "saveAttributesXp"} do |form| %>
-    <div style="text-align: center; font-weight: 700;">Points total à distribuer<p style="color: green;"> <%= @pointToSet %><p></div>
-    <div style="text-align: center; font-weight: 700;">Points restant à distribuer<p style="color: green;" id="calcul"> <p></div>
+    <div style="text-align: center; font-weight: 700;">Points total à distribuer<p style="color: green; background: white; border-radius: 1em; padding: 0.5em;"> <%= @pointToSet %><p></div>
+    <div style="text-align: center; font-weight: 700;">Points restant à distribuer<p style="color: green; background: white; border-radius: 1em; padding: 0.5em;" id="calcul">3<p></div>
     <div style="display: flex; justify-content: center; gap: 58px">
       <span style="margin-right: 1em"><%= form.label :life, style: "display: block" %></span>
       <span><%= form.text_field :life, type:"number", min:@character.total_life.to_i, max:@character.total_life.to_i+3, :onChange=>"getResult()", value: @character.total_life, id: "life", style: "display: block" ,onkeydown:"return false"%></span>

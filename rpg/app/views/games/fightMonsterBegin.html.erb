@@ -4,7 +4,12 @@
 <div style="background-image: url('/arena.png'); background-size: cover; width: 100vw; height: 100vh">
 <% end %>
 
-    <h2 style="text-align: center" id="message">A votre tour</h2>
+    <div style="width: auto; margin-left: auto; margin-right: auto">
+      <h2 style="text-align: center; color: #ee3557; font-weight: bold; background: #d6d7d9 ; " id="message">A votre tour</h2>
+    </div>
+
+
+
     <p style="text-align: center; color: red"><%= @result %></p>
     <div style="position: absolute; bottom:15em !important; height: 40em !important">
       <%= render :partial => 'shared/game/avatarPlayer'%>
@@ -37,8 +42,13 @@
 
 <script>
     let turn
+    dead = <%= @dead %>
     turn = <%= @turn %>;
     creaturelife = <%= @creature.life %>;
+    characterlife = <%= @character.life %>;
+    playerAllStrength = <%= @playerAllStrength %>
+    console.log(creaturelife)
+    console.log(characterlife)
     function getTurn() {
         let message = document.getElementById("message");
         let btnAttackMonster = document.getElementById("btnAttackMonster");
@@ -51,7 +61,7 @@
         } else {
             turn +=1
             console.log("tour player")
-            if (creaturelife.to_i > 0) {
+            if (creaturelife > 0 && creaturelife - playerAllStrength > 0) {
                 setTimeout(() => {
                         btnAttackMonster.click()
                         console.log("ensuite tour pnj")
@@ -61,7 +71,7 @@
 
                 },5000)
             } else {
-                console.log("le monstre est mort")
+                console.log("le monstre est mort! " + creaturelife)
             }
         }
         console.log(turn)

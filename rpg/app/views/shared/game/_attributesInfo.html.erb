@@ -12,7 +12,7 @@
 
     <!-- LIFE -->
     <span style="color: blueviolet; font-weight: bold; font-size: 1.3em;"><i class="fa-solid fa-heart"></i></span>
-    <span style="font-size: 1.3em;"><%= @character.life %></span>
+    <span style="font-size: 1.3em;" id="myLife"><%= @character.life %></span>
     <span style="font-size: 1.3em;">/</span>
     <span style="font-size: 1.3em;"><%= @character.total_life %></span>
 
@@ -22,3 +22,13 @@
 
   </div>
 </div>
+
+<script>
+    dead = <%= @dead %>
+    stayLife = <%= @stayLife %>
+
+
+    if(dead) {
+        myLife.innerHTML = stayLife
+    }
+</script>
