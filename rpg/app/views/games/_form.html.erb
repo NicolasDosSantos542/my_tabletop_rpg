@@ -1,4 +1,6 @@
-<h1> <%= @toto%></h1>
+<% selectOptions=[["choisissez un chapitre", "null"]]%>
+<% selectOptions.concat(Chapter.all.map { |chapter| [chapter.name, chapter.id]})%>
+
 <%= form_with(model: game) do |form| %>
   <% if game.errors.any? %>
     <div style="color: red">
@@ -14,22 +16,35 @@
 
   <div>
     <%= form.label :name, style: "display: block" %>
+    <% game.errors.full_messages_for(:name).each do |message| %>
+    <div style="color:red"><%= message %></div>
+    <% end %>
     <%= form.text_field :name %>
   </div>
 
   <div>
     <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :exp_point, style: "display: block" %>
+    <%= form.text_field :exp_point %>
+  </div>
+
+  <div>
+    <%= form.label :exp_coef, style: "display: block" %>
+    <%= form.text_field :exp_coef %>
   </div>
 
   <div style>    
     <%= form.label :chapter_id, style: "display: block" %>
-    <%= form.select(:chapter_id, options_for_select(Chapter.all.map { |chapter| [chapter.name, chapter.id]})) %>
+    <%= form.select(:chapter_id, options_for_select(selectOptions)) %>
   </div>
 
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "valider" %>
   </div>
 <% end %>
 

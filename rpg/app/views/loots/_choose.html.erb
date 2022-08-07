@@ -1,0 +1,19 @@
+<h1>choose your loot</h1>
+
+<% url = "/games/#{data[:game].id}/character/#{data[:character].id}/#{data[:step].fight_next_step}/loot/"%>
+<%# "/games/#{@game.id}/character/#{@currentPlayer.character_id}/1 %>
+
+<div style="display:flex;justify-content : space-between;">
+    <%  LootAdmin.new.select_loot(1).each do |loot|%>
+        <a  href="<%=url+loot.id.to_s%>">
+            <div>
+                <%= loot.name %>
+            </div>
+            <div >
+                <%= image_tag loot.image%>
+            </div>
+        </a>
+    <% end %>
+
+</div>
+

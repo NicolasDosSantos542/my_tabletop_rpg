@@ -1,0 +1,80 @@
+<% if @dead %>
+<div style="background-image: url('/graveyard-overlay.png'); width: 100vw; background-size: cover; height: 100vh">
+<% else %>
+<div style="background-image: url('/arena.png'); background-size: cover; width: 100vw; height: 100vh">
+<% end %>
+
+    <div style="width: auto; margin-left: auto; margin-right: auto">
+      <h2 style="text-align: center; color: #ee3557; font-weight: bold; background: #d6d7d9 ; " id="message">A votre tour</h2>
+    </div>
+
+
+
+    <p style="text-align: center; color: red"><%= @result %></p>
+    <div style="position: absolute; bottom:15em !important; height: 40em !important">
+      <%= render :partial => 'shared/game/avatarPlayer'%>
+    </div>
+    <div style="position: relative; bottom:15.5em !important; height: 40em !important">
+    <%= render :partial => 'shared/game/attributesInfo' %>
+    </div>
+
+    <div style="position: absolute; bottom: 15em; left: 47%">
+    <!--  <span><%#= button_to "attaquer", :controller => "games", :action => "fight", :id=> "button" %></span>-->
+    <% if @result =="" %>
+      <%= link_to "Attaquer", "/games/" + @game.id.to_s + "/character/" + @character.id.to_s + "/" + @step.id.to_s + "/fight/turn/" + @turn.to_s, method: 'post', :onclick => 'getTurn()', id: "btnAttack", :class => "fight-btn"%>
+      <%= link_to "Attaquer", "/games/" + @game.id.to_s + "/character/" + @character.id.to_s + "/" + @step.id.to_s + "/fight/turn/" + (@turn.to_i+1).to_s, method: 'post', :onclick => 'getTurn()', id: "btnAttackMonster", style:"display:none"%>
+    <% elsif  @result =="WIN"  %>
+      <%= render "loots/choose", data: @data %>
+    <% else %>
+    <%= link_to "vous êtes mort", "/games/" + @game.id.to_s + "/character/" + @character.id.to_s + "/1", style:"color: red; font-weight: bold; font-size: 2em; padding: 0.5em 1em; background: white; border-radius: 1em;position: relative; right: 2.5em"%>
+    <% end %>
+    </div>
+
+
+    <div style="position: relative; bottom:17em; left: 81% !important;">
+      <%= render :partial => 'shared/game/avatarCreature'%>
+    </div>
+    <div style="position: relative; bottom:15.5em !important;">
+      <%= render :partial => 'shared/game/attributesMonster' %>
+    </div>
+</div>
+</div>
+
+<script>
+    let turn
+    dead = <%= @dead %>
+    turn = <%= @turn %>;
+    creaturelife = <%= @creature.life %>;
+    characterlife = <%= @character.life %>;
+    playerAllStrength = <%= @playerAllStrength %>
+    console.log(creaturelife)
+    console.log(characterlife)
+    function getTurn() {
+        let message = document.getElementById("message");
+        let btnAttackMonster = document.getElementById("btnAttackMonster");
+        let btnAttack = document.getElementById("btnAttack");
+
+        if((turn % 2) === 0 ) {
+            message.innerHTML = "Tour pnj"
+            turn +=1
+
+        } else {
+            turn +=1
+            console.log("tour player")
+            if (creaturelife > 0 && creaturelife - playerAllStrength > 0) {
+                setTimeout(() => {
+                        btnAttackMonster.click()
+                        console.log("ensuite tour pnj")
+                },3000)
+                setTimeout(() => {
+                    message.innerHTML = "A votre tour"
+
+                },5000)
+            } else {
+                console.log("le monstre est mort! " + creaturelife)
+            }
+        }
+        console.log(turn)
+    }
+
+</script>

@@ -1,0 +1,162 @@
+<div style="position: absolute; right: 1%; bottom: 2em">
+    <div style="width: 15em; height: 18em; box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px; background: #e2d5cc; padding: 0.5em 2em; ">
+        <h2 style="text-align: center; position: relative; bottom: 0.5em">Inventaire <i style="margin-left: 2em" class="fa-solid fa-hand" id="changeIcon" onclick="changeIcon()"></i></h2>
+<!--      <i class="fa-solid fa-trash-can"></i>-->
+
+        <div style="display: flex; justify-content: center; position: relative; bottom: 0.5em">
+            <!--      bouclier arme armure chaussure deux main-->
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[0] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[0].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[0].image, style: 'height:100%;width:auto;', :id => @playerInventory[0].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[1] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[1].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[1].image, style: 'height:100%;width:auto;', :id => @playerInventory[1].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+                <!-- affichage conditionnel a ajouter -->
+            </div>
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[2] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[2].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[2].image, style: 'height:100%;width:auto;', :id => @playerInventory[2].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[3] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[3].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[3].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[3].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; position: relative; bottom: 0.5em">
+            <!--      bouclier arme armure chaussure deux main-->
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[4] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[4].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[4].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[4].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[5] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[5].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[5].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[5].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[6] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[6].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[6].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[6].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[7] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[7].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[7].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[7].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; position: relative; bottom: 0.5em">
+            <!--      bouclier arme armure chaussure deux main-->
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[8] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[8].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[8].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[8].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[9] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[9].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[9].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[9].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[10] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[10].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[10].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[10].id%>
+              <% else %>
+                <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+
+            <div class="inventory-box" style="">
+              <% if @playerInventory[11] %>
+                <%= link_to "", "/games/" + @game.id.to_s + '/character/' + @character.id.to_s + "/" + @step.ids[0].to_s + "/wear/" + @playerInventory[11].id.to_s, style:"color:none; font-size: 5em; position: absolute; width: 25%; height:25%"%>
+                <%= image_tag @playerInventory[11].image, style: 'height:100%;width:auto;', :onclick => 'putLootIntoEquipped(this.id)', :id => @playerInventory[11].id%>
+              <% else %>
+                    <i style="width:5em; text-align: center" class="fa-solid fa-hexagon-xmark">X</i>
+              <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+  function changeIcon() {
+      let type = <%= @delete %>
+
+      if(type === false) {
+          console.log("c'est dans equip")
+          type = true;
+      } else if(type === true) {
+          type = false;
+          console.log("c'est dans delete")
+      }
+
+      let takeOrDelete = document.getElementById("changeIcon");
+      if(takeOrDelete.className === "fa-solid fa-hand") {
+          takeOrDelete.classList.remove("fa-hand")
+          takeOrDelete.classList.add("fa-trash-can")
+      } else {
+          takeOrDelete.classList.remove("fa-trash-can")
+          takeOrDelete.classList.add("fa-hand")
+      }
+  }
+
+  function getType() {
+      let takeOrDelete = document.getElementById("changeIcon");
+
+      if(takeOrDelete.className === "fa-solid fa-hand") {
+          return ""
+      } else {
+          return "delete"
+      }
+  }
+</script>
+

@@ -3,9 +3,9 @@
 
 
   <div>
-    <%= form.label :order %><br>
-    <%= form.number_field :order %>
-    <% step.errors.full_messages_for(:order).each do |message| %>
+    <%= form.label :step_order %><br>
+    <%= form.number_field :step_order %>
+    <% step.errors.full_messages_for(:step_order).each do |message| %>
     <div style="color:red"><%= message %></div>
     <% end %>
 
@@ -29,11 +29,18 @@
   </div>
 
  
-    chapter_id = <%= @chapter_id%>
   <div>
     <%= form.label :chapter_id %><br>
     <%= form.number_field :chapter_id %>
     <% step.errors.full_messages_for(:chapter_id).each do |message| %>
+    <div style="color:red"><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :fight_next_step %><br>
+    <%= form.number_field :fight_next_step %>
+    <% step.errors.full_messages_for(:fight_next_step).each do |message| %>
     <div style="color:red"><%= message %></div>
     <% end %>
   </div>

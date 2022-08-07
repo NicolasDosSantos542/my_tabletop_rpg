@@ -35,7 +35,7 @@ class StepsController < ApplicationController
     @step = Step.find(params[:id])
 
     if @step.update(step_params)
-      redirect_to @step
+      redirect_to request.referrer
     else
       render :edit, status: :unprocessable_entity
     end
@@ -62,6 +62,6 @@ class StepsController < ApplicationController
       end
     end
     def step_params
-      params.require(:step).permit(:order, :loot_id, :creature_id, :chapter_id)
+      params.require(:step).permit(:step_order, :loot_id, :creature_id, :chapter_id, :fight_next_step)
     end
 end

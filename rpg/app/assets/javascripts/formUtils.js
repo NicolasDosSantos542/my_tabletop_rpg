@@ -7,3 +7,8 @@ function getStrength() {
     document.getElementById("strength")
     console.log(document.getElementById("strength");
 }
+
+function sayHello(){
+    alert("hello!")
+    console.log("hello")
+}

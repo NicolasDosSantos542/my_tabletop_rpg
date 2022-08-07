@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_191805) do
   create_table "answers", force: :cascade do |t|
     t.text "description"
     t.integer "choice_id", null: false
@@ -36,11 +36,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
 
   create_table "characters", force: :cascade do |t|
     t.string "name"
+    t.integer "equipment_life", default: 0
     t.integer "total_life", default: 10
     t.integer "life", default: 10
-    t.string "total_strength", default: "10"
+    t.integer "total_strength", default: 10
     t.integer "strength", default: 10
     t.integer "experience", default: 0
+    t.integer "level", default: 1
     t.integer "gold", default: 0
     t.string "avatar"
     t.integer "step_id"
@@ -55,7 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
 
   create_table "choices", force: :cascade do |t|
     t.text "description"
-    t.integer "step"
+    t.integer "step_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -86,6 +88,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
   create_table "games", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.integer "begin_level", default: 1
+    t.integer "exp_point", default: 50
+    t.float "exp_coef", default: 1.0
     t.integer "gm_id", null: false
     t.integer "channel_id", null: false
     t.integer "player_id"
@@ -116,12 +121,27 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "inventories", force: :cascade do |t|
+    t.integer "loot_id", null: false
+    t.integer "player_id", null: false
+    t.integer "character_id", null: false
+    t.integer "game_id", null: false
+    t.boolean "wear"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["character_id"], name: "index_inventories_on_character_id"
+    t.index ["game_id"], name: "index_inventories_on_game_id"
+    t.index ["loot_id"], name: "index_inventories_on_loot_id"
+    t.index ["player_id"], name: "index_inventories_on_player_id"
+  end
+
   create_table "loots", force: :cascade do |t|
     t.integer "life"
     t.integer "strength"
     t.integer "exp"
     t.string "image"
     t.string "name"
+    t.string "loot_category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -147,6 +167,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
     t.integer "creature_id"
     t.integer "loot_id"
     t.integer "chapter_id"
+    t.integer "fight_next_step"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -162,5 +183,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_26_091218) do
   add_foreign_key "games", "chapters"
   add_foreign_key "games", "gms"
   add_foreign_key "games", "players"
+  add_foreign_key "inventories", "characters"
+  add_foreign_key "inventories", "games"
+  add_foreign_key "inventories", "loots"
+  add_foreign_key "inventories", "players"
   add_foreign_key "messages", "games"
 end

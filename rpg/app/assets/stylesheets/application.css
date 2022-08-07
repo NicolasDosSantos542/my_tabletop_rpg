@@ -13,8 +13,39 @@
  *= require_tree .
  *= require_self
  */
+ .container{
+  display:flex;
+  justify-content: space-between;
+ }
+.left-container,
+.right-container{
+  display:flex;
+  width:50%
+}
+.box{
+  border:1px solid black;
+  padding:10px;
+}
 
+.fight-btn{
+  color:red;
+  background: #FFF;
+  font-weight: bold;
+  text-decoration: none;
+  border: 1px solid black;
+  padding: 0.2em 1em;
+  border-radius: 0.5em;
+  }
+.inventory-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 4em;
+  border: 1px solid black;
+  background: white;
 
+}
 /* --------------- code pour créer un select avec images ----------------------- */
 
 .select-sim {
@@ -103,5 +134,20 @@
   .select-sim:hover .options .option input:checked + label {
     background:#fffff0;
   }
+
+  .reponse a {
+    background: aliceblue;
+    padding: 0.3em 1em;
+    border-radius: 2em;
+    font-style: normal;
+    color: #4b2f8f;
+    text-decoration: none !important;
+  }
+
+.reponse a:hover {
+  background: #4b2f8f;
+  color: aliceblue;
+  text-decoration: none !important;
+}
 
   /* -------------------------fin du code select avec images ------------------- */

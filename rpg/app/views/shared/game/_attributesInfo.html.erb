@@ -1,12 +1,18 @@
 <div>
-  <div style="position: absolute; bottom: 2em; background: #e2d5cc; padding: 0.5em 2em; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+  <div style="position: absolute; bottom: 2em; background: #e2d5cc; padding: 0.5em 1.5em; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+
+    <span style="color: blueviolet; font-weight: bold; font-size: 1.1em;"><i class="fa-solid fa-medal"></i></span>
+    <span style="font-size: 1.3em;">
+      <%= @character.level %>
+    </span>
+
     <!-- XP -->
     <span style="color: blueviolet; font-weight: bold; font-size: 1.3em;">[XP] </span>
     <span style="font-size: 1.3em;"><%= @character.experience %></span>
 
     <!-- LIFE -->
     <span style="color: blueviolet; font-weight: bold; font-size: 1.3em;"><i class="fa-solid fa-heart"></i></span>
-    <span style="font-size: 1.3em;"><%= @character.life %></span>
+    <span style="font-size: 1.3em;" id="myLife"><%= @character.life %></span>
     <span style="font-size: 1.3em;">/</span>
     <span style="font-size: 1.3em;"><%= @character.total_life %></span>
 
@@ -16,3 +22,13 @@
 
   </div>
 </div>
+
+<script>
+    dead = <%= @dead %>
+    stayLife = <%= @stayLife %>
+
+
+    if(dead) {
+        myLife.innerHTML = stayLife
+    }
+</script>

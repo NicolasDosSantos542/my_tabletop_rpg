@@ -1,5 +1,5 @@
 
-<p>  <%= choice.description %></p>
+<%= render "choices/form", choice: choice %>
 <% choice.answers.each do |answer|%>
 <%= render "/answers/answertoedit", answer: answer %>
 <% end %>

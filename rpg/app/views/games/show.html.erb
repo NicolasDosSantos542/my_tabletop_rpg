@@ -21,12 +21,9 @@
 </div>
 
 <% if @role == "player" %>
-  <%= link_to "Jouer cette partie", edit_game_path(@game) %>
+  <%= link_to "Jouer cette partie", "/games/#{@game.id}/character/#{@currentPlayer.character_id}/#{@character_current_step.to_i}" %>
 <% end %>
 
-<% if @role == "player" %>
-  <%= link_to "Jouer cette partie (changer le lien pour ammener au demarage ou a la reprise de la partie)", edit_game_path(@game) %>
-<% end %>
 
 <div>
   <% if @canModify %>

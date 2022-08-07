@@ -22,11 +22,12 @@
 
 <!--  Demarer une partie -->
 <% if @entity == "player"  %>
-  <h4>Debuter une nouvelle partie?</h4>
+  <h4>liste des parties</h4>
 
   <% @notInGames.each do |game| %>
-    <p><%= link_to game.name, "/games/firstjoin/" + game.id.to_s %></p>
+    <p><%= game.name %>
     <%= button_to( "Rejoindre", :action => "playerJoinGame", :controller => "games", :game_id => game.id)%>
+    </p>
   <% end %>
 <% end %>
 

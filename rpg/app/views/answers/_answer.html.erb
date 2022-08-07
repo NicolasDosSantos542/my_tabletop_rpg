@@ -1,5 +1,5 @@
  <% if answer.description%>
-        <p>
+        <p class="reponse">
           <%= link_to(answer.description, { action: "playGame", current_step: answer.next },
                                    method: "get",
                                  data: { current_step: answer.next })%>

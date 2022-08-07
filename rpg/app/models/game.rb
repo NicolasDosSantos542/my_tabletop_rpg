@@ -2,11 +2,16 @@ class Game < ApplicationRecord
   belongs_to :channel,
              :class_name => "Channel",
              :foreign_key => 'channel_id'
-  has_many :messages
+  has_many :messages, dependent: :destroy
   has_many :players
-  has_many :characters
+  has_many :game_players, dependent: :destroy
+  has_many :characters, dependent: :destroy
   belongs_to :gm,
              dependent: :destroy,
              :class_name => "Gm",
              :foreign_key => 'gm_id'
+
+ validates :name, presence: true
+ validates :description, presence: true, length: { minimum: 10 }
+ validates :chapter_id, presence: true
 end
